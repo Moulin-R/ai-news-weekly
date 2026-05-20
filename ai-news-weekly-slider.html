@@ -3,322 +3,341 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI NEWS BLAST 2026.05.20</title>
+<title>AI NEWS DASHBOARD 2026.05.21</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ff6a00'/%3E%3Crect width='32' height='16' rx='7' fill='%23ff4500'/%3E%3Crect y='9' width='32' height='7' fill='%23ff4500'/%3E%3Crect x='4' y='17' width='24' height='1' fill='rgba(255,255,255,0.3)'/%3E%3Ctext x='16' y='14' text-anchor='middle' dominant-baseline='middle' font-family='Arial Black,Arial,sans-serif' font-size='12' font-weight='900' fill='white' letter-spacing='1'%3EAI%3C/text%3E%3Ctext x='16' y='25' text-anchor='middle' dominant-baseline='middle' font-family='Arial Black,Arial,sans-serif' font-size='8' font-weight='700' fill='rgba(255,255,255,0.92)' letter-spacing='2'%3Enews%3C/text%3E%3C/svg%3E">
-<!-- iPhone ホーム画面アイコン用 -->
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="AI NEWS">
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+JP:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Share+Tech+Mono&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --bg:#f0ede8;--ink:#0d0d0d;--white:#fafaf8;
-  --c1:#ff3b3b;--c2:#0057ff;--c3:#00c97a;--c4:#ff9500;--c5:#9b00ff;
-  --border:3px solid var(--ink);
+  --bg:#060a12;--surface:#0d1421;--card:#111827;
+  --c1:#00d4ff;--c2:#ff6b35;--c3:#00ff88;--c4:#ff3b8a;--c5:#a78bfa;
+  --text:#e2e8f0;--muted:#64748b;--border:rgba(0,212,255,0.15);
 }
-body{background:var(--bg);color:var(--ink);font-family:'Noto Sans JP',sans-serif;height:100vh;overflow:hidden;display:flex;flex-direction:column;}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;height:100vh;overflow:hidden;display:flex;flex-direction:column;}
 
-/* SCAN LINE */
-body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.02) 4px);
+/* GRID BACKGROUND */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(0,212,255,0.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,212,255,0.03) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+body::after{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(0,212,255,0.06),transparent 70%);
 }
 
 /* HEADER */
 header{
-  position:relative;z-index:10;
-  background:var(--ink);color:var(--white);
-  padding:0.9rem 1.4rem;
+  position:relative;z-index:10;flex-shrink:0;
+  background:rgba(13,20,33,0.95);
+  border-bottom:1px solid var(--border);
+  padding:0.7rem 1.4rem;
   display:flex;justify-content:space-between;align-items:center;
-  flex-shrink:0;
 }
-.logo{font-family:'Black Han Sans',sans-serif;font-size:1.4rem;letter-spacing:0.05em;}
-.logo-accent{color:var(--c1);}
-.hdr-meta{text-align:right;}
-.hdr-date{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:rgba(250,250,248,0.5);letter-spacing:0.1em;}
-.hdr-tag{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--c1);letter-spacing:0.12em;margin-top:2px;}
+.logo{
+  font-family:'Orbitron',monospace;font-size:1rem;font-weight:900;
+  letter-spacing:0.12em;
+  background:linear-gradient(90deg,var(--c1),var(--c3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hdr-right{display:flex;align-items:center;gap:1rem;}
+.pulse-dot{
+  display:flex;align-items:center;gap:0.4rem;
+  font-family:'Share Tech Mono',monospace;font-size:0.6rem;
+  color:var(--c3);letter-spacing:0.1em;
+}
+.pulse{
+  width:6px;height:6px;border-radius:50%;background:var(--c3);
+  animation:pulse 1.5s ease infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,255,136,0.4)}50%{opacity:0.7;box-shadow:0 0 0 4px rgba(0,255,136,0)}}
+.hdr-date{font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--muted);letter-spacing:0.08em;}
 
 /* TICKER */
 .ticker-wrap{
   position:relative;z-index:10;flex-shrink:0;
-  background:var(--c1);overflow:hidden;
-  padding:0.38rem 0;
-  border-top:2px solid var(--ink);
-  border-bottom:2px solid var(--ink);
+  background:rgba(0,212,255,0.08);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:0.35rem 0;overflow:hidden;
 }
 .ticker-label{
   position:absolute;left:0;top:0;bottom:0;z-index:2;
-  background:var(--ink);color:var(--white);
+  background:var(--c1);color:var(--bg);
   display:flex;align-items:center;padding:0 0.8rem;
-  font-family:'JetBrains Mono',monospace;font-size:0.62rem;font-weight:700;
-  letter-spacing:0.12em;white-space:nowrap;
-  border-right:2px solid var(--c1);
+  font-family:'Share Tech Mono',monospace;font-size:0.62rem;font-weight:700;
+  letter-spacing:0.15em;white-space:nowrap;
 }
 .ticker-track{
-  display:flex;align-items:center;
-  white-space:nowrap;
-  animation:ticker 28s linear infinite;
-  padding-left:200px;
+  display:flex;align-items:center;white-space:nowrap;
+  animation:ticker 32s linear infinite;padding-left:120px;
 }
 .ticker-track:hover{animation-play-state:paused;}
 .ticker-item{
-  font-family:'JetBrains Mono',monospace;font-size:0.68rem;font-weight:700;
-  color:var(--white);letter-spacing:0.06em;
-  padding:0 0.5rem;
+  font-family:'Share Tech Mono',monospace;font-size:0.65rem;
+  color:var(--c1);letter-spacing:0.05em;padding:0 0.6rem;
 }
-.ticker-sep{color:rgba(255,255,255,0.5);margin:0 0.3rem;font-size:0.7rem;}
-@keyframes ticker{
-  from{transform:translateX(0);}
-  to{transform:translateX(-50%);}
-}
+.ticker-sep{color:var(--muted);margin:0 0.2rem;}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* PROGRESS */
-.prog-wrap{height:4px;background:rgba(0,0,0,0.1);flex-shrink:0;position:relative;z-index:10;}
+.prog-wrap{height:2px;background:rgba(255,255,255,0.05);flex-shrink:0;position:relative;z-index:10;}
 .prog-fill{height:100%;transition:width 0.4s ease;}
 
 /* SLIDER */
-.slider-outer{flex:1;overflow:hidden;position:relative;z-index:5;padding:1.2rem 0 0;}
-.slider-track{display:flex;height:100%;transition:transform 0.55s cubic-bezier(0.86,0,0.07,1);}
+.slider-outer{flex:1;overflow:hidden;position:relative;z-index:5;padding:1rem 0 0;}
+.slider-track{display:flex;height:100%;transition:transform 0.6s cubic-bezier(0.77,0,0.175,1);}
 
 /* CARD */
-.slide{min-width:100%;height:100%;padding:0 1.2rem 1rem;}
+.slide{min-width:100%;height:100%;padding:0 1.2rem 0.8rem;}
 .card{
   width:100%;height:100%;
-  background:var(--white);
-  border:var(--border);
-  box-shadow:5px 5px 0 var(--ink);
-  display:flex;flex-direction:column;
-  overflow:hidden;
+  background:var(--card);
+  border:1px solid var(--ac-border,rgba(0,212,255,0.2));
+  border-radius:12px;
+  display:flex;flex-direction:column;overflow:hidden;
   position:relative;
+  box-shadow:0 0 30px var(--ac-glow,rgba(0,212,255,0.05));
 }
-.card-stripe{height:6px;background:var(--ac,var(--c1));flex-shrink:0;}
-.card-content{padding:1.4rem 1.5rem 1.2rem;flex:1;display:flex;flex-direction:column;gap:0.8rem;overflow:hidden;}
-
-.card-header{display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;}
+.card-top-bar{
+  height:3px;
+  background:linear-gradient(90deg,var(--ac,var(--c1)),transparent);
+  flex-shrink:0;
+}
+.card-content{
+  padding:1.4rem 1.5rem 1.2rem;
+  flex:1;display:flex;flex-direction:column;gap:0.85rem;overflow:hidden;
+}
+.card-meta{display:flex;justify-content:space-between;align-items:center;}
 .cat-tag{
-  font-family:'JetBrains Mono',monospace;font-size:0.6rem;font-weight:700;
+  font-family:'Share Tech Mono',monospace;font-size:0.6rem;
   letter-spacing:0.15em;text-transform:uppercase;
-  background:var(--ac,var(--c1));color:var(--white);
-  padding:0.2rem 0.6rem;
-  border:2px solid var(--ink);
-  white-space:nowrap;
+  color:var(--ac,var(--c1));
+  border:1px solid var(--ac,var(--c1));
+  border-radius:3px;padding:0.18rem 0.55rem;
+  background:rgba(0,212,255,0.05);
 }
 .card-no{
-  font-family:'Black Han Sans',sans-serif;
-  font-size:4rem;line-height:1;
-  color:var(--ac,var(--c1));opacity:0.1;
-  flex-shrink:0;margin-top:-0.6rem;
+  font-family:'Orbitron',monospace;font-size:0.7rem;font-weight:700;
+  color:var(--muted);letter-spacing:0.12em;
 }
 .card-title{
-  font-family:'Black Han Sans',sans-serif;
-  font-size:clamp(1.15rem,4.2vw,1.7rem);
-  line-height:1.25;letter-spacing:0.02em;
-  border-left:4px solid var(--ac,var(--c1));
-  padding-left:0.7rem;
+  font-size:clamp(1.1rem,4vw,1.65rem);
+  font-weight:700;line-height:1.3;
+  color:var(--text);
+}
+.card-title em{
+  font-style:normal;
+  color:var(--ac,var(--c1));
 }
 .card-lead{
-  font-size:0.78rem;font-weight:700;
+  font-size:0.78rem;line-height:1.5;
   color:var(--ac,var(--c1));
-  line-height:1.5;letter-spacing:0.03em;
-  background:color-mix(in srgb,var(--ac) 8%,transparent);
-  padding:0.5rem 0.7rem;
-  border-left:3px solid var(--ac,var(--c1));
+  border-left:2px solid var(--ac,var(--c1));
+  padding-left:0.7rem;
+  font-weight:700;
 }
 .card-body{
   font-size:0.8rem;line-height:1.95;
-  color:#333;flex:1;overflow-y:auto;scrollbar-width:none;
+  color:#94a3b8;flex:1;overflow-y:auto;scrollbar-width:none;
 }
 .card-body::-webkit-scrollbar{display:none;}
 .card-footer{
   display:flex;justify-content:space-between;align-items:center;
-  border-top:2px solid var(--ink);
-  padding-top:0.8rem;flex-wrap:wrap;gap:0.4rem;
-  flex-shrink:0;
+  border-top:1px solid rgba(255,255,255,0.06);
+  padding-top:0.8rem;flex-wrap:wrap;gap:0.4rem;flex-shrink:0;
 }
-.src{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:#666;letter-spacing:0.06em;}
+.src{font-family:'Share Tech Mono',monospace;font-size:0.58rem;color:var(--muted);letter-spacing:0.06em;}
 .heat{display:flex;gap:1px;}
 .f{font-size:0.78rem;}.fd{font-size:0.78rem;opacity:0.15;}
 
-/* Color themes */
-.c1{--ac:#ff3b3b;}
-.c2{--ac:#0057ff;}
-.c3{--ac:#00c97a;}
-.c4{--ac:#ff9500;}
-.c5{--ac:#9b00ff;}
+/* BG number */
+.card-bg-no{
+  position:absolute;right:1rem;bottom:0.5rem;
+  font-family:'Orbitron',monospace;font-size:6rem;font-weight:900;
+  color:var(--ac,var(--c1));opacity:0.04;line-height:1;
+  pointer-events:none;user-select:none;
+}
+
+/* Card themes */
+.c1{--ac:#00d4ff;--ac-border:rgba(0,212,255,0.2);--ac-glow:rgba(0,212,255,0.06);}
+.c2{--ac:#ff6b35;--ac-border:rgba(255,107,53,0.2);--ac-glow:rgba(255,107,53,0.06);}
+.c3{--ac:#00ff88;--ac-border:rgba(0,255,136,0.2);--ac-glow:rgba(0,255,136,0.06);}
+.c4{--ac:#ff3b8a;--ac-border:rgba(255,59,138,0.2);--ac-glow:rgba(255,59,138,0.06);}
+.c5{--ac:#a78bfa;--ac-border:rgba(167,139,250,0.2);--ac-glow:rgba(167,139,250,0.06);}
 
 /* CONTROLS */
 .controls{
-  position:relative;z-index:10;
-  background:var(--ink);
-  padding:0.7rem 1.2rem;
-  display:flex;justify-content:space-between;align-items:center;
-  flex-shrink:0;gap:1rem;
+  position:relative;z-index:10;flex-shrink:0;
+  background:rgba(13,20,33,0.95);
+  border-top:1px solid var(--border);
+  padding:0.65rem 1.2rem;
+  display:flex;justify-content:space-between;align-items:center;gap:1rem;
 }
 .navs{display:flex;gap:0.5rem;}
 .nb{
-  width:38px;height:38px;
-  background:transparent;border:2px solid rgba(250,250,248,0.3);
-  color:var(--white);cursor:pointer;font-size:1rem;
-  display:flex;align-items:center;justify-content:center;
-  transition:all 0.15s;
+  width:36px;height:36px;border-radius:6px;
+  background:rgba(0,212,255,0.08);border:1px solid var(--border);
+  color:var(--c1);cursor:pointer;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;transition:all 0.15s;
 }
-.nb:hover{background:var(--c1);border-color:var(--c1);}
-.nb:active{transform:scale(0.9);}
+.nb:hover{background:rgba(0,212,255,0.18);border-color:var(--c1);}
+.nb:active{transform:scale(0.92);}
 .dots{display:flex;gap:0.4rem;align-items:center;}
-.dot{width:8px;height:8px;border:2px solid rgba(250,250,248,0.4);cursor:pointer;transition:all 0.25s;}
-.dot.on{background:var(--white);border-color:var(--white);width:22px;}
-.ctr{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:rgba(250,250,248,0.5);letter-spacing:0.15em;white-space:nowrap;}
-.ctr em{color:var(--white);font-style:normal;}
+.dot{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(255,255,255,0.15);cursor:pointer;transition:all 0.25s;
+}
+.dot.on{width:20px;border-radius:3px;background:var(--c1);}
+.ctr{font-family:'Share Tech Mono',monospace;font-size:0.68rem;color:var(--muted);letter-spacing:0.15em;white-space:nowrap;}
+.ctr em{color:var(--c1);font-style:normal;}
 
-@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-header{animation:up 0.4s ease both;}
-.prog-wrap{animation:up 0.4s 0.05s ease both;}
-.slider-outer{animation:up 0.4s 0.1s ease both;}
-.controls{animation:up 0.4s 0.15s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+header{animation:fadeUp 0.4s ease both;}
+.ticker-wrap{animation:fadeUp 0.4s 0.05s ease both;}
+.slider-outer{animation:fadeUp 0.4s 0.1s ease both;}
+.controls{animation:fadeUp 0.4s 0.15s ease both;}
 </style>
 </head>
 <body>
-
 <header>
-  <div class="logo">AI<span class="logo-accent">NEWS</span> BLAST</div>
-  <div class="hdr-meta">
-    <div class="hdr-date">2026.05.20 — WEEK 21</div>
-    <div class="hdr-tag">▶ 5 STORIES TODAY</div>
+  <div class="logo">AI NEWS DASHBOARD</div>
+  <div class="hdr-right">
+    <div class="pulse-dot"><div class="pulse"></div>LIVE</div>
+    <div class="hdr-date">2026.05.21 — WEEK 21</div>
   </div>
 </header>
 
-<!-- TICKER -->
 <div class="ticker-wrap">
-  <div class="ticker-label">⚡ TOP 5</div>
-  <div class="ticker-track" id="ticker">
-    <span class="ticker-item">🔥 01 &nbsp;Gemini 3.5 Flash＆Spark エージェント爆誕 — Google I/O 2026 本日開幕</span>
-    <span class="ticker-sep">◆</span>
-    <span class="ticker-item">🔥 02 &nbsp;3人チームが1ヶ月で約2億円のAIトークンを消費</span>
-    <span class="ticker-sep">◆</span>
-    <span class="ticker-item">🔥 03 &nbsp;ChatGPT「Codex」がスマホアプリに搭載 — 全ユーザー対象</span>
-    <span class="ticker-sep">◆</span>
-    <span class="ticker-item">🔥 04 &nbsp;中国AI4社が3週間で西側の1/3コストで同等性能</span>
-    <span class="ticker-sep">◆</span>
-    <span class="ticker-item">🔥 05 &nbsp;「AIは次の産業革命」卒業式スピーチに学生がブーイング</span>
-    <span class="ticker-sep">◆</span>
-    <!-- 2周目（シームレスループ用） -->
-    <span class="ticker-item">🔥 01 &nbsp;Gemini 3.5 Flash＆Spark エージェント爆誕 — Google I/O 2026 本日開幕</span>
-    <span class="ticker-sep">◆</span>
-    <span class="ticker-item">🔥 02 &nbsp;3人チームが1ヶ月で約2億円のAIトークンを消費</span>
-    <span class="ticker-sep">◆</span>
-    <span class="ticker-item">🔥 03 &nbsp;ChatGPT「Codex」がスマホアプリに搭載 — 全ユーザー対象</span>
-    <span class="ticker-sep">◆</span>
-    <span class="ticker-item">🔥 04 &nbsp;中国AI4社が3週間で西側の1/3コストで同等性能</span>
-    <span class="ticker-sep">◆</span>
-    <span class="ticker-item">🔥 05 &nbsp;「AIは次の産業革命」卒業式スピーチに学生がブーイング</span>
-    <span class="ticker-sep">◆</span>
+  <div class="ticker-label">▶ TOP5</div>
+  <div class="ticker-track">
+    <span class="ticker-item">01 &nbsp;Gemini Spark — PCの電源オフでも24時間自律稼働するAIエージェント登場</span>
+    <span class="ticker-sep">//</span>
+    <span class="ticker-item">02 &nbsp;Googlebook 発表 — ChromeOSを終わらせるGemini一体型AIノートPC今秋発売</span>
+    <span class="ticker-sep">//</span>
+    <span class="ticker-item">03 &nbsp;Anthropic「Mythos」— 日本3メガバンクが金融システム防衛で接続へ</span>
+    <span class="ticker-sep">//</span>
+    <span class="ticker-item">04 &nbsp;Meta Ray-Ban 日本上陸 — 5/21発売・指の動きで文字入力のニューラル手書き搭載</span>
+    <span class="ticker-sep">//</span>
+    <span class="ticker-item">05 &nbsp;OpenAI×Dell提携 — Codexをオンプレミス企業環境に展開</span>
+    <span class="ticker-sep">//</span>
+    <span class="ticker-item">01 &nbsp;Gemini Spark — PCの電源オフでも24時間自律稼働するAIエージェント登場</span>
+    <span class="ticker-sep">//</span>
+    <span class="ticker-item">02 &nbsp;Googlebook 発表 — ChromeOSを終わらせるGemini一体型AIノートPC今秋発売</span>
+    <span class="ticker-sep">//</span>
+    <span class="ticker-item">03 &nbsp;Anthropic「Mythos」— 日本3メガバンクが金融システム防衛で接続へ</span>
+    <span class="ticker-sep">//</span>
+    <span class="ticker-item">04 &nbsp;Meta Ray-Ban 日本上陸 — 5/21発売・指の動きで文字入力のニューラル手書き搭載</span>
+    <span class="ticker-sep">//</span>
+    <span class="ticker-item">05 &nbsp;OpenAI×Dell提携 — Codexをオンプレミス企業環境に展開</span>
+    <span class="ticker-sep">//</span>
   </div>
 </div>
 
-<div class="prog-wrap"><div class="prog-fill" id="prog" style="width:20%;background:#ff3b3b;"></div></div>
+<div class="prog-wrap"><div class="prog-fill" id="prog" style="width:20%;background:linear-gradient(90deg,#00d4ff,#00ff88);"></div></div>
 
 <div class="slider-outer" id="outer">
   <div class="slider-track" id="track">
 
     <!-- 1 -->
     <div class="slide"><div class="card c1">
-      <div class="card-stripe"></div>
+      <div class="card-top-bar"></div>
       <div class="card-content">
-        <div class="card-header">
-          <div class="cat-tag">Google I/O 速報</div>
-          <div class="card-no">01</div>
+        <div class="card-meta">
+          <div class="cat-tag">Google I/O</div>
+          <div class="card-no">01 / 05</div>
         </div>
-        <div class="card-title">Gemini 3.5 Flash＆<br>Spark エージェント爆誕</div>
-        <div class="card-lead">AIが「答える」から「動く」時代へ。画面を閉じても自律で働くパーソナルAI登場。</div>
-        <div class="card-body">
-          Google I/O 2026（日本時間5月20日午前2時キーノート）で、次世代モデル「Gemini 3.5 Flash」と、画面を閉じていてもバックグラウンドで自律的にタスクを実行するパーソナルAIエージェント「Gemini Spark」が発表された。CEOのサンダー・ピチャイ氏は「GoogleのAI処理トークン数が月間3,200兆を突破」と発表し、AIが検索・YouTube・Workspaceなど全製品に横断統合されている実態を示した。スマートグラスはSamsung・Gentle Monster・Warby Parkerとの協業で2026年秋に展開予定。
-        </div>
+        <div class="card-title"><em>Gemini Spark</em> 爆誕<br>PCオフでも24時間動き続けるAI</div>
+        <div class="card-lead">「答えるAI」から「働くAI」へ。エージェント時代の本格幕開け。</div>
+        <div class="card-body">Google I/O 2026のキーノートで発表された「Gemini Spark」は、ノートPCやスマートフォンの電源を切った状態でもバックグラウンドで独立して動作し続けるパーソナルAIエージェント。クレジットカード明細のサブスク検出・会議メモからのドキュメント自動生成・プロジェクト着手メールの下書きなど、具体的なユースケースが披露された。検索結果が画像・動画主体のビジュアル回答に刷新される「AI Overview 2.0」も同時発表。Googleは月間AI処理トークン数が3,200兆を突破したと発表し、AIを全製品の基盤として統合する「Gemini Intelligence」の本格始動を宣言した。</div>
         <div class="card-footer">
-          <div class="src">CNET Japan / note:Kaiyu — 2026.05.20</div>
+          <div class="src">LifeHacker Japan / Ledge.ai — 2026.05.20</div>
           <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span></div>
         </div>
       </div>
+      <div class="card-bg-no">01</div>
     </div></div>
 
     <!-- 2 -->
     <div class="slide"><div class="card c2">
-      <div class="card-stripe"></div>
+      <div class="card-top-bar"></div>
       <div class="card-content">
-        <div class="card-header">
-          <div class="cat-tag">OpenAI 衝撃事実</div>
-          <div class="card-no">02</div>
+        <div class="card-meta">
+          <div class="cat-tag">Google I/O</div>
+          <div class="card-no">02 / 05</div>
         </div>
-        <div class="card-title">3人チームが1ヶ月で<br>約2億円のAIトークンを消費</div>
-        <div class="card-lead">100のAIエージェントを常時稼働。「少人数×AI大量投入」が新しい開発標準に。</div>
-        <div class="card-body">
-          オープンソースプロジェクト「OpenClaw」の創設者Peter Steinberger氏が、過去30日間でOpenAI APIに1,305,088ドル（約2億円）を消費したスクリーンショットをXに公開し話題沸騰。わずか3人のチームがクラウド上で約100のCodexインスタンスを常時稼働させ、コードレビュー・セキュリティ監査・バグ修正などをAIに自律処理させた結果だ。費用はOpenAI社員の特典としてカバーされている。「3人で100人分の開発者を指揮できる時代」が到来したことを象徴する事件として業界に衝撃を与えた。
-        </div>
+        <div class="card-title"><em>Googlebook</em> 発表<br>ChromeOSを終わらせるAI PC</div>
+        <div class="card-lead">15年の歴史を持つChromebookが終焉。Gemini前提で一から再設計された次世代ノートPC。</div>
+        <div class="card-body">Googleが5月12日の「The Android Show」で発表した「Googlebook」は、Android 17とChromeOSを融合させた新プラットフォーム「Aluminium OS」を搭載する新カテゴリーのAIノートPC。GeminiがOSに深く統合され、AIがサイドバーのツールではなくOS自体となる設計思想が特徴。Google DeepMindと共同開発した「マジック ポインタ」がAI時代のデスクトップ操作を刷新。Acer・ASUS・Dell・HP・Lenovoから2026年秋に発売予定で、一部現行Chromebookはアップグレード可能。マウスやデスクトップUIの概念そのものを再設計した野心的なプロダクトだ。</div>
         <div class="card-footer">
-          <div class="src">Business Insider Japan / XenoSpectrum — 2026.05.20</div>
+          <div class="src">TechnoEdge / Innovatopia — 2026.05.12〜19</div>
           <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span></div>
         </div>
       </div>
+      <div class="card-bg-no">02</div>
     </div></div>
 
     <!-- 3 -->
     <div class="slide"><div class="card c3">
-      <div class="card-stripe"></div>
+      <div class="card-top-bar"></div>
       <div class="card-content">
-        <div class="card-header">
-          <div class="cat-tag">ChatGPT 新機能</div>
-          <div class="card-no">03</div>
+        <div class="card-meta">
+          <div class="cat-tag">Anthropic×金融</div>
+          <div class="card-no">03 / 05</div>
         </div>
-        <div class="card-title">ChatGPT「Codex」が<br>スマホアプリに搭載</div>
-        <div class="card-lead">PCの前に縛られない開発時代へ。無料プランを含む全ユーザーが対象。</div>
-        <div class="card-body">
-          OpenAIが5月14日、自律型コーディングエージェント「Codex」をiOS・Android向けChatGPTアプリに統合しプレビュー公開した。開発者はスマートフォンからMacなどのローカルマシンで稼働するCodexの進捗確認や遠隔指示が可能になった。無料プランを含む全ユーザーが対象で、SSH接続の一般提供・機密情報スキャンや動作カスタマイズができる「Hooks」機能も同時実装。Claude Codeが先行していたモバイルからのリモート操作機能に、OpenAIが正面から対抗する形となった。
-        </div>
+        <div class="card-title">Anthropic <em>「Mythos」</em><br>日本3メガバンクが金融防衛で接続へ</div>
+        <div class="card-lead">三菱UFJ・みずほ・三井住友がAnthropicの金融特化AIに接続。官民連携でサイバー防衛を強化。</div>
+        <div class="card-body">Anthropicが開発した金融システム向け特化AI「Mythos」に、日本の3大メガバンク（三菱UFJ・みずほ・三井住友）がアクセスすることが明らかになった。金融システム防衛を目的とした官民連携の取り組みで、サイバーセキュリティ・不正検知・リスク管理への応用が想定される。同週にはAnthropicがNLAという新手法でClaudeの内部状態を自然言語に変換・可視化し、AIの安全性監査に活用する技術も発表。AnthropicがOpenAI・Googleに次ぐ日本の金融・インフラ領域での存在感を急速に高めている週となった。</div>
         <div class="card-footer">
-          <div class="src">ビジネス+IT / SBbit — 2026.05.14</div>
+          <div class="src">Ledge.ai — 2026.05.19</div>
           <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="fd">🔥</span></div>
         </div>
       </div>
+      <div class="card-bg-no">03</div>
     </div></div>
 
     <!-- 4 -->
     <div class="slide"><div class="card c4">
-      <div class="card-stripe"></div>
+      <div class="card-top-bar"></div>
       <div class="card-content">
-        <div class="card-header">
-          <div class="cat-tag">中国AI 激震</div>
-          <div class="card-no">04</div>
+        <div class="card-meta">
+          <div class="cat-tag">Meta×ウェアラブル</div>
+          <div class="card-no">04 / 05</div>
         </div>
-        <div class="card-title">中国AI4社が3週間で<br>西側の1/3コストで同等性能</div>
-        <div class="card-lead">GLM・MiniMax・Kimi・DeepSeekが相次ぎ投入。コスト競争が新フェーズへ。</div>
-        <div class="card-body">
-          中国AI4社（Z.ai GLM-5.1・MiniMax M2.7・Moonshot Kimi K2.6・DeepSeek V4）が約3週間で競合コーディングモデルを相次いで公開し、西側フロンティアモデルの3分の1以下のコストで同等性能を実現したと報じられた。4月に公開されたDeepSeek V4は「GPT-5.4の50分の1コストで90%の品質」という衝撃的な数値も記録。フロンティアモデルの性能差が1桁%まで縮小し、差別化がモデルからエコシステムやツーリングへ移行していることを示す動向として注目されている。
-        </div>
+        <div class="card-title"><em>Meta Ray-Ban</em> 本日日本上陸<br>指の動きで文字入力が可能に</div>
+        <div class="card-lead">世界シェア76%のAIグラスが5/21ついに日本発売。ニューラル手書き入力が全ユーザーへ展開。</div>
+        <div class="card-body">世界シェア76%を誇るAIスマートグラス「Meta Ray-Ban」が本日5月21日（木）、日本市場に正式上陸した。同時に「ニューラル手書き入力」機能も全ユーザーへ展開。筋電図リストバンド「Meta Neural Band」を装着した状態で机の上に指で文字を書くと、その動きがInstagram・WhatsApp・Messengerなどのアプリに文字として入力される。12MPカメラ・5基マイク・オープンイヤースピーカー・Meta AI搭載で、見た目は普通のRay-Ban。約50gで終日装着を想定した設計。夏頃にはマルチモーダル推論モデル「Muse Spark」も搭載予定。</div>
         <div class="card-footer">
-          <div class="src">note:t-kawa / 株式会社仁頼 — 2026.05.18</div>
-          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="fd">🔥</span></div>
+          <div class="src">GIGAZINE / BIKKE note — 2026.05.21</div>
+          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span></div>
         </div>
       </div>
+      <div class="card-bg-no">04</div>
     </div></div>
 
     <!-- 5 -->
     <div class="slide"><div class="card c5">
-      <div class="card-stripe"></div>
+      <div class="card-top-bar"></div>
       <div class="card-content">
-        <div class="card-header">
-          <div class="cat-tag">AI雇用 社会問題化</div>
-          <div class="card-no">05</div>
+        <div class="card-meta">
+          <div class="cat-tag">OpenAI×企業</div>
+          <div class="card-no">05 / 05</div>
         </div>
-        <div class="card-title">「AIは次の産業革命」<br>卒業式スピーチに学生がブーイング</div>
-        <div class="card-lead">AI礼賛に怒る若者たち。就職活動世代のAI雇用不安がついに公の場で爆発。</div>
-        <div class="card-body">
-          フロリダ大学の卒業式で「AIの台頭は次の産業革命だ」と称賛したスピーチに学生から一斉ブーイングが発生。TechCrunchは「2026年卒業式シーズンで最も嫌われるスピーチトピックはAI」と認定した。背景にはAmazonの累計3万人超のAI起因削減・Ciscoの4,000人削減など具体的な雇用喪失ニュースの蓄積がある。AIスクール界隈では「AI恐怖を安心に変えるコンテンツ」への需要が急増しており、AIリテラシー教育の重要性を改めて示すニュースとして注目を集めた。
-        </div>
+        <div class="card-title"><em>OpenAI×Dell</em> 提携<br>Codexがオンプレミス企業へ</div>
+        <div class="card-lead">クラウド専用だったCodexが企業の自社サーバーへ。セキュリティ重視の大企業導入が一気に加速。</div>
+        <div class="card-body">OpenAIとDell Technologiesが提携し、自律型コーディングエージェント「Codex」をハイブリッド環境およびオンプレミス企業環境に展開することを発表（5月19日）。これにより、クラウドにデータを出せない金融・医療・官公庁などのセキュリティ重視組織でもCodexが使えるようになる。同週にはChatGPTに個人向けパーソナルファイナンス機能も追加され、家計の収支分析・節約提案・投資アドバイスをAIが担う「お金のパートナー」機能が始動。OpenAIは企業×個人の両軸でAI浸透を加速させている。</div>
         <div class="card-footer">
-          <div class="src">TechCrunch / note:t-kawa — 2026.05.17</div>
+          <div class="src">OpenAI公式 — 2026.05.18〜19</div>
           <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="fd">🔥</span></div>
         </div>
       </div>
+      <div class="card-bg-no">05</div>
     </div></div>
 
   </div>
@@ -341,14 +360,14 @@ header{animation:up 0.4s ease both;}
 
 <script>
 const track=document.getElementById('track'),allDots=document.querySelectorAll('.dot'),prog=document.getElementById('prog'),cn=document.getElementById('cn');
-const COLORS=['#ff3b3b','#0057ff','#00c97a','#ff9500','#9b00ff'];
+const GRADS=['linear-gradient(90deg,#00d4ff,#00ff88)','linear-gradient(90deg,#ff6b35,#ff9a00)','linear-gradient(90deg,#00ff88,#00d4ff)','linear-gradient(90deg,#ff3b8a,#a855f7)','linear-gradient(90deg,#a78bfa,#00d4ff)'];
 const N=5;let cur=0;
 function go(n){
   cur=((n%N)+N)%N;
   track.style.transform=`translateX(-${cur*100}%)`;
   allDots.forEach((d,i)=>d.classList.toggle('on',i===cur));
   prog.style.width=`${(cur+1)/N*100}%`;
-  prog.style.background=COLORS[cur];
+  prog.style.background=GRADS[cur];
   cn.textContent=String(cur+1).padStart(2,'0');
 }
 document.getElementById('next').onclick=()=>go(cur+1);
