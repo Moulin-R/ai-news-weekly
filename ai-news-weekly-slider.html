@@ -3,495 +3,295 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>今週のAI注目ニュース 2026.05</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<title>AI NEWS BLAST 2026.05.20</title>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+JP:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#f0ede8;--ink:#0d0d0d;--white:#fafaf8;
+  --c1:#ff3b3b;--c2:#0057ff;--c3:#00c97a;--c4:#ff9500;--c5:#9b00ff;
+  --border:3px solid var(--ink);
+}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans JP',sans-serif;height:100vh;overflow:hidden;display:flex;flex-direction:column;}
 
-:root {
-  --ink: #1a1412;
-  --paper: #faf6f0;
-  --cream: #f0e9dc;
-  --gold: #c8931a;
-  --rust: #b84a2e;
-  --teal: #2a7a72;
-  --plum: #6b3a7d;
-  --slate: #3a4a5a;
-  --muted: #8a7a6a;
-  --line: rgba(26,20,18,0.12);
+/* SCAN LINE */
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.02) 4px);
 }
 
-body {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: 'Noto Sans JP', sans-serif;
-  min-height: 100vh;
-  overflow-x: hidden;
-  position: relative;
+/* HEADER */
+header{
+  position:relative;z-index:10;
+  background:var(--ink);color:var(--white);
+  padding:0.9rem 1.4rem;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-shrink:0;
 }
+.logo{font-family:'Black Han Sans',sans-serif;font-size:1.4rem;letter-spacing:0.05em;}
+.logo-accent{color:var(--c1);}
+.hdr-meta{text-align:right;}
+.hdr-date{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:rgba(250,250,248,0.5);letter-spacing:0.1em;}
+.hdr-tag{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--c1);letter-spacing:0.12em;margin-top:2px;}
 
-/* Paper texture overlay */
-body::before {
-  content: '';
-  position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background-image:
-    repeating-linear-gradient(0deg, transparent, transparent 31px, var(--line) 32px);
-  opacity: 0.35;
-}
+/* PROGRESS */
+.prog-wrap{height:4px;background:rgba(0,0,0,0.1);flex-shrink:0;position:relative;z-index:10;}
+.prog-fill{height:100%;transition:width 0.4s ease;}
 
-/* ── MASTHEAD ── */
-.masthead {
-  position: relative; z-index: 10;
-  border-bottom: 3px double var(--ink);
-  padding: 1.6rem 1.6rem 1rem;
-}
-.masthead-top {
-  display: flex; justify-content: space-between; align-items: flex-start;
-  margin-bottom: 0.5rem;
-}
-.paper-vol {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.65rem;
-  color: var(--muted);
-  letter-spacing: 0.1em;
-}
-.paper-date {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.65rem;
-  color: var(--muted);
-  letter-spacing: 0.05em;
-  text-align: right;
-}
-.paper-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 7vw, 3.8rem);
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.01em;
-  text-align: center;
-  padding: 0.3rem 0;
-}
-.paper-title em {
-  font-style: italic;
-  color: var(--gold);
-}
-.paper-sub {
-  text-align: center;
-  font-size: 0.72rem;
-  letter-spacing: 0.3em;
-  color: var(--muted);
-  padding-top: 0.4rem;
-  text-transform: uppercase;
-  border-top: 1px solid var(--line);
-  margin-top: 0.5rem;
-}
+/* SLIDER */
+.slider-outer{flex:1;overflow:hidden;position:relative;z-index:5;padding:1.2rem 0 0;}
+.slider-track{display:flex;height:100%;transition:transform 0.55s cubic-bezier(0.86,0,0.07,1);}
 
-/* ── TICKER ── */
-.ticker-wrap {
-  position: relative; z-index: 10;
-  background: var(--ink);
-  color: var(--paper);
-  padding: 0.4rem 0;
-  overflow: hidden;
-  white-space: nowrap;
+/* CARD */
+.slide{min-width:100%;height:100%;padding:0 1.2rem 1rem;}
+.card{
+  width:100%;height:100%;
+  background:var(--white);
+  border:var(--border);
+  box-shadow:5px 5px 0 var(--ink);
+  display:flex;flex-direction:column;
+  overflow:hidden;
+  position:relative;
 }
-.ticker-inner {
-  display: inline-block;
-  animation: ticker 28s linear infinite;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-}
-@keyframes ticker {
-  from { transform: translateX(100vw); }
-  to   { transform: translateX(-100%); }
-}
-.ticker-sep { margin: 0 1.5rem; color: var(--gold); }
+.card-stripe{height:6px;background:var(--ac,var(--c1));flex-shrink:0;}
+.card-content{padding:1.4rem 1.5rem 1.2rem;flex:1;display:flex;flex-direction:column;gap:0.8rem;overflow:hidden;}
 
-/* ── SLIDER AREA ── */
-.slider-outer {
-  position: relative; z-index: 10;
-  padding: 1.8rem 0 0.5rem;
-  overflow: hidden;
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;}
+.cat-tag{
+  font-family:'JetBrains Mono',monospace;font-size:0.6rem;font-weight:700;
+  letter-spacing:0.15em;text-transform:uppercase;
+  background:var(--ac,var(--c1));color:var(--white);
+  padding:0.2rem 0.6rem;
+  border:2px solid var(--ink);
+  white-space:nowrap;
 }
-.slider-track {
-  display: flex;
-  transition: transform 0.55s cubic-bezier(0.86,0,0.07,1);
+.card-no{
+  font-family:'Black Han Sans',sans-serif;
+  font-size:4rem;line-height:1;
+  color:var(--ac,var(--c1));opacity:0.1;
+  flex-shrink:0;margin-top:-0.6rem;
 }
-
-/* ── ARTICLE CARD ── */
-.article-card {
-  min-width: 100%;
-  padding: 0 1.4rem;
+.card-title{
+  font-family:'Black Han Sans',sans-serif;
+  font-size:clamp(1.15rem,4.2vw,1.7rem);
+  line-height:1.25;letter-spacing:0.02em;
+  border-left:4px solid var(--ac,var(--c1));
+  padding-left:0.7rem;
 }
-.card-inner {
-  background: white;
-  border: 1px solid var(--line);
-  box-shadow: 3px 3px 0 var(--cream), 4px 4px 0 var(--line);
-  overflow: hidden;
+.card-lead{
+  font-size:0.78rem;font-weight:700;
+  color:var(--ac,var(--c1));
+  line-height:1.5;letter-spacing:0.03em;
+  background:color-mix(in srgb,var(--ac) 8%,transparent);
+  padding:0.5rem 0.7rem;
+  border-left:3px solid var(--ac,var(--c1));
 }
-
-/* Category stripe */
-.cat-bar {
-  height: 6px;
-  background: var(--cat-color, var(--gold));
+.card-body{
+  font-size:0.8rem;line-height:1.95;
+  color:#333;flex:1;overflow-y:auto;scrollbar-width:none;
 }
-
-.card-body-wrap {
-  padding: 1.6rem 1.6rem 1.2rem;
+.card-body::-webkit-scrollbar{display:none;}
+.card-footer{
+  display:flex;justify-content:space-between;align-items:center;
+  border-top:2px solid var(--ink);
+  padding-top:0.8rem;flex-wrap:wrap;gap:0.4rem;
+  flex-shrink:0;
 }
-
-.article-meta {
-  display: flex; gap: 1rem; align-items: center;
-  margin-bottom: 0.9rem;
-  flex-wrap: wrap;
-}
-.article-cat {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--cat-color, var(--gold));
-  border: 1.5px solid var(--cat-color, var(--gold));
-  padding: 0.18rem 0.55rem;
-}
-.article-num {
-  font-family: 'Playfair Display', serif;
-  font-size: 0.72rem;
-  font-style: italic;
-  color: var(--muted);
-}
-
-.article-headline {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.25rem, 4vw, 1.75rem);
-  font-weight: 700;
-  line-height: 1.35;
-  margin-bottom: 0.5rem;
-  letter-spacing: -0.01em;
-}
-
-.article-deck {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--muted);
-  margin-bottom: 1rem;
-  line-height: 1.5;
-  letter-spacing: 0.02em;
-}
-
-.article-body {
-  font-size: 0.83rem;
-  line-height: 2;
-  color: #3a3028;
-  border-top: 1px solid var(--line);
-  padding-top: 0.9rem;
-  margin-bottom: 1.2rem;
-}
-
-.article-footer {
-  display: flex; justify-content: space-between; align-items: center;
-  border-top: 1px solid var(--line);
-  padding-top: 0.8rem;
-  gap: 0.5rem; flex-wrap: wrap;
-}
-.article-source {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.62rem;
-  color: var(--muted);
-  letter-spacing: 0.05em;
-}
-.hotness {
-  display: flex; gap: 3px;
-}
-.fire {
-  font-size: 0.85rem;
-  opacity: 0.85;
-}
-.fire.off { opacity: 0.2; filter: grayscale(1); }
+.src{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:#666;letter-spacing:0.06em;}
+.heat{display:flex;gap:1px;}
+.f{font-size:0.78rem;}.fd{font-size:0.78rem;opacity:0.15;}
 
 /* Color themes */
-.c1 { --cat-color: #c8931a; }
-.c2 { --cat-color: #2a7a72; }
-.c3 { --cat-color: #b84a2e; }
-.c4 { --cat-color: #6b3a7d; }
-.c5 { --cat-color: #3a4a5a; }
+.c1{--ac:#ff3b3b;}
+.c2{--ac:#0057ff;}
+.c3{--ac:#00c97a;}
+.c4{--ac:#ff9500;}
+.c5{--ac:#9b00ff;}
 
-/* ── CONTROLS ── */
-.nav-section {
-  position: relative; z-index: 10;
-  padding: 1rem 1.4rem 0.5rem;
-  border-top: 1px solid var(--line);
-  display: flex; justify-content: space-between; align-items: center;
+/* CONTROLS */
+.controls{
+  position:relative;z-index:10;
+  background:var(--ink);
+  padding:0.7rem 1.2rem;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-shrink:0;gap:1rem;
 }
+.navs{display:flex;gap:0.5rem;}
+.nb{
+  width:38px;height:38px;
+  background:transparent;border:2px solid rgba(250,250,248,0.3);
+  color:var(--white);cursor:pointer;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.15s;
+}
+.nb:hover{background:var(--c1);border-color:var(--c1);}
+.nb:active{transform:scale(0.9);}
+.dots{display:flex;gap:0.4rem;align-items:center;}
+.dot{width:8px;height:8px;border:2px solid rgba(250,250,248,0.4);cursor:pointer;transition:all 0.25s;}
+.dot.on{background:var(--white);border-color:var(--white);width:22px;}
+.ctr{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:rgba(250,250,248,0.5);letter-spacing:0.15em;white-space:nowrap;}
+.ctr em{color:var(--white);font-style:normal;}
 
-.nav-arrows { display: flex; gap: 0.6rem; }
-.nav-btn {
-  width: 38px; height: 38px;
-  background: var(--ink);
-  color: var(--paper);
-  border: none; cursor: pointer;
-  font-size: 1rem;
-  display: flex; align-items: center; justify-content: center;
-  transition: background 0.15s, transform 0.1s;
-  font-family: serif;
-}
-.nav-btn:hover { background: var(--gold); }
-.nav-btn:active { transform: scale(0.93); }
-
-.page-dots { display: flex; gap: 0.5rem; align-items: center; }
-.page-dot {
-  width: 9px; height: 9px;
-  border: 1.5px solid var(--ink);
-  cursor: pointer;
-  transition: all 0.25s;
-}
-.page-dot.active { background: var(--ink); }
-
-.nav-label {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.65rem;
-  color: var(--muted);
-  letter-spacing: 0.12em;
-}
-
-/* Progress */
-.progress-strip {
-  position: relative; z-index: 10;
-  height: 3px; background: var(--cream);
-}
-.progress-bar {
-  height: 100%;
-  background: var(--ink);
-  transition: width 0.4s ease;
-}
-
-/* Footer note */
-.paper-footer {
-  position: relative; z-index: 10;
-  text-align: center;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.6rem;
-  color: var(--muted);
-  padding: 0.8rem 1rem 1.4rem;
-  letter-spacing: 0.1em;
-  border-top: 1px solid var(--line);
-}
-
-/* entrance */
-@keyframes fadeIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:none} }
-.masthead { animation: fadeIn 0.6s ease both; }
-.slider-outer { animation: fadeIn 0.6s 0.1s ease both; }
-.nav-section { animation: fadeIn 0.6s 0.2s ease both; }
+@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+header{animation:up 0.4s ease both;}
+.prog-wrap{animation:up 0.4s 0.05s ease both;}
+.slider-outer{animation:up 0.4s 0.1s ease both;}
+.controls{animation:up 0.4s 0.15s ease both;}
 </style>
 </head>
 <body>
 
-<!-- MASTHEAD -->
-<header class="masthead">
-  <div class="masthead-top">
-    <div class="paper-vol">VOL. 2026 — WEEK 20</div>
-    <div class="paper-date">2026年5月7日〜13日<br>Weekly Edition</div>
+<header>
+  <div class="logo">AI<span class="logo-accent">NEWS</span> BLAST</div>
+  <div class="hdr-meta">
+    <div class="hdr-date">2026.05.20 — WEEK 21</div>
+    <div class="hdr-tag">▶ 5 STORIES TODAY</div>
   </div>
-  <h1 class="paper-title"><em>AI</em> Weekly</h1>
-  <div class="paper-sub">今週のネット注目 · AI ニュース 5 選</div>
 </header>
 
-<!-- TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker-inner">
-    🤖 Claude "Dreaming" 機能が衝撃発表
-    <span class="ticker-sep">◆</span>
-    OpenAI 音声AI「GPT-Realtime-2」が同時通訳レベルに
-    <span class="ticker-sep">◆</span>
-    DeepSeek 評価額450億ドルへ急騰
-    <span class="ticker-sep">◆</span>
-    MUFGとGoogleがAI金融提携
-    <span class="ticker-sep">◆</span>
-    Anthropic CEO「AIが次のAIを作る時代は2028年」
-    <span class="ticker-sep">◆</span>
-    Google I/O 5/19開幕迫る
-    <span class="ticker-sep">◆</span>
-  </div>
-</div>
+<div class="prog-wrap"><div class="prog-fill" id="prog" style="width:20%;background:#ff3b3b;"></div></div>
 
-<div class="progress-strip"><div class="progress-bar" id="prog" style="width:20%"></div></div>
-
-<!-- SLIDER -->
-<div class="slider-outer" id="sliderOuter">
+<div class="slider-outer" id="outer">
   <div class="slider-track" id="track">
 
     <!-- 1 -->
-    <div class="article-card">
-      <div class="card-inner c1">
-        <div class="cat-bar"></div>
-        <div class="card-body-wrap">
-          <div class="article-meta">
-            <span class="article-cat">Anthropic</span>
-            <span class="article-num">No.1 of 5</span>
-          </div>
-          <h2 class="article-headline">ClaudeのAIが「夢を見る」<br>——Dreaming機能が業界を席巻</h2>
-          <p class="article-deck">セッション間で失敗を学習・記憶整理。法律AIのタスク完了率が約6倍に改善する衝撃事例も。</p>
-          <p class="article-body">Anthropicが開発者カンファレンス「Code with Claude」で発表した「Dreaming」機能は、AIエージェントが仕事の合間に過去のセッションを振り返り、繰り返すミスや作業パターンを自動整理する仕組み。人間の睡眠中の記憶固定化プロセスになぞらえて命名された。法律AIスタートアップのHarveyは実導入でタスク完了率が約6倍に改善。同時にOutcomes（品質自己評価）・Multiagent orchestration（複数AI協調）もリリースされ、AIエージェントが「使い捨てツール」から「育つ仕事仲間」へと進化した週となった。</p>
-          <div class="article-footer">
-            <span class="article-source">Anthropic公式 / VentureBeat — 2026.05.06</span>
-            <div class="hotness">
-              <span class="fire">🔥</span><span class="fire">🔥</span><span class="fire">🔥</span><span class="fire">🔥</span><span class="fire">🔥</span>
-            </div>
-          </div>
+    <div class="slide"><div class="card c1">
+      <div class="card-stripe"></div>
+      <div class="card-content">
+        <div class="card-header">
+          <div class="cat-tag">Google I/O 速報</div>
+          <div class="card-no">01</div>
+        </div>
+        <div class="card-title">Gemini 3.5 Flash＆<br>Spark エージェント爆誕</div>
+        <div class="card-lead">AIが「答える」から「動く」時代へ。画面を閉じても自律で働くパーソナルAI登場。</div>
+        <div class="card-body">
+          Google I/O 2026（日本時間5月20日午前2時キーノート）で、次世代モデル「Gemini 3.5 Flash」と、画面を閉じていてもバックグラウンドで自律的にタスクを実行するパーソナルAIエージェント「Gemini Spark」が発表された。CEOのサンダー・ピチャイ氏は「GoogleのAI処理トークン数が月間3,200兆を突破」と発表し、AIが検索・YouTube・Workspaceなど全製品に横断統合されている実態を示した。スマートグラスはSamsung・Gentle Monster・Warby Parkerとの協業で2026年秋に展開予定。
+        </div>
+        <div class="card-footer">
+          <div class="src">CNET Japan / note:Kaiyu — 2026.05.20</div>
+          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span></div>
         </div>
       </div>
-    </div>
+    </div></div>
 
     <!-- 2 -->
-    <div class="article-card">
-      <div class="card-inner c2">
-        <div class="cat-bar"></div>
-        <div class="card-body-wrap">
-          <div class="article-meta">
-            <span class="article-cat">OpenAI</span>
-            <span class="article-num">No.2 of 5</span>
-          </div>
-          <h2 class="article-headline">「ほぼ同時通訳」実現<br>GPT-Realtime-2が音声AIを刷新</h2>
-          <p class="article-deck">GPT-5級の推論を音声でリアルタイムに。コンテキスト4倍、推論5段階で「速さ vs 賢さ」を自在に選択。</p>
-          <p class="article-body">OpenAIが発表した「GPT-Realtime-2」は、GPT-5クラスの推論を備えた初の音声モデル。コンテキストウィンドウが前世代の3万2,000トークンから12万8,000トークンへ4倍に拡大し、推論の深さをminimal〜xhighの5段階で調整できる。同時発表の「GPT-Realtime-Translate」は70以上の言語からの音声を13言語へリアルタイム翻訳し、「ほぼ同時通訳」レベルと評される。スマートグラスやコールセンター、車載AIへの応用加速が期待されている。</p>
-          <div class="article-footer">
-            <span class="article-source">すまほん!! / OpenAI公式 — 2026.05.07</span>
-            <div class="hotness">
-              <span class="fire">🔥</span><span class="fire">🔥</span><span class="fire">🔥</span><span class="fire">🔥</span><span class="fire off">🔥</span>
-            </div>
-          </div>
+    <div class="slide"><div class="card c2">
+      <div class="card-stripe"></div>
+      <div class="card-content">
+        <div class="card-header">
+          <div class="cat-tag">OpenAI 衝撃事実</div>
+          <div class="card-no">02</div>
+        </div>
+        <div class="card-title">3人チームが1ヶ月で<br>約2億円のAIトークンを消費</div>
+        <div class="card-lead">100のAIエージェントを常時稼働。「少人数×AI大量投入」が新しい開発標準に。</div>
+        <div class="card-body">
+          オープンソースプロジェクト「OpenClaw」の創設者Peter Steinberger氏が、過去30日間でOpenAI APIに1,305,088ドル（約2億円）を消費したスクリーンショットをXに公開し話題沸騰。わずか3人のチームがクラウド上で約100のCodexインスタンスを常時稼働させ、コードレビュー・セキュリティ監査・バグ修正などをAIに自律処理させた結果だ。費用はOpenAI社員の特典としてカバーされている。「3人で100人分の開発者を指揮できる時代」が到来したことを象徴する事件として業界に衝撃を与えた。
+        </div>
+        <div class="card-footer">
+          <div class="src">Business Insider Japan / XenoSpectrum — 2026.05.20</div>
+          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span></div>
         </div>
       </div>
-    </div>
+    </div></div>
 
     <!-- 3 -->
-    <div class="article-card">
-      <div class="card-inner c3">
-        <div class="cat-bar"></div>
-        <div class="card-body-wrap">
-          <div class="article-meta">
-            <span class="article-cat">DeepSeek</span>
-            <span class="article-num">No.3 of 5</span>
-          </div>
-          <h2 class="article-headline">DeepSeek、初の資金調達で<br>評価額450億ドルへ急騰か</h2>
-          <p class="article-deck">中国AI最大の話題株が初VC調達へ。評価額200〜450億ドルの幅で市場が沸騰。</p>
-          <p class="article-body">TechCrunchが報じたところによると、中国のAIラボDeepSeekが初のベンチャーキャピタル資金調達ラウンドを進めており、潜在的評価額が200億〜450億ドルまで跳ね上がる可能性があるという。DeepSeekは2025年初頭に米国主要モデルと比べてはるかに少ない計算コストで同等の性能を発揮するモデルを発表し世界を驚かせた。オープンウェイトモデルはHugging Faceで自由に使え、推論・コーディング分野でトップクラスの実力を維持。今後の規制動向とあわせ、日米欧の業界関係者が固唾をのんで見守っている。</p>
-          <div class="article-footer">
-            <span class="article-source">TechCrunch — 2026.05.06</span>
-            <div class="hotness">
-              <span class="fire">🔥</span><span class="fire">🔥</span><span class="fire">🔥</span><span class="fire">🔥</span><span class="fire off">🔥</span>
-            </div>
-          </div>
+    <div class="slide"><div class="card c3">
+      <div class="card-stripe"></div>
+      <div class="card-content">
+        <div class="card-header">
+          <div class="cat-tag">ChatGPT 新機能</div>
+          <div class="card-no">03</div>
+        </div>
+        <div class="card-title">ChatGPT「Codex」が<br>スマホアプリに搭載</div>
+        <div class="card-lead">PCの前に縛られない開発時代へ。無料プランを含む全ユーザーが対象。</div>
+        <div class="card-body">
+          OpenAIが5月14日、自律型コーディングエージェント「Codex」をiOS・Android向けChatGPTアプリに統合しプレビュー公開した。開発者はスマートフォンからMacなどのローカルマシンで稼働するCodexの進捗確認や遠隔指示が可能になった。無料プランを含む全ユーザーが対象で、SSH接続の一般提供・機密情報スキャンや動作カスタマイズができる「Hooks」機能も同時実装。Claude Codeが先行していたモバイルからのリモート操作機能に、OpenAIが正面から対抗する形となった。
+        </div>
+        <div class="card-footer">
+          <div class="src">ビジネス+IT / SBbit — 2026.05.14</div>
+          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="fd">🔥</span></div>
         </div>
       </div>
-    </div>
+    </div></div>
 
     <!-- 4 -->
-    <div class="article-card">
-      <div class="card-inner c4">
-        <div class="cat-bar"></div>
-        <div class="card-body-wrap">
-          <div class="article-meta">
-            <span class="article-cat">金融×AI</span>
-            <span class="article-num">No.4 of 5</span>
-          </div>
-          <h2 class="article-headline">MUFGとGoogleが提携<br>自律型金融サービスをAIで実現へ</h2>
-          <p class="article-deck">メガバンクとビッグテックの融合。AIが金融業務を自律遂行する時代が現実に。</p>
-          <p class="article-body">三菱UFJフィナンシャル・グループ（MUFG）とGoogleが自律型AI金融サービス実現に向けたAI戦略提携を発表した。AI Overviewの精度向上やGemini in Chromeの日本提供開始など、GoogleのAI展開が日本市場でも急加速している週に、金融分野での大型連携ニュースが重なり注目を集めた。AIが口座管理・資産運用・与信判断などの金融業務を自律的に遂行する「エージェント型金融サービス」の本格実装に向けた布石と見られている。</p>
-          <div class="article-footer">
-            <span class="article-source">日本経済新聞 / Marketing+One — 2026.05.07</span>
-            <div class="hotness">
-              <span class="fire">🔥</span><span class="fire">🔥</span><span class="fire">🔥</span><span class="fire off">🔥</span><span class="fire off">🔥</span>
-            </div>
-          </div>
+    <div class="slide"><div class="card c4">
+      <div class="card-stripe"></div>
+      <div class="card-content">
+        <div class="card-header">
+          <div class="cat-tag">中国AI 激震</div>
+          <div class="card-no">04</div>
+        </div>
+        <div class="card-title">中国AI4社が3週間で<br>西側の1/3コストで同等性能</div>
+        <div class="card-lead">GLM・MiniMax・Kimi・DeepSeekが相次ぎ投入。コスト競争が新フェーズへ。</div>
+        <div class="card-body">
+          中国AI4社（Z.ai GLM-5.1・MiniMax M2.7・Moonshot Kimi K2.6・DeepSeek V4）が約3週間で競合コーディングモデルを相次いで公開し、西側フロンティアモデルの3分の1以下のコストで同等性能を実現したと報じられた。4月に公開されたDeepSeek V4は「GPT-5.4の50分の1コストで90%の品質」という衝撃的な数値も記録。フロンティアモデルの性能差が1桁%まで縮小し、差別化がモデルからエコシステムやツーリングへ移行していることを示す動向として注目されている。
+        </div>
+        <div class="card-footer">
+          <div class="src">note:t-kawa / 株式会社仁頼 — 2026.05.18</div>
+          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="fd">🔥</span></div>
         </div>
       </div>
-    </div>
+    </div></div>
 
     <!-- 5 -->
-    <div class="article-card">
-      <div class="card-inner c5">
-        <div class="cat-bar"></div>
-        <div class="card-body-wrap">
-          <div class="article-meta">
-            <span class="article-cat">未来予測</span>
-            <span class="article-num">No.5 of 5</span>
-          </div>
-          <h2 class="article-headline">「2028年末、AIが次のAIを<br>自ら開発」—Anthropic共同創業者の衝撃発言</h2>
-          <p class="article-deck">60%超の確率でAIが次世代AIを作る時代が到来する、という宣言が各所で話題に。</p>
-          <p class="article-body">Anthropicの共同創業者が「2028年末までに60%以上の確率で、AIが次世代AIを自ら開発する時代が訪れる」と言及し、テック界隈を中心にネットで大きな反響を呼んだ。同社のCEO Dario Amodeiも「年10倍成長を計画していたが、実際は80倍成長した」と述べており、AIの能力拡大ペースが事前予測を大幅に上回っていることが浮き彫りに。AIスクールやリスキリング界隈でも「自分はどう価値を出すか」という議論に火がついている。</p>
-          <div class="article-footer">
-            <span class="article-source">Ledge.ai / VentureBeat — 2026.05.09</span>
-            <div class="hotness">
-              <span class="fire">🔥</span><span class="fire">🔥</span><span class="fire">🔥</span><span class="fire">🔥</span><span class="fire">🔥</span>
-            </div>
-          </div>
+    <div class="slide"><div class="card c5">
+      <div class="card-stripe"></div>
+      <div class="card-content">
+        <div class="card-header">
+          <div class="cat-tag">AI雇用 社会問題化</div>
+          <div class="card-no">05</div>
+        </div>
+        <div class="card-title">「AIは次の産業革命」<br>卒業式スピーチに学生がブーイング</div>
+        <div class="card-lead">AI礼賛に怒る若者たち。就職活動世代のAI雇用不安がついに公の場で爆発。</div>
+        <div class="card-body">
+          フロリダ大学の卒業式で「AIの台頭は次の産業革命だ」と称賛したスピーチに学生から一斉ブーイングが発生。TechCrunchは「2026年卒業式シーズンで最も嫌われるスピーチトピックはAI」と認定した。背景にはAmazonの累計3万人超のAI起因削減・Ciscoの4,000人削減など具体的な雇用喪失ニュースの蓄積がある。AIスクール界隈では「AI恐怖を安心に変えるコンテンツ」への需要が急増しており、AIリテラシー教育の重要性を改めて示すニュースとして注目を集めた。
+        </div>
+        <div class="card-footer">
+          <div class="src">TechCrunch / note:t-kawa — 2026.05.17</div>
+          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="fd">🔥</span></div>
         </div>
       </div>
-    </div>
+    </div></div>
 
   </div>
 </div>
 
-<!-- NAV -->
-<div class="nav-section">
-  <div class="nav-arrows">
-    <button class="nav-btn" id="prev" aria-label="前へ">&#8592;</button>
-    <button class="nav-btn" id="next" aria-label="次へ">&#8594;</button>
+<div class="controls">
+  <div class="navs">
+    <button class="nb" id="prev">&#8592;</button>
+    <button class="nb" id="next">&#8594;</button>
   </div>
-  <div class="page-dots" id="dots">
-    <div class="page-dot active" data-i="0"></div>
-    <div class="page-dot" data-i="1"></div>
-    <div class="page-dot" data-i="2"></div>
-    <div class="page-dot" data-i="3"></div>
-    <div class="page-dot" data-i="4"></div>
+  <div class="dots" id="dots">
+    <div class="dot on" data-i="0"></div>
+    <div class="dot" data-i="1"></div>
+    <div class="dot" data-i="2"></div>
+    <div class="dot" data-i="3"></div>
+    <div class="dot" data-i="4"></div>
   </div>
-  <div class="nav-label" id="navLabel">01 / 05</div>
-</div>
-
-<div class="paper-footer">
-  ← SWIPE OR USE ARROWS TO NAVIGATE → &nbsp;|&nbsp; 2026.05 WEEKLY EDITION
+  <div class="ctr"><em id="cn">01</em> / 05</div>
 </div>
 
 <script>
-const track = document.getElementById('track');
-const allDots = document.querySelectorAll('.page-dot');
-const prog = document.getElementById('prog');
-const navLabel = document.getElementById('navLabel');
-const TOTAL = 5;
-let cur = 0;
-
-function goTo(n) {
-  cur = ((n % TOTAL) + TOTAL) % TOTAL;
-  track.style.transform = `translateX(-${cur * 100}%)`;
-  allDots.forEach((d, i) => d.classList.toggle('active', i === cur));
-  prog.style.width = `${(cur + 1) / TOTAL * 100}%`;
-  navLabel.textContent = `0${cur+1} / 0${TOTAL}`;
+const track=document.getElementById('track'),allDots=document.querySelectorAll('.dot'),prog=document.getElementById('prog'),cn=document.getElementById('cn');
+const COLORS=['#ff3b3b','#0057ff','#00c97a','#ff9500','#9b00ff'];
+const N=5;let cur=0;
+function go(n){
+  cur=((n%N)+N)%N;
+  track.style.transform=`translateX(-${cur*100}%)`;
+  allDots.forEach((d,i)=>d.classList.toggle('on',i===cur));
+  prog.style.width=`${(cur+1)/N*100}%`;
+  prog.style.background=COLORS[cur];
+  cn.textContent=String(cur+1).padStart(2,'0');
 }
-
-document.getElementById('next').onclick = () => goTo(cur + 1);
-document.getElementById('prev').onclick = () => goTo(cur - 1);
-allDots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.i)));
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'ArrowRight') goTo(cur + 1);
-  if (e.key === 'ArrowLeft')  goTo(cur - 1);
-});
-
-let sx = 0;
-const outer = document.getElementById('sliderOuter');
-outer.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, {passive:true});
-outer.addEventListener('touchend',   e => {
-  const d = sx - e.changedTouches[0].clientX;
-  if (Math.abs(d) > 45) d > 0 ? goTo(cur+1) : goTo(cur-1);
-}, {passive:true});
-outer.addEventListener('mousedown', e => { sx = e.clientX; });
-outer.addEventListener('mouseup',   e => {
-  const d = sx - e.clientX;
-  if (Math.abs(d) > 45) d > 0 ? goTo(cur+1) : goTo(cur-1);
-});
+document.getElementById('next').onclick=()=>go(cur+1);
+document.getElementById('prev').onclick=()=>go(cur-1);
+allDots.forEach(d=>d.addEventListener('click',()=>go(+d.dataset.i)));
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1);});
+let sx=0,o=document.getElementById('outer');
+o.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;},{passive:true});
+o.addEventListener('touchend',e=>{const d=sx-e.changedTouches[0].clientX;if(Math.abs(d)>45)d>0?go(cur+1):go(cur-1);},{passive:true});
+o.addEventListener('mousedown',e=>{sx=e.clientX;});
+o.addEventListener('mouseup',e=>{const d=sx-e.clientX;if(Math.abs(d)>45)d>0?go(cur+1):go(cur-1);});
 </script>
 </body>
 </html>
