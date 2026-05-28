@@ -3,330 +3,347 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI最新ニュース｜2026年5月27日版</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>AI NEWS WAVE 2026.05.29</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ff6a00'/%3E%3Crect width='32' height='16' rx='7' fill='%23ff4500'/%3E%3Crect y='9' width='32' height='7' fill='%23ff4500'/%3E%3Crect x='4' y='17' width='24' height='1' fill='rgba(255,255,255,0.3)'/%3E%3Ctext x='16' y='14' text-anchor='middle' dominant-baseline='middle' font-family='Arial Black,Arial,sans-serif' font-size='12' font-weight='900' fill='white' letter-spacing='1'%3EAI%3C/text%3E%3Ctext x='16' y='25' text-anchor='middle' dominant-baseline='middle' font-family='Arial Black,Arial,sans-serif' font-size='8' font-weight='700' fill='rgba(255,255,255,0.92)' letter-spacing='2'%3Enews%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="AI NEWS">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Outfit:wght@400;700;900&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #03050f;
-    --card: #0a0d1e;
-    --border: rgba(80,120,255,0.15);
-    --accent1: #5577ff;
-    --accent2: #b06eff;
-    --accent3: #00f0b5;
-    --text: #dde3ff;
-    --muted: #7880aa;
-    --mono: 'DM Mono', monospace;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Noto Sans JP', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-  /* 背景グラデーション */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background:
-      radial-gradient(ellipse 60% 40% at 20% 10%, rgba(85,119,255,0.08) 0%, transparent 70%),
-      radial-gradient(ellipse 50% 35% at 80% 80%, rgba(176,110,255,0.07) 0%, transparent 70%);
-    pointer-events: none; z-index: 0;
-  }
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#e8ecf0;--surface:#e0e5ea;
+  --shadow-dark:rgba(160,170,185,0.7);--shadow-light:rgba(255,255,255,0.95);
+  --ink:#2d3748;--muted:#718096;
+  --c1:#6366f1;--c2:#ec4899;--c3:#10b981;--c4:#f59e0b;--c5:#06b6d4;
+}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans JP',sans-serif;height:100vh;overflow:hidden;display:flex;flex-direction:column;}
 
-  /* HEADER */
-  header {
-    position: relative; z-index: 10;
-    padding: 40px 24px 0;
-    text-align: center;
-  }
-  .eyebrow {
-    font-family: var(--mono);
-    font-size: 10px; letter-spacing: 3px;
-    color: var(--accent3);
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    opacity: 0; animation: up 0.5s ease 0.1s forwards;
-  }
-  h1 {
-    font-size: clamp(20px, 5vw, 38px);
-    font-weight: 900; line-height: 1.2;
-    background: linear-gradient(130deg, #fff 0%, var(--accent1) 55%, var(--accent2) 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-    opacity: 0; animation: up 0.5s ease 0.2s forwards;
-  }
-  .date-tag {
-    display: inline-block;
-    font-family: var(--mono); font-size: 11px;
-    color: var(--muted); margin-top: 10px;
-    opacity: 0; animation: up 0.5s ease 0.3s forwards;
-  }
+/* HEADER — ネオモーフ */
+header{
+  flex-shrink:0;z-index:10;position:relative;
+  background:var(--bg);
+  padding:0.9rem 1.4rem 0.7rem;
+  box-shadow:3px 3px 8px var(--shadow-dark),-3px -3px 8px var(--shadow-light);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.logo{font-family:'Outfit',sans-serif;font-size:1.3rem;font-weight:900;letter-spacing:0.02em;color:var(--ink);}
+.logo span{background:linear-gradient(135deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hdr-r{text-align:right;}
+.hdr-date{font-family:'Roboto Mono',monospace;font-size:0.6rem;color:var(--muted);letter-spacing:0.1em;}
+.live-pill{
+  display:inline-flex;align-items:center;gap:0.3rem;margin-top:3px;
+  background:linear-gradient(135deg,var(--c1),var(--c2));
+  color:white;border-radius:2rem;padding:0.15rem 0.55rem;
+  font-family:'Roboto Mono',monospace;font-size:0.55rem;letter-spacing:0.1em;
+}
+.ldot{width:5px;height:5px;border-radius:50%;background:white;animation:blink 1.3s ease infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
 
-  /* SLIDER */
-  .slider-wrap {
-    position: relative; z-index: 10;
-    max-width: 900px; margin: 32px auto 0;
-    padding: 0 20px;
-  }
-  .overflow-hide { overflow: hidden; border-radius: 18px; }
-  .track {
-    display: flex;
-    transition: transform 0.48s cubic-bezier(0.4,0,0.2,1);
-  }
+/* TICKER */
+.ticker-wrap{
+  position:relative;z-index:10;flex-shrink:0;
+  background:linear-gradient(90deg,var(--c1),var(--c2));
+  padding:0.32rem 0;overflow:hidden;
+}
+.ticker-label{
+  position:absolute;left:0;top:0;bottom:0;z-index:2;
+  background:var(--ink);color:white;
+  display:flex;align-items:center;padding:0 0.75rem;
+  font-family:'Roboto Mono',monospace;font-size:0.6rem;font-weight:500;
+  letter-spacing:0.14em;white-space:nowrap;
+}
+.ticker-track{
+  display:flex;align-items:center;white-space:nowrap;
+  animation:ticker 35s linear infinite;padding-left:110px;
+}
+.ticker-track:hover{animation-play-state:paused;}
+.ticker-item{font-family:'Roboto Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.92);letter-spacing:0.04em;padding:0 0.5rem;}
+.ticker-sep{color:rgba(255,255,255,0.5);margin:0 0.2rem;}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-  /* CARD */
-  .card {
-    min-width: 100%;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 32px 32px 28px;
-    display: flex; flex-direction: column; gap: 14px;
-    position: relative; overflow: hidden;
-  }
-  .card::after {
-    content: '';
-    position: absolute; top: -80px; right: -80px;
-    width: 220px; height: 220px; border-radius: 50%;
-    background: var(--c-glow);
-    opacity: 0.10; filter: blur(60px);
-    pointer-events: none;
-  }
-  .card-header { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .num { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 2px; }
-  .tag {
-    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
-    padding: 3px 11px; border-radius: 20px; text-transform: uppercase;
-  }
-  .card-date { font-family: var(--mono); font-size: 10px; color: var(--muted); margin-left: auto; }
-  .card-title { font-size: clamp(16px, 3.2vw, 22px); font-weight: 900; line-height: 1.4; color: #fff; }
-  .card-body { font-size: 13.5px; line-height: 1.9; color: #b8c2e8; }
-  .card-body strong { color: #fff; }
-  .insight {
-    background: rgba(255,255,255,0.035);
-    border-left: 3px solid var(--c-accent);
-    border-radius: 0 10px 10px 0;
-    padding: 11px 15px;
-    font-size: 12.5px; color: var(--muted); line-height: 1.75;
-  }
-  .insight b { color: var(--c-accent); display: block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 3px; }
-  .source { font-family: var(--mono); font-size: 10px; color: var(--muted); opacity: 0.5; }
+/* PROGRESS */
+.prog-wrap{height:3px;flex-shrink:0;z-index:10;background:rgba(0,0,0,0.08);}
+.prog-fill{height:100%;transition:width 0.4s ease;}
 
-  /* PROGRESS */
-  .progress-wrap {
-    max-width: 900px; margin: 10px auto 0; padding: 0 20px;
-    position: relative; z-index: 10;
-  }
-  .progress-bg { height: 2px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent1), var(--accent2));
-    border-radius: 2px; transition: width 0.48s ease;
-  }
+/* SLIDER */
+.slider-outer{flex:1;overflow:hidden;position:relative;z-index:5;padding:1.1rem 0 0;}
+.slider-track{display:flex;height:100%;transition:transform 0.6s cubic-bezier(0.77,0,0.175,1);}
 
-  /* NAV */
-  .nav {
-    display: flex; align-items: center; justify-content: center;
-    gap: 14px; padding: 20px 0 36px;
-    position: relative; z-index: 10;
-  }
-  .btn {
-    width: 42px; height: 42px; border-radius: 50%;
-    background: var(--card); border: 1px solid var(--border);
-    color: var(--text); font-size: 17px;
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer; transition: all 0.2s; flex-shrink: 0;
-  }
-  .btn:hover { background: var(--accent1); border-color: var(--accent1); box-shadow: 0 0 18px rgba(85,119,255,0.4); }
-  .dots { display: flex; gap: 7px; align-items: center; }
-  .dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--muted); opacity: 0.35; cursor: pointer;
-    transition: all 0.25s;
-  }
-  .dot.on { opacity: 1; background: var(--accent1); transform: scale(1.35); box-shadow: 0 0 7px var(--accent1); }
+/* CARD — ネオモーフ */
+.slide{min-width:100%;height:100%;padding:0 1.2rem 0.9rem;}
+.card{
+  width:100%;height:100%;
+  background:var(--bg);
+  border-radius:20px;
+  box-shadow:6px 6px 14px var(--shadow-dark),-6px -6px 14px var(--shadow-light);
+  display:flex;flex-direction:column;overflow:hidden;
+  position:relative;
+}
+.card-top{
+  height:4px;
+  background:linear-gradient(90deg,var(--ac,var(--c1)),transparent 80%);
+  border-radius:20px 20px 0 0;flex-shrink:0;
+}
+.card-body-wrap{
+  padding:1.3rem 1.5rem 1.1rem;
+  flex:1;display:flex;flex-direction:column;gap:0.8rem;overflow:hidden;
+}
+.card-meta{display:flex;justify-content:space-between;align-items:center;}
+.tag{
+  font-family:'Roboto Mono',monospace;font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;
+  background:linear-gradient(135deg,var(--ac,var(--c1)),color-mix(in srgb,var(--ac) 70%,white));
+  color:white;border-radius:2rem;padding:0.2rem 0.65rem;
+}
+.no{font-family:'Roboto Mono',monospace;font-size:0.6rem;color:var(--muted);letter-spacing:0.1em;}
 
-  footer {
-    text-align: center; padding: 0 20px 30px;
-    position: relative; z-index: 10;
-  }
-  footer p { font-family: var(--mono); font-size: 10px; color: var(--muted); opacity: 0.4; letter-spacing: 1px; }
+.title{
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(1.1rem,4vw,1.65rem);
+  font-weight:900;line-height:1.25;
+  color:var(--ink);
+}
+.title em{font-style:normal;color:var(--ac,var(--c1));}
 
-  @keyframes up {
-    from { opacity:0; transform:translateY(14px); }
-    to   { opacity:1; transform:translateY(0); }
-  }
-  @media(max-width:560px){
-    .card { padding: 22px 18px 18px; }
-    .card-date { display: none; }
-  }
+.lead{
+  font-size:0.77rem;font-weight:700;line-height:1.5;
+  color:var(--ac,var(--c1));
+  background:color-mix(in srgb,var(--ac) 8%,transparent);
+  border-radius:8px;padding:0.5rem 0.7rem;
+}
+
+.body{
+  font-size:0.79rem;line-height:2;color:#4a5568;
+  flex:1;overflow-y:auto;scrollbar-width:none;
+}
+.body::-webkit-scrollbar{display:none;}
+
+.foot{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:0.75rem;
+  border-top:1px solid rgba(0,0,0,0.07);
+  flex-wrap:wrap;gap:0.4rem;flex-shrink:0;
+}
+.src{font-family:'Roboto Mono',monospace;font-size:0.57rem;color:var(--muted);letter-spacing:0.05em;}
+.heat{display:flex;gap:1px;}
+.f{font-size:0.75rem;}.fd{font-size:0.75rem;opacity:0.15;}
+
+/* BG deco */
+.card-deco{
+  position:absolute;right:1rem;bottom:0;
+  font-family:'Outfit',sans-serif;font-size:7rem;font-weight:900;
+  color:var(--ac,var(--c1));opacity:0.05;line-height:1;
+  pointer-events:none;user-select:none;
+}
+
+/* themes */
+.s1{--ac:#6366f1;}.s2{--ac:#ec4899;}.s3{--ac:#10b981;}.s4{--ac:#f59e0b;}.s5{--ac:#06b6d4;}
+
+/* CONTROLS — ネオモーフ */
+.controls{
+  flex-shrink:0;z-index:10;position:relative;
+  background:var(--bg);
+  box-shadow:0 -3px 8px var(--shadow-dark),0 3px 8px var(--shadow-light);
+  padding:0.6rem 1.2rem;
+  display:flex;justify-content:space-between;align-items:center;gap:1rem;
+}
+.navs{display:flex;gap:0.6rem;}
+.nb{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--bg);border:none;cursor:pointer;
+  color:var(--ink);font-size:1rem;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:3px 3px 7px var(--shadow-dark),-3px -3px 7px var(--shadow-light);
+  transition:all 0.15s;
+}
+.nb:hover{box-shadow:inset 2px 2px 5px var(--shadow-dark),inset -2px -2px 5px var(--shadow-light);}
+.nb:active{transform:scale(0.94);}
+.dots{display:flex;gap:0.45rem;align-items:center;}
+.dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--bg);cursor:pointer;
+  box-shadow:2px 2px 4px var(--shadow-dark),-2px -2px 4px var(--shadow-light);
+  transition:all 0.25s;
+}
+.dot.on{
+  background:linear-gradient(135deg,var(--c1),var(--c2));
+  box-shadow:none;width:22px;border-radius:4px;
+}
+.ctr{font-family:'Roboto Mono',monospace;font-size:0.65rem;color:var(--muted);letter-spacing:0.15em;white-space:nowrap;}
+.ctr em{
+  background:linear-gradient(135deg,var(--c1),var(--c2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  font-style:normal;font-weight:700;
+}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+header{animation:fadeUp 0.45s ease both;}
+.ticker-wrap{animation:fadeUp 0.45s 0.06s ease both;}
+.slider-outer{animation:fadeUp 0.45s 0.12s ease both;}
+.controls{animation:fadeUp 0.45s 0.18s ease both;}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="eyebrow">✦ AI Weekly Digest — Latest Update</div>
-  <h1>AI 最新ニュース<br>2026年5月27日版</h1>
-  <span class="date-tag">May 25–27, 2026 ｜ Top 6 Stories</span>
+  <div class="logo">AI <span>NEWS WAVE</span></div>
+  <div class="hdr-r">
+    <div class="hdr-date">2026.05.29 — WEEK 23</div>
+    <div><div class="live-pill"><div class="ldot"></div>LIVE</div></div>
+  </div>
 </header>
 
-<div class="slider-wrap">
-  <div class="overflow-hide">
-    <div class="track" id="track">
-
-      <!-- 1 -->
-      <div class="card" style="--c-glow:#b06eff; --c-accent:#b06eff;">
-        <div class="card-header">
-          <span class="num">01 / 06</span>
-          <span class="tag" style="background:rgba(176,110,255,0.15);color:#b06eff;">🟣 Anthropic</span>
-          <span class="card-date">May 25–27, 2026</span>
-        </div>
-        <div class="card-title">Anthropic、時価総額9,000億ドル超で<br>300億ドルの超大型資金調達へ</div>
-        <div class="card-body">
-          Bloombergによると、Anthropicが<strong>300億ドル（約4.5兆円）</strong>の資金調達ラウンドを今週中にも完了する見込み。Sequoia・Dragoneer・Greenoaks・Altimeterが共同リード。企業評価額は<strong>9,000億ドル超</strong>と報じられており、AI企業として空前の規模。
-        </div>
-        <div class="insight">
-          <b>✦ ポイント</b>
-          16ヶ月でARR（年間経常収益）が8,700万ドルから<strong>300億ドル</strong>へと急拡大。Claude Codeのエンタープライズ普及とPwC・Blackstoneとの大型契約が牽引。
-        </div>
-        <div class="source">Source: Bloomberg / Build Fast with AI (May 27, 2026)</div>
-      </div>
-
-      <!-- 2 -->
-      <div class="card" style="--c-glow:#00f0b5; --c-accent:#00f0b5;">
-        <div class="card-header">
-          <span class="num">02 / 06</span>
-          <span class="tag" style="background:rgba(0,240,181,0.13);color:#00f0b5;">🟢 研究</span>
-          <span class="card-date">May 27, 2026</span>
-        </div>
-        <div class="card-title">生成AI、創造性テストで<br>「平均的な人間」を超えることが判明</div>
-        <div class="card-body">
-          10万人以上を対象にした新研究で、<strong>生成AIが創造性テストにおいて平均的な人間を上回る</strong>スコアを記録したことが明らかになった（ScienceDaily）。AIの「創造性」の定義や評価指標をめぐる議論が再燃しており、教育・クリエイティブ業界に大きな波紋を広げている。
-        </div>
-        <div class="insight">
-          <b>✦ ポイント</b>
-          AIスクール講師・クリエイターにとって重要な示唆。「AIに任せること」と「人間にしかできないこと」の線引きが急速に変化している。
-        </div>
-        <div class="source">Source: ScienceDaily / Build Fast with AI (May 27, 2026)</div>
-      </div>
-
-      <!-- 3 -->
-      <div class="card" style="--c-glow:#5577ff; --c-accent:#5577ff;">
-        <div class="card-header">
-          <span class="num">03 / 06</span>
-          <span class="tag" style="background:rgba(85,119,255,0.15);color:#5577ff;">🔵 OpenAI</span>
-          <span class="card-date">May 25, 2026</span>
-        </div>
-        <div class="card-title">OpenAI Codex、Mac が<br>ロック中でも自律操作が可能に</div>
-        <div class="card-body">
-          OpenAIのコーディングエージェント「Codex」が、<strong>Macがロック状態でも操作できる</strong>機能を搭載。「エージェントを動かし続けるためにPCを開けたまま歩き回る」時代の終わりを告げる大きな進化。自律型AIエージェントの実用度が一段と高まった。
-        </div>
-        <div class="insight">
-          <b>✦ ポイント</b>
-          同週OpenAIはIPO申請も報道。AIが「作業を自分でこなす存在」へ本格移行する中、エンタープライズ展開とマネタイズ戦略が加速。
-        </div>
-        <div class="source">Source: Build Fast with AI / OpenAI (May 25, 2026)</div>
-      </div>
-
-      <!-- 4 -->
-      <div class="card" style="--c-glow:#ff6b6b; --c-accent:#ff6b6b;">
-        <div class="card-header">
-          <span class="num">04 / 06</span>
-          <span class="tag" style="background:rgba(255,107,107,0.13);color:#ff6b6b;">🔴 インフラ</span>
-          <span class="card-date">May 25, 2026</span>
-        </div>
-        <div class="card-title">NextEra、6.7兆円でDominion Energyを買収<br>— AIデータセンター電力需要が背景</div>
-        <div class="card-body">
-          米NextEra Energyが<strong>670億ドル（約6.7兆円）</strong>でDominion Energyを買収すると発表。米電力会社史上最大規模の合併で、<strong>AIデータセンターの電力需要急増</strong>が戦略的背景。2030年までにAIが米国電力消費の15〜25%を占めると予測されており、電力インフラの再編が急務となっている。
-        </div>
-        <div class="insight">
-          <b>✦ ポイント</b>
-          AIの競争軸が「モデル性能」から「電力・インフラ確保」へシフト。「電力が取れる企業がAIを制する」時代が到来しつつある。
-        </div>
-        <div class="source">Source: Build Fast with AI (May 25, 2026)</div>
-      </div>
-
-      <!-- 5 -->
-      <div class="card" style="--c-glow:#ffd166; --c-accent:#ffd166;">
-        <div class="card-header">
-          <span class="num">05 / 06</span>
-          <span class="tag" style="background:rgba(255,209,102,0.13);color:#ffd166;">🟡 中国AI</span>
-          <span class="card-date">May 26–27, 2026</span>
-        </div>
-        <div class="card-title">中国モデルがオープンAI市場の<br>60%を占有。DeepSeek・Qwen3が席巻</div>
-        <div class="card-body">
-          オープンソースAIモデルのルーターサービス「OpenRouter」上で、<strong>Kimi K2.6・DeepSeek V4・GLM-5.1・Qwen 3</strong>など中国製モデルが全利用量の<strong>60%</strong>を占めるに至った。GPT-5.4の1/50のコストで90%の品質を実現するモデルも登場し、米国主導のAI市場構造が大きく揺らいでいる。
-        </div>
-        <div class="insight">
-          <b>✦ ポイント</b>
-          一方、中国政府はDeepSeekやAlibabaのAI研究者の海外渡航を制限。技術流出防止策を強化しており、AI覇権争いは新局面へ。
-        </div>
-        <div class="source">Source: Bloomberg / Build Fast with AI (May 25–27, 2026)</div>
-      </div>
-
-      <!-- 6 -->
-      <div class="card" style="--c-glow:#ff9ef5; --c-accent:#ff9ef5;">
-        <div class="card-header">
-          <span class="num">06 / 06</span>
-          <span class="tag" style="background:rgba(255,158,245,0.13);color:#ff9ef5;">🌐 ビジネス</span>
-          <span class="card-date">May 26, 2026</span>
-        </div>
-        <div class="card-title">WorkdayなどSaaS基幹業務に<br>AIが深く組み込まれる時代へ</div>
-        <div class="card-body">
-          人事・財務クラウド大手<strong>Workday</strong>の最新決算で、AI組み込み型の人事・財務ソフトへの需要が堅調に成長していることが判明。採用支援エージェントや会話型AIが日常業務に浸透。AIは「別のアプリ」ではなく、<strong>普段使いの業務システムの中で動く存在</strong>へと変化している。
-        </div>
-        <div class="insight">
-          <b>✦ ポイント</b>
-          東南アジアからもAIスタートアップが台頭。Google Cloudが支援プログラムを発表し、AI競争の舞台は米中以外にも広がりつつある。
-        </div>
-        <div class="source">Source: 猫P / note.com (May 26, 2026)</div>
-      </div>
-
-    </div>
+<div class="ticker-wrap">
+  <div class="ticker-label">▶ W23</div>
+  <div class="ticker-track">
+    <span class="ticker-item">01 &nbsp;Codex GPT-5.5搭載 — 複雑コーディング・PC操作・研究ワークフローに対応する最強エージェントへ</span>
+    <span class="ticker-sep">◈</span>
+    <span class="ticker-item">02 &nbsp;Workday AI — 人事・財務の基幹業務システムにエージェントが浸透、日常業務そのものを変える</span>
+    <span class="ticker-sep">◈</span>
+    <span class="ticker-item">03 &nbsp;米国 AI規制法案が前進 — コロラド州6月施行・EU AI Act 8月全面適用で企業対応が急務に</span>
+    <span class="ticker-sep">◈</span>
+    <span class="ticker-item">04 &nbsp;AIエージェント競争2026 — 「答えるAI」から「実行するAI」へ、Google・OpenAI・Anthropicが三つ巴</span>
+    <span class="ticker-sep">◈</span>
+    <span class="ticker-item">05 &nbsp;AIショッピング急成長 — Amazon・Google・Meta・Walmartが本格参入、EC体験を根底から変える</span>
+    <span class="ticker-sep">◈</span>
+    <span class="ticker-item">01 &nbsp;Codex GPT-5.5搭載 — 複雑コーディング・PC操作・研究ワークフローに対応する最強エージェントへ</span>
+    <span class="ticker-sep">◈</span>
+    <span class="ticker-item">02 &nbsp;Workday AI — 人事・財務の基幹業務システムにエージェントが浸透、日常業務そのものを変える</span>
+    <span class="ticker-sep">◈</span>
+    <span class="ticker-item">03 &nbsp;米国 AI規制法案が前進 — コロラド州6月施行・EU AI Act 8月全面適用で企業対応が急務に</span>
+    <span class="ticker-sep">◈</span>
+    <span class="ticker-item">04 &nbsp;AIエージェント競争2026 — 「答えるAI」から「実行するAI」へ、Google・OpenAI・Anthropicが三つ巴</span>
+    <span class="ticker-sep">◈</span>
+    <span class="ticker-item">05 &nbsp;AIショッピング急成長 — Amazon・Google・Meta・Walmartが本格参入、EC体験を根底から変える</span>
+    <span class="ticker-sep">◈</span>
   </div>
 </div>
 
-<div class="progress-wrap">
-  <div class="progress-bg"><div class="progress-fill" id="pf" style="width:16.67%"></div></div>
+<div class="prog-wrap"><div class="prog-fill" id="prog" style="width:20%;background:linear-gradient(90deg,#6366f1,#ec4899);"></div></div>
+
+<div class="slider-outer" id="outer">
+  <div class="slider-track" id="track">
+
+    <!-- 1 -->
+    <div class="slide"><div class="card s1">
+      <div class="card-top"></div>
+      <div class="card-body-wrap">
+        <div class="card-meta"><div class="tag">OpenAI Codex</div><div class="no">01 / 05</div></div>
+        <div class="title">Codex に <em>GPT-5.5</em> が搭載<br>最強コーディングエージェントへ進化</div>
+        <div class="lead">CLI・IDE・デスクトップ・モバイルを横断する「エージェント群」へ。Goal modeで数日間自走。</div>
+        <div class="body">OpenAIが最新フロンティアモデル「GPT-5.5」をCodexの推奨モデルとして展開開始した。複雑なコーディング・Computer Use（実際にPCを操作する機能）・ナレッジワーク・研究ワークフローに対応する。新機能「Goal mode」は数時間〜数日にわたって目的達成まで自走するモードで、「Appshots（⌘⌘ で最前面アプリのスクリーンショットをCodexに送る）」も正式実装。2026年5月時点でCodexは週間アクティブユーザー200万人超を突破し、Claude Code・Cursor・GitHub Copilotとの競争はさらに激化している。料金はPro $200/月でAPI使い放題＋Codex Cloudが含まれる。</div>
+        <div class="foot">
+          <div class="src">OpenAI Codex Changelog / ゼットリンカー — 2026.05.24</div>
+          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span></div>
+        </div>
+      </div>
+      <div class="card-deco">01</div>
+    </div></div>
+
+    <!-- 2 -->
+    <div class="slide"><div class="card s2">
+      <div class="card-top"></div>
+      <div class="card-body-wrap">
+        <div class="card-meta"><div class="tag">企業AI浸透</div><div class="no">02 / 05</div></div>
+        <div class="title"><em>Workday</em> AI が基幹業務へ<br>人事・財務システムをエージェントが変える</div>
+        <div class="lead">AIが採用候補をリストアップし、承認フローを自動化する時代が到来。「業務ソフトの中のAI」が標準化。</div>
+        <div class="body">人事・財務向けクラウド大手Workdayの最新決算で、AIを組み込んだ業務システムへの需要が堅調な伸びを示した。採用支援エージェント・会話型AIなど日常業務を支える機能が広がり、社員が別のAIツールを開いて質問するのではなく、普段使いのシステムの中でAIが候補を出し・作業を整理し・次のアクションを支援する形が定着しつつある。特筆すべきは「AIが単独アプリではなく既存業務ソフトの中で動く」という変化だ。2026年末には企業アプリの40%にAIエージェントが組み込まれるとの予測もあり、導入・連携支援の需要が急増している。</div>
+        <div class="foot">
+          <div class="src">note:猫P / まめ — 2026.05.25〜26</div>
+          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="fd">🔥</span></div>
+        </div>
+      </div>
+      <div class="card-deco">02</div>
+    </div></div>
+
+    <!-- 3 -->
+    <div class="slide"><div class="card s3">
+      <div class="card-top"></div>
+      <div class="card-body-wrap">
+        <div class="card-meta"><div class="tag">AI規制 急進展</div><div class="no">03 / 05</div></div>
+        <div class="title">米国・EU <em>AI規制</em> が同時進行<br>企業対応は「待ったなし」の局面へ</div>
+        <div class="lead">コロラド州AI法は6月30日施行。EU AI Act は8月に全面適用。違反時は全世界売上高最大7%の罰金。</div>
+        <div class="body">AI規制の波が企業を直撃する夏が迫っている。米国ではコロラド州AI法が2026年6月30日に施行され、リスク管理プログラムや影響評価が義務化される。イリノイ州・カリフォルニア州・ニューヨーク州も独自のAI規制を進行中。EU AI Actは8月2日に全面適用となり、高リスクAIシステムへの透明性要件が強制される。違反した場合は全世界売上高の最大7%という巨額罰金が待ち受ける。日本でもAI推進法が2025年に成立済みで、海外規制への対応と国内活用推進の両立が企業の急務となっている。AIスクール・法務・コンサル界隈でAI規制対応の需要が急増中。</div>
+        <div class="foot">
+          <div class="src">kiteworks / AI総合研究所 — 2026.05.25</div>
+          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="fd">🔥</span></div>
+        </div>
+      </div>
+      <div class="card-deco">03</div>
+    </div></div>
+
+    <!-- 4 -->
+    <div class="slide"><div class="card s4">
+      <div class="card-top"></div>
+      <div class="card-body-wrap">
+        <div class="card-meta"><div class="tag">AIエージェント戦争</div><div class="no">04 / 05</div></div>
+        <div class="title">2026年は<em>「実行するAI」</em>元年<br>Google・OpenAI・Anthropicが三つ巴</div>
+        <div class="lead">「答えるAI」の時代は終わった。バックグラウンドで仕事を進める自律AIエージェントが主戦場に。</div>
+        <div class="body">2026年5月25日のAIトレンドを俯瞰すると、「AIエージェント競争」「企業AIの本格運用」「AIと信頼インフラ」の3テーマが業界を席巻している。GoogleはGemini Sparkで「PCオフでも動くパーソナルAI」を実現し、OpenAIはCodex Goal modeで「数日間自走するコーディングAI」を投入、AnthropicはDreaming機能で「失敗から学ぶAI」を実装した。AIは単なるチャットツールの段階を超え「実際に仕事を進める存在」へ急速に進化。東南アジアから米国へのAIスタートアップ回廊も形成され始めており、グローバルなAI産業の地政学が再編されつつある。</div>
+        <div class="foot">
+          <div class="src">note:まめ / Google Cloud — 2026.05.25</div>
+          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span></div>
+        </div>
+      </div>
+      <div class="card-deco">04</div>
+    </div></div>
+
+    <!-- 5 -->
+    <div class="slide"><div class="card s5">
+      <div class="card-top"></div>
+      <div class="card-body-wrap">
+        <div class="card-meta"><div class="tag">AI × EC 急拡大</div><div class="no">05 / 05</div></div>
+        <div class="title"><em>AIショッピング</em> 市場が急成長<br>Amazon・Google・Meta・Walmartが本格参入</div>
+        <div class="lead">「検索して買う」時代から「AIが提案して届ける」時代へ。EC体験が根底から変わる転換点。</div>
+        <div class="body">2026年5月、AIショッピング市場が急成長フェーズに突入したことが複数のレポートで確認された。Amazon・Google・Meta・Walmartなど米国大手が本格参入し、AIが購買履歴・好み・状況を読み取って最適な商品を能動的に提案・注文まで代行するエージェント型ショッピングが普及し始めている。Googleはすでに「Gemini Intelligence」でバーベキュー食材の一括Instacart注文を実演済み。Metaは20億人のSNSユーザーのデータを活用したAI推薦を強化。美容・健康分野への応用も急速に進んでおり、AIリテラシーを持つ事業者にとって大きなビジネスチャンスとなっている。</div>
+        <div class="foot">
+          <div class="src">note:まめ / Ledge.ai — 2026.05.25〜26</div>
+          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="fd">🔥</span><span class="fd">🔥</span></div>
+        </div>
+      </div>
+      <div class="card-deco">05</div>
+    </div></div>
+
+  </div>
 </div>
 
-<div class="nav">
-  <button class="btn" id="prev">&#8592;</button>
-  <div class="dots" id="dots"></div>
-  <button class="btn" id="next">&#8594;</button>
+<div class="controls">
+  <div class="navs">
+    <button class="nb" id="prev">&#8592;</button>
+    <button class="nb" id="next">&#8594;</button>
+  </div>
+  <div class="dots" id="dots">
+    <div class="dot on" data-i="0"></div>
+    <div class="dot" data-i="1"></div>
+    <div class="dot" data-i="2"></div>
+    <div class="dot" data-i="3"></div>
+    <div class="dot" data-i="4"></div>
+  </div>
+  <div class="ctr"><em id="cn">01</em> / 05</div>
 </div>
-
-<footer><p>AI Latest News ｜ Compiled May 27, 2026 ｜ Sources: Bloomberg, ScienceDaily, OpenAI, Build Fast with AI, note.com</p></footer>
 
 <script>
-const track = document.getElementById('track');
-const dotsEl = document.getElementById('dots');
-const pf = document.getElementById('pf');
-const N = 6;
-let cur = 0;
-
-for(let i=0;i<N;i++){
-  const d=document.createElement('div');
-  d.className='dot'+(i===0?' on':'');
-  d.onclick=()=>go(i);
-  dotsEl.appendChild(d);
-}
-function go(i){
-  cur=(i+N)%N;
+const track=document.getElementById('track'),allDots=document.querySelectorAll('.dot'),prog=document.getElementById('prog'),cn=document.getElementById('cn');
+const GRADS=['linear-gradient(90deg,#6366f1,#8b5cf6)','linear-gradient(90deg,#ec4899,#f43f5e)','linear-gradient(90deg,#10b981,#06b6d4)','linear-gradient(90deg,#f59e0b,#ef4444)','linear-gradient(90deg,#06b6d4,#6366f1)'];
+const N=5;let cur=0;
+function go(n){
+  cur=((n%N)+N)%N;
   track.style.transform=`translateX(-${cur*100}%)`;
-  document.querySelectorAll('.dot').forEach((d,j)=>d.classList.toggle('on',j===cur));
-  pf.style.width=`${(cur+1)/N*100}%`;
+  allDots.forEach((d,i)=>d.classList.toggle('on',i===cur));
+  prog.style.width=`${(cur+1)/N*100}%`;
+  prog.style.background=GRADS[cur];
+  cn.textContent=String(cur+1).padStart(2,'0');
 }
-document.getElementById('prev').onclick=()=>go(cur-1);
 document.getElementById('next').onclick=()=>go(cur+1);
-let t=setInterval(()=>go(cur+1),7000);
-document.querySelectorAll('.btn,.dot').forEach(el=>el.addEventListener('click',()=>{clearInterval(t);t=setInterval(()=>go(cur+1),7000);}));
-let sx=0;
-track.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;},{passive:true});
-track.addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>40)go(d<0?cur+1:cur-1);});
+document.getElementById('prev').onclick=()=>go(cur-1);
+allDots.forEach(d=>d.addEventListener('click',()=>go(+d.dataset.i)));
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1);});
+let sx=0,o=document.getElementById('outer');
+o.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;},{passive:true});
+o.addEventListener('touchend',e=>{const d=sx-e.changedTouches[0].clientX;if(Math.abs(d)>45)d>0?go(cur+1):go(cur-1);},{passive:true});
+o.addEventListener('mousedown',e=>{sx=e.clientX;});
+o.addEventListener('mouseup',e=>{const d=sx-e.clientX;if(Math.abs(d)>45)d>0?go(cur+1):go(cur-1);});
 </script>
 </body>
 </html>
