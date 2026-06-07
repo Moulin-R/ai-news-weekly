@@ -3,297 +3,337 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI NEWS EXPRESS 2026.06.03</title>
+<title>AI NEWS PRISM 2026.06.08</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ff6a00'/%3E%3Crect width='32' height='16' rx='7' fill='%23ff4500'/%3E%3Crect y='9' width='32' height='7' fill='%23ff4500'/%3E%3Crect x='4' y='17' width='24' height='1' fill='rgba(255,255,255,0.3)'/%3E%3Ctext x='16' y='14' text-anchor='middle' dominant-baseline='middle' font-family='Arial Black,Arial,sans-serif' font-size='12' font-weight='900' fill='white' letter-spacing='1'%3EAI%3C/text%3E%3Ctext x='16' y='25' text-anchor='middle' dominant-baseline='middle' font-family='Arial Black,Arial,sans-serif' font-size='8' font-weight='700' fill='rgba(255,255,255,0.92)' letter-spacing='2'%3Enews%3C/text%3E%3C/svg%3E">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="AI NEWS">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Anton&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Plus+Jakarta+Sans:wght@400;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --bg:#ffffff;--ink:#111111;--lt:#f4f4f4;--line:rgba(17,17,17,0.1);
-  --c1:#e53e3e;--c2:#2b6cb0;--c3:#276749;--c4:#c05621;--c5:#553c9a;
+  --bg:#f0f4ff;--white:#ffffff;--ink:#0a0e1a;
+  --c1:#6366f1;--c2:#ec4899;--c3:#06b6d4;--c4:#10b981;--c5:#f59e0b;
+  --muted:#64748b;--border:rgba(10,14,26,0.08);
 }
-body{background:var(--bg);color:var(--ink);font-family:'Noto Sans JP',sans-serif;height:100vh;overflow:hidden;display:flex;flex-direction:column;}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:'Noto Sans JP',sans-serif;
+  height:100vh;overflow:hidden;display:flex;flex-direction:column;
+  position:relative;
+}
+/* PRISM BG */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 70% 50% at 20% 20%, rgba(99,102,241,0.08), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(236,72,153,0.07), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(6,182,212,0.05), transparent 70%);
+}
 
 /* HEADER */
 header{
-  flex-shrink:0;z-index:10;position:relative;
-  border-bottom:3px solid var(--ink);
-  background:var(--bg);
+  position:relative;z-index:10;flex-shrink:0;
+  background:rgba(255,255,255,0.8);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:0.7rem 1.3rem;
+  display:flex;justify-content:space-between;align-items:center;
 }
-.masthead{
-  padding:0.6rem 1.3rem 0.5rem;
-  display:flex;justify-content:space-between;align-items:flex-end;
+.brand{display:flex;align-items:center;gap:0.6rem;}
+.brand-pill{
+  background:linear-gradient(135deg,var(--c1),var(--c2));
+  color:white;border-radius:6px;
+  padding:0.2rem 0.6rem;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:0.7rem;font-weight:800;letter-spacing:0.05em;
 }
-.mast-l{display:flex;flex-direction:column;gap:2px;}
-.mast-eyebrow{font-family:'Courier Prime',monospace;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:#888;}
-.mast-title{font-family:'Anton',sans-serif;font-size:1.5rem;letter-spacing:0.04em;line-height:1;}
-.mast-title span{color:var(--c1);}
-.mast-r{text-align:right;}
-.mast-issue{font-family:'Courier Prime',monospace;font-size:0.58rem;color:#888;letter-spacing:0.1em;}
-.breaking-bar{
-  background:var(--ink);color:var(--bg);
-  padding:0.2rem 1.3rem;
-  font-family:'Courier Prime',monospace;font-size:0.6rem;font-weight:700;
-  letter-spacing:0.15em;text-transform:uppercase;
-  display:flex;align-items:center;gap:0.6rem;
+.brand-name{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:1rem;font-weight:800;
+  background:linear-gradient(135deg,var(--c1),var(--c2),var(--c3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  letter-spacing:-0.01em;
 }
-.break-dot{width:6px;height:6px;border-radius:50%;background:var(--c1);animation:blink 1s infinite;}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+.hdr-r{display:flex;flex-direction:column;align-items:flex-end;gap:3px;}
+.hdr-event{
+  font-family:'Fira Code',monospace;font-size:0.58rem;font-weight:500;
+  letter-spacing:0.1em;
+  background:linear-gradient(90deg,var(--c1),var(--c2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  font-weight:700;
+}
+.hdr-date{font-family:'Fira Code',monospace;font-size:0.56rem;color:var(--muted);letter-spacing:0.08em;}
 
 /* TICKER */
 .ticker-wrap{
-  flex-shrink:0;z-index:10;overflow:hidden;
-  background:var(--c1);padding:0.3rem 0;
+  position:relative;z-index:10;flex-shrink:0;
+  overflow:hidden;padding:0.3rem 0;
+  background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3),var(--c4));
 }
 .ticker-label{
   position:absolute;left:0;top:0;bottom:0;z-index:2;
-  background:var(--ink);color:var(--bg);
+  background:var(--ink);color:white;
   display:flex;align-items:center;padding:0 0.7rem;
-  font-family:'Courier Prime',monospace;font-size:0.58rem;font-weight:700;
-  letter-spacing:0.15em;white-space:nowrap;
+  font-family:'Fira Code',monospace;font-size:0.58rem;font-weight:500;
+  letter-spacing:0.14em;white-space:nowrap;
 }
-.ticker-wrap{position:relative;}
 .ticker-track{
   display:flex;align-items:center;white-space:nowrap;
-  animation:ticker 38s linear infinite;padding-left:100px;
+  animation:ticker 36s linear infinite;padding-left:100px;
 }
 .ticker-track:hover{animation-play-state:paused;}
-.ticker-item{font-family:'Courier Prime',monospace;font-size:0.62rem;color:white;letter-spacing:0.04em;padding:0 0.5rem;}
+.ticker-item{font-family:'Fira Code',monospace;font-size:0.6rem;color:rgba(255,255,255,0.95);letter-spacing:0.04em;padding:0 0.5rem;}
 .ticker-sep{color:rgba(255,255,255,0.5);margin:0 0.2rem;}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* PROGRESS */
-.prog-wrap{height:3px;flex-shrink:0;z-index:10;background:var(--lt);}
-.prog-fill{height:100%;transition:width 0.4s ease;}
+.prog-wrap{height:3px;flex-shrink:0;z-index:10;background:rgba(0,0,0,0.06);}
+.prog-fill{height:100%;transition:width 0.4s ease;border-radius:0 2px 2px 0;}
 
 /* SLIDER */
-.slider-outer{flex:1;overflow:hidden;position:relative;z-index:5;padding:0.9rem 0 0;}
-.slider-track{display:flex;height:100%;transition:transform 0.55s cubic-bezier(0.86,0,0.07,1);}
+.slider-outer{flex:1;overflow:hidden;position:relative;z-index:5;padding:1rem 0 0;}
+.slider-track{display:flex;height:100%;transition:transform 0.6s cubic-bezier(0.77,0,0.175,1);}
 
 /* CARD */
 .slide{min-width:100%;height:100%;padding:0 1.1rem 0.8rem;}
 .card{
   width:100%;height:100%;
-  background:var(--bg);
-  border:2px solid var(--ink);
+  background:rgba(255,255,255,0.75);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,0.9);
+  border-radius:18px;
+  box-shadow:0 4px 24px rgba(0,0,0,0.08),0 1px 4px rgba(0,0,0,0.04);
   display:flex;flex-direction:column;overflow:hidden;position:relative;
 }
-.card-band{
-  height:5px;background:var(--ac,var(--c1));flex-shrink:0;
+.card-stripe{
+  height:4px;
+  background:linear-gradient(90deg,var(--ac1,var(--c1)),var(--ac2,var(--c2)));
+  flex-shrink:0;border-radius:18px 18px 0 0;
 }
-.card-inner{
-  padding:1.1rem 1.3rem 1rem;
-  flex:1;display:flex;flex-direction:column;gap:0.7rem;overflow:hidden;
+.card-body-wrap{
+  padding:1.2rem 1.4rem 1rem;
+  flex:1;display:flex;flex-direction:column;gap:0.75rem;overflow:hidden;
 }
-.card-meta{display:flex;justify-content:space-between;align-items:center;}
-.cat{
-  font-family:'Courier Prime',monospace;font-size:0.57rem;font-weight:700;
-  letter-spacing:0.15em;text-transform:uppercase;
-  color:var(--bg);background:var(--ac,var(--c1));
-  padding:0.15rem 0.5rem;
+.card-top{display:flex;justify-content:space-between;align-items:center;}
+.tag{
+  font-family:'Fira Code',monospace;font-size:0.57rem;
+  letter-spacing:0.12em;text-transform:uppercase;
+  background:linear-gradient(135deg,var(--ac1,var(--c1)),var(--ac2,var(--c2)));
+  color:white;border-radius:3px;padding:0.16rem 0.5rem;
+  font-weight:500;
 }
-.num{font-family:'Courier Prime',monospace;font-size:0.6rem;color:#888;letter-spacing:0.1em;}
-
+.no{font-family:'Fira Code',monospace;font-size:0.58rem;color:var(--muted);letter-spacing:0.1em;}
 .title{
-  font-family:'Anton',sans-serif;
-  font-size:clamp(1.1rem,4.5vw,1.8rem);
-  line-height:1.2;letter-spacing:0.02em;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:clamp(1.05rem,4vw,1.6rem);
+  font-weight:800;line-height:1.25;letter-spacing:-0.02em;
   color:var(--ink);
 }
-.title em{font-style:normal;color:var(--ac,var(--c1));}
-
+.title em{
+  font-style:normal;
+  background:linear-gradient(135deg,var(--ac1,var(--c1)),var(--ac2,var(--c2)));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
 .lead{
   font-size:0.76rem;font-weight:700;line-height:1.5;
-  color:var(--ac,var(--c1));
-  padding:0.4rem 0.6rem;
-  border:1.5px solid var(--ac,var(--c1));
-  background:color-mix(in srgb,var(--ac) 5%,white);
+  background:linear-gradient(135deg,var(--ac1,var(--c1)),var(--ac2,var(--c2)));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  border-left:2px solid var(--ac1,var(--c1));padding-left:0.65rem;
 }
-
 .body{
-  font-size:0.78rem;line-height:1.95;color:#444;
+  font-size:0.78rem;line-height:2;color:#334155;
   flex:1;overflow-y:auto;scrollbar-width:none;
 }
 .body::-webkit-scrollbar{display:none;}
-
 .foot{
   display:flex;justify-content:space-between;align-items:center;
-  border-top:1.5px solid var(--ink);padding-top:0.65rem;
+  border-top:1px solid var(--border);padding-top:0.7rem;
   flex-wrap:wrap;gap:0.4rem;flex-shrink:0;
 }
-.src{font-family:'Courier Prime',monospace;font-size:0.56rem;color:#888;letter-spacing:0.05em;}
+.src{font-family:'Fira Code',monospace;font-size:0.55rem;color:var(--muted);letter-spacing:0.05em;}
 .heat{display:flex;gap:1px;}
 .f{font-size:0.72rem;}.fd{font-size:0.72rem;opacity:0.15;}
-
-.card-bgnum{
-  position:absolute;right:0.4rem;bottom:-1rem;
-  font-family:'Anton',sans-serif;font-size:9rem;
-  color:var(--ac,var(--c1));opacity:0.05;line-height:1;
-  pointer-events:none;user-select:none;
+.card-bg{
+  position:absolute;right:0.5rem;bottom:-1rem;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:9rem;font-weight:800;
+  background:linear-gradient(135deg,var(--ac1,var(--c1)),var(--ac2,var(--c2)));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  opacity:0.06;line-height:1;pointer-events:none;user-select:none;
 }
 
 /* themes */
-.s1{--ac:#e53e3e;}.s2{--ac:#2b6cb0;}.s3{--ac:#276749;}.s4{--ac:#c05621;}.s5{--ac:#553c9a;}
+.t1{--ac1:#6366f1;--ac2:#8b5cf6;}
+.t2{--ac1:#ec4899;--ac2:#f43f5e;}
+.t3{--ac1:#06b6d4;--ac2:#0ea5e9;}
+.t4{--ac1:#10b981;--ac2:#06b6d4;}
+.t5{--ac1:#f59e0b;--ac2:#ef4444;}
 
 /* CONTROLS */
 .controls{
-  flex-shrink:0;z-index:10;
-  border-top:2px solid var(--ink);background:var(--bg);
+  flex-shrink:0;z-index:10;position:relative;
+  background:rgba(255,255,255,0.8);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-top:1px solid var(--border);
   padding:0.55rem 1.1rem;
   display:flex;justify-content:space-between;align-items:center;gap:1rem;
 }
 .navs{display:flex;gap:0.5rem;}
 .nb{
-  width:32px;height:32px;
-  background:var(--ink);color:var(--bg);border:none;
-  cursor:pointer;font-size:0.95rem;
+  width:34px;height:34px;border-radius:50%;
+  background:white;border:1px solid var(--border);
+  color:var(--c1);cursor:pointer;font-size:0.95rem;
   display:flex;align-items:center;justify-content:center;
-  transition:all 0.15s;
+  box-shadow:0 2px 8px rgba(0,0,0,0.08);transition:all 0.15s;
 }
-.nb:hover{background:var(--c1);}
+.nb:hover{background:var(--c1);color:white;border-color:var(--c1);}
 .nb:active{transform:scale(0.9);}
 .dots{display:flex;gap:0.45rem;align-items:center;}
-.dot{width:7px;height:7px;border:2px solid var(--ink);cursor:pointer;transition:all 0.25s;}
-.dot.on{background:var(--ink);width:20px;}
-.ctr{font-family:'Courier Prime',monospace;font-size:0.62rem;color:#888;letter-spacing:0.15em;white-space:nowrap;}
-.ctr em{color:var(--ink);font-style:normal;font-weight:700;}
+.dot{
+  width:7px;height:7px;border-radius:50%;
+  background:rgba(0,0,0,0.12);cursor:pointer;transition:all 0.25s;
+}
+.dot.on{
+  width:22px;border-radius:4px;
+  background:linear-gradient(90deg,var(--c1),var(--c2));
+}
+.ctr{font-family:'Fira Code',monospace;font-size:0.62rem;color:var(--muted);letter-spacing:0.15em;white-space:nowrap;}
+.ctr em{
+  background:linear-gradient(90deg,var(--c1),var(--c2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  font-style:normal;font-weight:700;
+}
 
-@keyframes slideUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-header{animation:slideUp 0.4s ease both;}
-.ticker-wrap{animation:slideUp 0.4s 0.05s ease both;}
-.slider-outer{animation:slideUp 0.4s 0.1s ease both;}
-.controls{animation:slideUp 0.4s 0.15s ease both;}
+@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+header{animation:up 0.45s ease both;}
+.ticker-wrap{animation:up 0.45s 0.05s ease both;}
+.slider-outer{animation:up 0.45s 0.1s ease both;}
+.controls{animation:up 0.45s 0.15s ease both;}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="masthead">
-    <div class="mast-l">
-      <div class="mast-eyebrow">Breaking AI News</div>
-      <div class="mast-title">AI <span>EXPRESS</span></div>
-    </div>
-    <div class="mast-r">
-      <div class="mast-issue">2026.06.03 — WEEK 24</div>
-      <div class="mast-issue">5 STORIES / VOL.7</div>
-    </div>
+  <div class="brand">
+    <div class="brand-pill">AI</div>
+    <div class="brand-name">NEWS PRISM</div>
   </div>
-  <div class="breaking-bar"><div class="break-dot"></div>BREAKING — NVIDIA RTX SPARK 発表 / ANTHROPIC IPO申請 / WWDC 2026 まで5日</div>
+  <div class="hdr-r">
+    <div class="hdr-event">▶ WWDC 2026 本日開幕</div>
+    <div class="hdr-date">2026.06.08 — WEEK 25</div>
+  </div>
 </header>
 
 <div class="ticker-wrap">
-  <div class="ticker-label">LIVE</div>
+  <div class="ticker-label">HOT</div>
   <div class="ticker-track">
-    <span class="ticker-item">01 &nbsp;NVIDIA RTX Spark — 1ペタFLOPS・128GBメモリ・1200億パラメータLLMをノートPCで動かす</span>
-    <span class="ticker-sep">◆</span>
-    <span class="ticker-item">02 &nbsp;Anthropic IPO申請 — SECにS-1草案を提出、スペースX IPOに続くAI史上最大規模の上場へ</span>
-    <span class="ticker-sep">◆</span>
-    <span class="ticker-item">03 &nbsp;CNN が Perplexity AI を提訴 — 1万7千件の無断スクレイピングで著作権侵害・9社が対抗</span>
-    <span class="ticker-sep">◆</span>
-    <span class="ticker-item">04 &nbsp;ByteDance AI投資700億ドルへ — TikTok親会社が昨年比2.8倍の超巨額データセンター投資</span>
-    <span class="ticker-sep">◆</span>
-    <span class="ticker-item">05 &nbsp;Microsoft Copilot Studio — AIエージェントがUIを直接操作する機能が正式版に</span>
-    <span class="ticker-sep">◆</span>
-    <span class="ticker-item">01 &nbsp;NVIDIA RTX Spark — 1ペタFLOPS・128GBメモリ・1200億パラメータLLMをノートPCで動かす</span>
-    <span class="ticker-sep">◆</span>
-    <span class="ticker-item">02 &nbsp;Anthropic IPO申請 — SECにS-1草案を提出、スペースX IPOに続くAI史上最大規模の上場へ</span>
-    <span class="ticker-sep">◆</span>
-    <span class="ticker-item">03 &nbsp;CNN が Perplexity AI を提訴 — 1万7千件の無断スクレイピングで著作権侵害・9社が対抗</span>
-    <span class="ticker-sep">◆</span>
-    <span class="ticker-item">04 &nbsp;ByteDance AI投資700億ドルへ — TikTok親会社が昨年比2.8倍の超巨額データセンター投資</span>
-    <span class="ticker-sep">◆</span>
-    <span class="ticker-item">05 &nbsp;Microsoft Copilot Studio — AIエージェントがUIを直接操作する機能が正式版に</span>
-    <span class="ticker-sep">◆</span>
+    <span class="ticker-item">01 &nbsp;WWDC 2026本日開幕 — Siri 2.0・iOS 27・Claude&Gemini選択可能なExtensions発表へ</span>
+    <span class="ticker-sep">✦</span>
+    <span class="ticker-item">02 &nbsp;Siri×Gemini統合 — AppleがGoogle Geminiを年間10億ドルで採用、PrivateCloudで処理</span>
+    <span class="ticker-sep">✦</span>
+    <span class="ticker-item">03 &nbsp;iOS 27 写真AI — Extend・Enhance・Reframeでスマホ写真が生成AI編集に対応</span>
+    <span class="ticker-sep">✦</span>
+    <span class="ticker-item">04 &nbsp;Tim Cook 退任観測 — WWDC後の後継者報道が加速、Apple次章のリーダーは誰か</span>
+    <span class="ticker-sep">✦</span>
+    <span class="ticker-item">05 &nbsp;CoreAI 発表予定 — 開発者がAIエージェントをSiriに接続できる新フレームワーク</span>
+    <span class="ticker-sep">✦</span>
+    <span class="ticker-item">01 &nbsp;WWDC 2026本日開幕 — Siri 2.0・iOS 27・Claude&Gemini選択可能なExtensions発表へ</span>
+    <span class="ticker-sep">✦</span>
+    <span class="ticker-item">02 &nbsp;Siri×Gemini統合 — AppleがGoogle Geminiを年間10億ドルで採用、PrivateCloudで処理</span>
+    <span class="ticker-sep">✦</span>
+    <span class="ticker-item">03 &nbsp;iOS 27 写真AI — Extend・Enhance・Reframeでスマホ写真が生成AI編集に対応</span>
+    <span class="ticker-sep">✦</span>
+    <span class="ticker-item">04 &nbsp;Tim Cook 退任観測 — WWDC後の後継者報道が加速、Apple次章のリーダーは誰か</span>
+    <span class="ticker-sep">✦</span>
+    <span class="ticker-item">05 &nbsp;CoreAI 発表予定 — 開発者がAIエージェントをSiriに接続できる新フレームワーク</span>
+    <span class="ticker-sep">✦</span>
   </div>
 </div>
 
-<div class="prog-wrap"><div class="prog-fill" id="prog" style="width:20%;background:#e53e3e;"></div></div>
+<div class="prog-wrap"><div class="prog-fill" id="prog" style="width:20%;background:linear-gradient(90deg,#6366f1,#8b5cf6);"></div></div>
 
 <div class="slider-outer" id="outer">
   <div class="slider-track" id="track">
 
     <!-- 1 -->
-    <div class="slide"><div class="card s1">
-      <div class="card-band"></div>
-      <div class="card-inner">
-        <div class="card-meta"><div class="cat">NVIDIA 速報</div><div class="num">01 / 05</div></div>
-        <div class="title"><em>NVIDIA RTX Spark</em> 発表<br>ノートPCで1,200億パラメータが動く</div>
-        <div class="lead">「PCがツールからチームメイトへ」。ローカルAIエージェント時代が本格開幕。</div>
-        <div class="body">NVIDIAが6月1日のGTC Taipei 2026基調講演で新スーパーチップ「RTX Spark」を発表した。TSMCの3nmプロセスで製造し、Blackwell世代GPU（6,144 CUDAコア）と20コアGrace CPUを統合。最大128GBのLPDDR5Xユニファイドメモリに対応し、AI処理性能は1ペタフロップス（FP4）でノートPC上で最大1,200億パラメータのLLMを動かせる。AdobeのPhotoshop・Premiumが高速動作し、WQHDでレイトレ&DLSSで100fps超のゲーミングも実現。Acer・ASUS・Dell・GIGABYTE・HP・Lenovo・Microsoft・MSIから2026年秋に発売予定。ローカルでAIエージェントが動くPC時代が本格到来した。</div>
+    <div class="slide"><div class="card t1">
+      <div class="card-stripe"></div>
+      <div class="card-body-wrap">
+        <div class="card-top"><div class="tag">WWDC 2026 速報</div><div class="no">01 / 05</div></div>
+        <div class="title"><em>WWDC 2026</em> 本日開幕<br>Siri刷新・iOS 27が正式発表へ</div>
+        <div class="lead">「All Systems Glow」のテーマで开幕。Appleがここ10年で最大のAIギアチェンジを断行する。</div>
+        <div class="body">6月8日（日本時間9日午前2時）、Apple Park でWWDC 2026基調講演が開幕した。今年のテーマは「All Systems Glow」。注目の発表はSiri 2.0・iOS 27・macOS 27・iPadOS 27を筆頭に、AI Extensions（サードパーティAI切り替え）・CoreAI開発者フレームワーク・Liquid Glass 2.0 UIの3本柱が予告されている。AppleはiPhone 16発売時に約束したSiri機能の遅れで米国でクラスアクション訴訟2億5千万ドルの和解金支払いを余儀なくされており、今回は「発表の派手さ」より「本当に動くか」が問われる正念場だ。iOS 27は2026年9月正式リリース予定で、本日よりデベロッパーβが配信開始される。</div>
         <div class="foot">
-          <div class="src">NVIDIA公式 / GIGAZINE / ITmedia — 2026.06.01</div>
+          <div class="src">MacRumors / GIGAZINE / BigGo — 2026.06.08</div>
           <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span></div>
         </div>
       </div>
-      <div class="card-bgnum">01</div>
+      <div class="card-bg">01</div>
     </div></div>
 
     <!-- 2 -->
-    <div class="slide"><div class="card s2">
-      <div class="card-band"></div>
-      <div class="card-inner">
-        <div class="card-meta"><div class="cat">Anthropic IPO</div><div class="num">02 / 05</div></div>
-        <div class="title"><em>Anthropic</em> がSECへIPO申請<br>AI史上最大規模の上場へ</div>
-        <div class="lead">評価額最大1兆ドル超。6月のスペースXに続くAI分野の超巨大IPOが年内に迫る。</div>
-        <div class="body">Anthropicは6月1日、米証券取引委員会（SEC）に新規株式公開（IPO）の草案「S-1」を非公開で提出したと発表した。財務情報・株式数・公開価格・上場先取引所はまだ非公開で、正式な上場審査後に開示される見込み。2026年内に上場する可能性が高まり、6月のスペースX IPOに続く「AI分野の巨大IPO」として注目を集めた。Claude Codeは年間収益25億ドルを突破し同社総収益の主力となっており、AIエージェント市場でのポジションが評価額を押し上げている。Anthropic評価額は一説で最大1兆ドルを超える可能性があるとされており、実現すれば人類史上最大規模のIPOの一つとなる。</div>
+    <div class="slide"><div class="card t2">
+      <div class="card-stripe"></div>
+      <div class="card-body-wrap">
+        <div class="card-top"><div class="tag">Apple × Gemini</div><div class="no">02 / 05</div></div>
+        <div class="title">Siri に <em>Google Gemini</em> が融合<br>年間1,000億円の一大AI連携</div>
+        <div class="lead">自社モデルの限界を認め、Geminiの1.2兆パラメータをPrivate Cloud Computeで安全処理。</div>
+        <div class="body">2026年1月にAppleとGoogleが共同発表した提携の詳細が明らかになっている。AppleはGoogleのカスタム1.2兆パラメータGeminiモデルを次世代Apple Intelligence の基盤に採用し、年間約10億ドル（約1,500億円）を支払う。Appleの現行FoundationModel（1,500億パラメータ）の約8倍という規模だ。プライバシー面ではAppleの強みである「Private Cloud Compute」で処理するため、GeminiにデータがGoogleに渡らない設計になっている。iOS 27ではSiri・Writing Tools・Image Playgroundで使うAIをClaude・Gemini・ChatGPT・Grokから選べる「Extensions」が導入され、ChatGPT独占から真のマルチAI体制へと移行する。</div>
         <div class="foot">
-          <div class="src">日本経済新聞 / note:宮野宏樹 — 2026.06.01</div>
+          <div class="src">note:Joh / LatestLY / スーログ — 2026.06.05〜08</div>
           <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span></div>
         </div>
       </div>
-      <div class="card-bgnum">02</div>
+      <div class="card-bg">02</div>
     </div></div>
 
     <!-- 3 -->
-    <div class="slide"><div class="card s3">
-      <div class="card-band"></div>
-      <div class="card-inner">
-        <div class="card-meta"><div class="cat">AI vs メディア</div><div class="num">03 / 05</div></div>
-        <div class="title"><em>CNN が Perplexity</em> を提訴<br>1.7万件の無断スクレイピングで9社対抗</div>
-        <div class="lead">「AI検索が答えを返すほど元サイトへの送客が減る」——コンテンツ保有者全員の問題に。</div>
-        <div class="body">CNNが5月28日、ニューヨーク南部地区連邦地裁にPerplexity AIを提訴した。CNNのニュース記事・写真・動画を1万7千件以上無断でスクレイピングし再配信したとして著作権侵害・商標権侵害を主張。同種訴訟はCNN・NYT・News Corp・NY Post・読売新聞など計9社に達している。AI検索が「答え」を返せば返すほど元の情報源への送客が構造的に減る——この問題はコンテンツを持つあらゆる企業・個人に無関係ではない。AI時代の著作権・コンテンツ権利のあり方をめぐる法廷闘争が、ここにきて急速に激化している。</div>
+    <div class="slide"><div class="card t3">
+      <div class="card-stripe"></div>
+      <div class="card-body-wrap">
+        <div class="card-top"><div class="tag">iOS 27 AI写真</div><div class="no">03 / 05</div></div>
+        <div class="title">iOS 27 写真アプリが<br><em>生成AI編集</em> に完全対応</div>
+        <div class="lead">Extend（拡張）・Enhance（高画質化）・Reframe（再構図）でスマホ写真が一気にプロ仕上げに。</div>
+        <div class="body">iOS 27の写真アプリに「Extend」「Enhance」「Reframe」という3つのAI編集機能が追加される。Extendは画像の外側をAIで拡張してより広い構図を生成する機能（AdobeのGenerative Expandに相当）。EnhanceはGemini技術を活用して低解像度・暗い写真を高画質化。Reframeは被写体を再配置して最適な構図を自動生成する。既存の「Clean Up」（不要物除去）と組み合わせれば、美容室やサロンの施術写真・商品撮影をプロ品質に仕上げられるため、中小事業者のSNS発信にも大きなインパクトがある。Visual Intelligenceも大幅強化され、画面を見ながらリアルタイムでAIが情報を提示する機能が「iPhone 15 Pro以上」で全開放される予定だ。</div>
         <div class="foot">
-          <div class="src">note:宮野宏樹 / 各社報道 — 2026.06.01〜02</div>
+          <div class="src">LatestLY / AI革命メディア — 2026.06.05〜08</div>
           <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="fd">🔥</span></div>
         </div>
       </div>
-      <div class="card-bgnum">03</div>
+      <div class="card-bg">03</div>
     </div></div>
 
     <!-- 4 -->
-    <div class="slide"><div class="card s4">
-      <div class="card-band"></div>
-      <div class="card-inner">
-        <div class="card-meta"><div class="cat">ByteDance 爆増投資</div><div class="num">04 / 05</div></div>
-        <div class="title"><em>ByteDance</em> のAI投資<br>昨年比2.8倍・700億ドルへ</div>
-        <div class="lead">TikTok親会社がAIインフラに年間約10兆円を投下。中国テック勢の攻勢が超加速。</div>
-        <div class="body">TikTokの親会社・ByteDanceが2026年のAIデータセンターおよびインフラ設備投資を最大700億ドルまで引き上げることを検討していると報じられた。2025年の約250億ドルから2.8倍超の規模。Meta（620億ドル予定）を上回る可能性もあり、中国テック企業のAIインフラ投資規模が米国メガテックに肩を並べた。GPU調達・データセンター建設・エネルギー確保がAI覇権の主戦場となる中、ByteDanceの動向は地政学的リスクとも絡み合い、半導体輸出規制・データ安全保障の観点からも世界的な注目を集めている。</div>
+    <div class="slide"><div class="card t4">
+      <div class="card-stripe"></div>
+      <div class="card-body-wrap">
+        <div class="card-top"><div class="tag">Tim Cook 退任観測</div><div class="no">04 / 05</div></div>
+        <div class="title"><em>Tim Cook</em> 退任観測が加速<br>WWDC後のApple次章の主役は誰か</div>
+        <div class="lead">AI競争の遅れを問われるCook体制。30年のApple在職後の次章を市場が注視している。</div>
+        <div class="body">WWDC 2026を前に「Tim Cook WWDC最後の可能性」という報道が複数出ており、退任観測が業界で急浮上している。Cook氏は2021年に「いずれAppleを去る」と公言しており、AIを中心とした技術競争の激化と株主からの評価圧力が高まるタイミングでの報道だ。後継候補として挙がるのはCOO役のJeff Williamsやソフトウェア担当のCraig Federighi。いずれもAI戦略における実行力が試される立場にある。今回のWWDCでSiri 2.0が本当に使えるAIアシスタントとして機能すれば退任後への布石ともなり得るが、失望に終われば経営責任論が一気に高まる可能性もある。</div>
         <div class="foot">
-          <div class="src">note:宮野宏樹 / 各社報道 — 2026.05.31〜06.01</div>
-          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="fd">🔥</span></div>
+          <div class="src">BigGo / スーログ — 2026.06.05〜08</div>
+          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="fd">🔥</span><span class="fd">🔥</span></div>
         </div>
       </div>
-      <div class="card-bgnum">04</div>
+      <div class="card-bg">04</div>
     </div></div>
 
     <!-- 5 -->
-    <div class="slide"><div class="card s5">
-      <div class="card-band"></div>
-      <div class="card-inner">
-        <div class="card-meta"><div class="cat">Microsoft AI</div><div class="num">05 / 05</div></div>
-        <div class="title"><em>Copilot Studio</em> がUI直接操作<br>RPAより堅牢な自動化が正式版に</div>
-        <div class="lead">AIエージェントが画面を見てボタンを押す時代へ。RPA市場の再編が始まった。</div>
-        <div class="body">MicrosoftのCopilot Studioに、AIエージェントがアプリ上のUIを直接操作できる機能が正式版として追加された。これまでのRPA（ロボティックプロセスオートメーション）はUI変更に脆弱で保守コストが高かったが、AIがUIを「理解」して操作することで堅牢な自動化を実現する。5月更新では多くの新機能・改善も同時実施。AI Watch Impressは「RPAよりも堅牢な自動化」と評した。Salesforceのヘッドレス化・WorkdayのAI浸透と合わせ、「人間が画面を操作する」という業務の基本形がAIに代替されていく流れが、今週一気に加速した週となった。</div>
+    <div class="slide"><div class="card t5">
+      <div class="card-stripe"></div>
+      <div class="card-body-wrap">
+        <div class="card-top"><div class="tag">CoreAI 開発者変革</div><div class="no">05 / 05</div></div>
+        <div class="title">Apple <em>CoreAI</em> 発表へ<br>サードパーティAIがSiriと融合</div>
+        <div class="lead">開発者が自前のAIエージェントをSiriに接続できる新フレームワーク。iPhone 20億台の玄関を開放。</div>
+        <div class="body">WWDC 2026でAppleは「CoreAI」という開発者向け新システムを発表する予定だ。これにより開発者はAppleのAI機能と内部AIサービスにサードパーティAIエージェントを接続できるようになる。AndroidのGemini Intelligenceが複数アプリを横断して自律操作するのと同様に、iPhoneでも「Siriが音楽・カレンダー・メール・地図を横断して自律実行する」体験が実現する。AIスクール・美容室予約・ヘルスケアアプリ開発者にとってはiPhoneの20億台市場に直接接続できる歴史的な機会だ。Extensionsフレームワークとともに、Appleが「閉じたAI」から「開かれたAIプラットフォーム」へと転換する象徴的な発表となる。</div>
         <div class="foot">
-          <div class="src">AI Watch Impress — 2026.06.02</div>
-          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="fd">🔥</span></div>
+          <div class="src">AI革命メディア / LatestLY — 2026.06.06〜08</div>
+          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span></div>
         </div>
       </div>
-      <div class="card-bgnum">05</div>
+      <div class="card-bg">05</div>
     </div></div>
 
   </div>
@@ -316,14 +356,20 @@ header{animation:slideUp 0.4s ease both;}
 
 <script>
 const track=document.getElementById('track'),allDots=document.querySelectorAll('.dot'),prog=document.getElementById('prog'),cn=document.getElementById('cn');
-const COLORS=['#e53e3e','#2b6cb0','#276749','#c05621','#553c9a'];
+const GRADS=[
+  'linear-gradient(90deg,#6366f1,#8b5cf6)',
+  'linear-gradient(90deg,#ec4899,#f43f5e)',
+  'linear-gradient(90deg,#06b6d4,#0ea5e9)',
+  'linear-gradient(90deg,#10b981,#06b6d4)',
+  'linear-gradient(90deg,#f59e0b,#ef4444)'
+];
 const N=5;let cur=0;
 function go(n){
   cur=((n%N)+N)%N;
   track.style.transform=`translateX(-${cur*100}%)`;
   allDots.forEach((d,i)=>d.classList.toggle('on',i===cur));
   prog.style.width=`${(cur+1)/N*100}%`;
-  prog.style.background=COLORS[cur];
+  prog.style.background=GRADS[cur];
   cn.textContent=String(cur+1).padStart(2,'0');
 }
 document.getElementById('next').onclick=()=>go(cur+1);
