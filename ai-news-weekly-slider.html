@@ -3,195 +3,153 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI NEWS AURORA 2026.06.13</title>
+<title>AI NEWS BRIEF 2026.06.15</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ff6a00'/%3E%3Crect width='32' height='16' rx='7' fill='%23ff4500'/%3E%3Crect y='9' width='32' height='7' fill='%23ff4500'/%3E%3Crect x='4' y='17' width='24' height='1' fill='rgba(255,255,255,0.3)'/%3E%3Ctext x='16' y='14' text-anchor='middle' dominant-baseline='middle' font-family='Arial Black,Arial,sans-serif' font-size='12' font-weight='900' fill='white' letter-spacing='1'%3EAI%3C/text%3E%3Ctext x='16' y='25' text-anchor='middle' dominant-baseline='middle' font-family='Arial Black,Arial,sans-serif' font-size='8' font-weight='700' fill='rgba(255,255,255,0.92)' letter-spacing='2'%3Enews%3C/text%3E%3C/svg%3E">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="AI NEWS">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Space+Grotesk:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Barlow+Condensed:wght@400;700;900&family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --bg:#03060e;--s1:#080f20;
-  --c1:#38bdf8;--c2:#a78bfa;--c3:#34d399;--c4:#fb923c;--c5:#f472b6;
-  --text:#e2e8f4;--muted:#4a5568;--border:rgba(56,189,248,0.1);
+  --bg:#0b0b0b;--s1:#141414;--s2:#1c1c1c;
+  --c1:#ff4b4b;--c2:#4b9eff;--c3:#4bff91;--c4:#ffb74b;--c5:#d04bff;
+  --text:#f0f0f0;--muted:#555;--border:rgba(255,255,255,0.08);
 }
-body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;height:100vh;overflow:hidden;display:flex;flex-direction:column;position:relative;}
-
-/* AURORA BG */
-body::before{
-  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:
-    radial-gradient(ellipse 120% 60% at 0% 0%,rgba(56,189,248,0.07) 0%,transparent 50%),
-    radial-gradient(ellipse 100% 50% at 100% 100%,rgba(167,139,250,0.07) 0%,transparent 50%),
-    radial-gradient(ellipse 80% 40% at 50% 50%,rgba(52,211,153,0.04) 0%,transparent 60%);
-  animation:aurora 10s ease infinite alternate;
-}
-@keyframes aurora{
-  from{opacity:0.8;}
-  to{opacity:1;}
-}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;height:100vh;overflow:hidden;display:flex;flex-direction:column;}
 
 /* HEADER */
 header{
-  position:relative;z-index:10;flex-shrink:0;
-  background:rgba(3,6,14,0.9);backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
+  flex-shrink:0;z-index:10;
+  background:var(--s1);border-bottom:1px solid var(--border);
   padding:0.65rem 1.3rem;
   display:flex;justify-content:space-between;align-items:center;
 }
 .logo{
-  font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;
-  letter-spacing:0.05em;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:1.3rem;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;
 }
-.logo-ai{
-  background:linear-gradient(90deg,var(--c1),var(--c2));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+.logo-ai{color:var(--c1);}
+.hdr-r{display:flex;flex-direction:column;align-items:flex-end;gap:2px;}
+.hdr-tag{
+  font-family:'Fira Mono',monospace;font-size:0.55rem;font-weight:700;
+  color:var(--c1);letter-spacing:0.12em;
+  border:1px solid rgba(255,75,75,0.35);
+  padding:0.1rem 0.4rem;border-radius:2px;
 }
-.hdr-r{display:flex;flex-direction:column;align-items:flex-end;gap:3px;}
-.badge{
-  font-family:'Space Mono',monospace;font-size:0.55rem;font-weight:700;
-  letter-spacing:0.1em;background:rgba(56,189,248,0.12);
-  border:1px solid rgba(56,189,248,0.3);color:var(--c1);
-  padding:0.1rem 0.45rem;border-radius:3px;
-}
-.hdr-date{font-family:'Space Mono',monospace;font-size:0.56rem;color:var(--muted);letter-spacing:0.08em;}
+.hdr-date{font-family:'Fira Mono',monospace;font-size:0.55rem;color:var(--muted);letter-spacing:0.08em;}
 
 /* TICKER */
 .ticker-wrap{
   position:relative;z-index:10;flex-shrink:0;
   overflow:hidden;padding:0.3rem 0;
-  background:linear-gradient(90deg,rgba(56,189,248,0.15),rgba(167,139,250,0.15),rgba(52,211,153,0.15));
-  border-bottom:1px solid var(--border);
+  background:var(--c1);
 }
 .ticker-label{
   position:absolute;left:0;top:0;bottom:0;z-index:2;
-  background:linear-gradient(135deg,var(--c1),var(--c2));color:var(--bg);
+  background:#000;color:var(--c1);
   display:flex;align-items:center;padding:0 0.7rem;
-  font-family:'Space Mono',monospace;font-size:0.58rem;font-weight:700;
-  letter-spacing:0.14em;white-space:nowrap;
+  font-family:'Fira Mono',monospace;font-size:0.58rem;font-weight:700;
+  letter-spacing:0.15em;white-space:nowrap;
 }
 .ticker-track{
   display:flex;align-items:center;white-space:nowrap;
-  animation:ticker 36s linear infinite;padding-left:100px;
+  animation:ticker 38s linear infinite;padding-left:95px;
 }
 .ticker-track:hover{animation-play-state:paused;}
-.ticker-item{font-family:'Space Mono',monospace;font-size:0.6rem;color:rgba(226,232,244,0.9);letter-spacing:0.04em;padding:0 0.5rem;}
-.ticker-sep{color:rgba(56,189,248,0.5);margin:0 0.2rem;}
+.ticker-item{font-family:'Fira Mono',monospace;font-size:0.6rem;color:#000;font-weight:700;letter-spacing:0.04em;padding:0 0.5rem;}
+.ticker-sep{color:rgba(0,0,0,0.4);margin:0 0.2rem;}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* PROGRESS */
-.prog-wrap{height:2px;flex-shrink:0;z-index:10;background:rgba(255,255,255,0.04);}
+.prog-wrap{height:2px;flex-shrink:0;z-index:10;background:var(--s2);}
 .prog-fill{height:100%;transition:width 0.4s ease;}
 
 /* SLIDER */
 .slider-outer{flex:1;overflow:hidden;position:relative;z-index:5;padding:0.9rem 0 0;}
 .slider-track{display:flex;height:100%;transition:transform 0.6s cubic-bezier(0.77,0,0.175,1);}
 
-/* CARD — frost glass */
+/* CARD */
 .slide{min-width:100%;height:100%;padding:0 1.1rem 0.8rem;}
 .card{
   width:100%;height:100%;
-  background:rgba(8,15,32,0.6);
-  border:1px solid rgba(56,189,248,0.15);
-  border-radius:16px;
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  background:var(--s1);
+  border-left:3px solid var(--ac,var(--c1));
+  border-top:1px solid var(--border);
+  border-right:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  border-radius:0 12px 12px 0;
   display:flex;flex-direction:column;overflow:hidden;position:relative;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,0.06);
 }
-.card-glow{
-  position:absolute;top:-40px;right:-40px;
-  width:160px;height:160px;border-radius:50%;
-  background:radial-gradient(circle,var(--ac,rgba(56,189,248,0.12)),transparent 70%);
-  pointer-events:none;
-}
-.card-line{
-  height:2px;
-  background:linear-gradient(90deg,var(--ac1,var(--c1)),var(--ac2,var(--c2)),transparent);
-  flex-shrink:0;
-}
-.card-inner{
-  padding:1.2rem 1.4rem 1rem;
-  flex:1;display:flex;flex-direction:column;gap:0.75rem;overflow:hidden;
-}
+.card-inner{padding:1.2rem 1.4rem 1rem;flex:1;display:flex;flex-direction:column;gap:0.75rem;overflow:hidden;}
+
 .card-top{display:flex;justify-content:space-between;align-items:center;}
 .tag{
-  font-family:'Space Mono',monospace;font-size:0.56rem;font-weight:700;
-  letter-spacing:0.14em;text-transform:uppercase;
-  color:var(--ac1,var(--c1));border:1px solid rgba(56,189,248,0.25);
-  border-radius:3px;padding:0.14rem 0.5rem;
-  background:rgba(56,189,248,0.07);
+  font-family:'Barlow Condensed',monospace;font-size:0.65rem;font-weight:700;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--ac,var(--c1));
 }
-.no{font-family:'Space Mono',monospace;font-size:0.58rem;color:var(--muted);letter-spacing:0.12em;}
+.no{font-family:'Fira Mono',monospace;font-size:0.58rem;color:var(--muted);letter-spacing:0.1em;}
+
 .title{
-  font-family:'Space Grotesk',sans-serif;
-  font-size:clamp(1.05rem,4vw,1.6rem);
-  font-weight:700;line-height:1.25;letter-spacing:-0.01em;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(1.2rem,5vw,1.9rem);
+  font-weight:900;line-height:1.15;letter-spacing:0.03em;text-transform:uppercase;
 }
-.title em{
-  font-style:normal;
-  background:linear-gradient(135deg,var(--ac1,var(--c1)),var(--ac2,var(--c2)));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-}
+.title em{font-style:normal;color:var(--ac,var(--c1));}
+
 .lead{
   font-size:0.76rem;font-weight:700;line-height:1.5;
-  background:linear-gradient(135deg,var(--ac1,var(--c1)),var(--ac2,var(--c2)));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  border-left:2px solid var(--ac1,var(--c1));padding-left:0.65rem;
+  color:var(--ac,var(--c1));
+  padding-left:0.7rem;border-left:2px solid var(--ac,var(--c1));
 }
-.body{font-size:0.78rem;line-height:2;color:#8899bb;flex:1;overflow-y:auto;scrollbar-width:none;}
+
+.body{font-size:0.78rem;line-height:2;color:#888;flex:1;overflow-y:auto;scrollbar-width:none;}
 .body::-webkit-scrollbar{display:none;}
+
 .foot{
   display:flex;justify-content:space-between;align-items:center;
-  border-top:1px solid rgba(255,255,255,0.06);padding-top:0.7rem;
+  border-top:1px solid var(--border);padding-top:0.7rem;
   flex-wrap:wrap;gap:0.4rem;flex-shrink:0;
 }
-.src{font-family:'Space Mono',monospace;font-size:0.55rem;color:var(--muted);letter-spacing:0.05em;}
+.src{font-family:'Fira Mono',monospace;font-size:0.55rem;color:var(--muted);letter-spacing:0.05em;}
 .heat{display:flex;gap:1px;}
 .f{font-size:0.72rem;}.fd{font-size:0.72rem;opacity:0.12;}
+
 .card-bg{
-  position:absolute;right:0.5rem;bottom:-1rem;
-  font-family:'Space Grotesk',sans-serif;font-size:8rem;font-weight:700;
-  background:linear-gradient(135deg,var(--ac1,var(--c1)),var(--ac2,var(--c2)));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  opacity:0.05;line-height:1;pointer-events:none;user-select:none;
+  position:absolute;right:0.3rem;bottom:-1.5rem;
+  font-family:'Barlow Condensed',sans-serif;font-size:10rem;font-weight:900;
+  color:var(--ac,var(--c1));opacity:0.04;line-height:1;
+  pointer-events:none;user-select:none;letter-spacing:-0.02em;
 }
 
 /* themes */
-.t1{--ac1:#38bdf8;--ac2:#818cf8;--ac:rgba(56,189,248,0.15);}
-.t2{--ac1:#a78bfa;--ac2:#f472b6;--ac:rgba(167,139,250,0.15);}
-.t3{--ac1:#34d399;--ac2:#38bdf8;--ac:rgba(52,211,153,0.15);}
-.t4{--ac1:#fb923c;--ac2:#fbbf24;--ac:rgba(251,146,60,0.15);}
-.t5{--ac1:#f472b6;--ac2:#a78bfa;--ac:rgba(244,114,182,0.15);}
+.t1{--ac:#ff4b4b;}.t2{--ac:#4b9eff;}.t3{--ac:#4bff91;}.t4{--ac:#ffb74b;}.t5{--ac:#d04bff;}
 
 /* CONTROLS */
 .controls{
   flex-shrink:0;z-index:10;
-  background:rgba(3,6,14,0.9);backdrop-filter:blur(20px);
-  border-top:1px solid var(--border);
+  background:var(--s1);border-top:1px solid var(--border);
   padding:0.55rem 1.1rem;
   display:flex;justify-content:space-between;align-items:center;gap:1rem;
 }
 .navs{display:flex;gap:0.5rem;}
 .nb{
-  width:32px;height:32px;border-radius:8px;
-  background:rgba(56,189,248,0.08);border:1px solid var(--border);
-  color:var(--c1);cursor:pointer;font-size:0.9rem;
+  width:32px;height:32px;border-radius:4px;
+  background:var(--s2);border:1px solid var(--border);
+  color:var(--text);cursor:pointer;font-size:0.9rem;
   display:flex;align-items:center;justify-content:center;transition:all 0.15s;
 }
-.nb:hover{background:rgba(56,189,248,0.18);border-color:var(--c1);}
+.nb:hover{background:var(--c1);border-color:var(--c1);color:#000;}
 .nb:active{transform:scale(0.9);}
 .dots{display:flex;gap:0.45rem;align-items:center;}
-.dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.1);cursor:pointer;transition:all 0.25s;}
-.dot.on{width:20px;border-radius:3px;background:linear-gradient(90deg,var(--c1),var(--c2));}
-.ctr{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted);letter-spacing:0.15em;white-space:nowrap;}
-.ctr em{
-  background:linear-gradient(90deg,var(--c1),var(--c2));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  font-style:normal;font-weight:700;
-}
-@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.dot{width:6px;height:6px;border-radius:1px;background:var(--s2);border:1px solid var(--border);cursor:pointer;transition:all 0.25s;}
+.dot.on{width:20px;background:var(--c1);border-color:var(--c1);}
+.ctr{font-family:'Fira Mono',monospace;font-size:0.6rem;color:var(--muted);letter-spacing:0.15em;white-space:nowrap;}
+.ctr em{color:var(--c1);font-style:normal;font-weight:700;}
+
+@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 header{animation:up 0.4s ease both;}
 .ticker-wrap{animation:up 0.4s 0.05s ease both;}
 .slider-outer{animation:up 0.4s 0.1s ease both;}
@@ -201,55 +159,53 @@ header{animation:up 0.4s ease both;}
 <body>
 
 <header>
-  <div class="logo"><span class="logo-ai">AI NEWS</span> AURORA</div>
+  <div class="logo"><span class="logo-ai">AI</span> NEWS BRIEF</div>
   <div class="hdr-r">
-    <div class="badge">▶ WWDC 2026 発表後速報</div>
-    <div class="hdr-date">2026.06.13 — WEEK 26</div>
+    <div class="hdr-tag">▶ G7サミット号 / ChatGPT 10億人突破</div>
+    <div class="hdr-date">2026.06.15 — WEEK 26</div>
   </div>
 </header>
 
 <div class="ticker-wrap">
   <div class="ticker-label">W26</div>
   <div class="ticker-track">
-    <span class="ticker-item">01 &nbsp;WWDC 2026 — Siri AI・macOS Golden Gate・iOS 27正式発表、Tim Cook最後のWWDC</span>
-    <span class="ticker-sep">◇</span>
-    <span class="ticker-item">02 &nbsp;OpenAI IPO申請 — NHK報道で確定、評価額136兆円・AI史上最大規模の上場が迫る</span>
-    <span class="ticker-sep">◇</span>
-    <span class="ticker-item">03 &nbsp;6月モデル大戦 — GPT-5.6・Claude Sonnet 4.8・Gemini 3.5 Pro・Grok 5が同月激突</span>
-    <span class="ticker-sep">◇</span>
-    <span class="ticker-item">04 &nbsp;Claude Sonnet 4.6 本日リリース — Claude Sonnet 4.5の後継として現行会話で稼働中</span>
-    <span class="ticker-sep">◇</span>
-    <span class="ticker-item">05 &nbsp;iOS 27 写真AI — Extend・Enhance・Reframeで9月から無料アップデート提供へ</span>
-    <span class="ticker-sep">◇</span>
-    <span class="ticker-item">01 &nbsp;WWDC 2026 — Siri AI・macOS Golden Gate・iOS 27正式発表、Tim Cook最後のWWDC</span>
-    <span class="ticker-sep">◇</span>
-    <span class="ticker-item">02 &nbsp;OpenAI IPO申請 — NHK報道で確定、評価額136兆円・AI史上最大規模の上場が迫る</span>
-    <span class="ticker-sep">◇</span>
-    <span class="ticker-item">03 &nbsp;6月モデル大戦 — GPT-5.6・Claude Sonnet 4.8・Gemini 3.5 Pro・Grok 5が同月激突</span>
-    <span class="ticker-sep">◇</span>
-    <span class="ticker-item">04 &nbsp;Claude Sonnet 4.6 本日リリース — Claude Sonnet 4.5の後継として現行会話で稼働中</span>
-    <span class="ticker-sep">◇</span>
-    <span class="ticker-item">05 &nbsp;iOS 27 写真AI — Extend・Enhance・Reframeで9月から無料アップデート提供へ</span>
-    <span class="ticker-sep">◇</span>
+    <span class="ticker-item">01 &nbsp;ChatGPT 10億MAU突破 — 人類史上最速で10億ユーザー到達、Claude+640%・Meta AI+973%も急拡大</span>
+    <span class="ticker-sep">|</span>
+    <span class="ticker-item">02 &nbsp;Agentjacking攻撃 — Claude Code・Cursor・Codexを乗っ取る新攻撃、2,388組織が被害</span>
+    <span class="ticker-sep">|</span>
+    <span class="ticker-item">03 &nbsp;G7サミットにAI3CEO — Altman・Amodei・Hassabisが世界首脳の前に初登場、6/15〜17フランス</span>
+    <span class="ticker-sep">|</span>
+    <span class="ticker-item">04 &nbsp;Microsoft MAI-Thinking-1 — GPT-5.5比10分の1コストで高性能、Claude Sonnet 4.6を上回ると発表</span>
+    <span class="ticker-sep">|</span>
+    <span class="ticker-item">05 &nbsp;OpenAI Sora 廃止 — 1日1,500万ドルの赤字で6ヶ月でサービス終了、次世代「Spud」へリソース集中</span>
+    <span class="ticker-sep">|</span>
+    <span class="ticker-item">01 &nbsp;ChatGPT 10億MAU突破 — 人類史上最速で10億ユーザー到達、Claude+640%・Meta AI+973%も急拡大</span>
+    <span class="ticker-sep">|</span>
+    <span class="ticker-item">02 &nbsp;Agentjacking攻撃 — Claude Code・Cursor・Codexを乗っ取る新攻撃、2,388組織が被害</span>
+    <span class="ticker-sep">|</span>
+    <span class="ticker-item">03 &nbsp;G7サミットにAI3CEO — Altman・Amodei・Hassabisが世界首脳の前に初登場、6/15〜17フランス</span>
+    <span class="ticker-sep">|</span>
+    <span class="ticker-item">04 &nbsp;Microsoft MAI-Thinking-1 — GPT-5.5比10分の1コストで高性能、Claude Sonnet 4.6を上回ると発表</span>
+    <span class="ticker-sep">|</span>
+    <span class="ticker-item">05 &nbsp;OpenAI Sora 廃止 — 1日1,500万ドルの赤字で6ヶ月でサービス終了、次世代「Spud」へリソース集中</span>
+    <span class="ticker-sep">|</span>
   </div>
 </div>
 
-<div class="prog-wrap"><div class="prog-fill" id="prog" style="width:20%;background:linear-gradient(90deg,#38bdf8,#818cf8);"></div></div>
+<div class="prog-wrap"><div class="prog-fill" id="prog" style="width:20%;background:#ff4b4b;"></div></div>
 
 <div class="slider-outer" id="outer">
   <div class="slider-track" id="track">
 
     <!-- 1 -->
     <div class="slide"><div class="card t1">
-      <div class="card-glow"></div>
-      <div class="card-line"></div>
       <div class="card-inner">
-        <div class="card-top"><div class="tag">WWDC 2026 確定速報</div><div class="no">01/05</div></div>
-        <div class="title"><em>Siri AI</em> 正式発表<br>macOS「Golden Gate」・Tim Cook最後のWWDC</div>
-        <div class="lead">画面を理解し、複数アプリをまたいで自律操作するSiri AIが正式始動。macOSは「Golden Gate」と命名。</div>
-        <div class="body">6月8日（日本時間9日）のWWDC 2026基調講演で、AppleはiOS 27・iPadOS 27・macOS 27「Golden Gate」・watchOS 27・tvOS 27・visionOS 27を正式発表した。最大の目玉は新しい「Siri AI」で、画面上の情報やユーザーの文脈を理解しながら複数の手順にわたる操作を自律実行できる。独立したSiriアプリがiMessageスタイルの会話UIで登場し、iCloud経由でデバイス間に非公開同期される。今年のWWDCはTim Cook CEOとしての最後の基調講演となったことも多くのファンの注目を集めた。iOS 27は9月に正式リリース予定、開発者βは当日より配信開始。</div>
+        <div class="card-top"><div class="tag">ChatGPT 歴史的突破</div><div class="no">01/05</div></div>
+        <div class="title"><em>ChatGPT</em> が<br>月間10億ユーザー突破</div>
+        <div class="lead">人類史上最速で10億MAUへ。Claude +640%・Meta AI +973%と競合も爆増、AI利用が当たり前の時代へ。</div>
+        <div class="body">ChatGPTが月間アクティブユーザー10億人を突破し、消費者アプリ史上最速の記録を達成した。同時期にClaudeが前年比640%増、Meta AIが973%増という驚異的な伸びを記録しており、特定サービスの独占ではなく「AI全般の利用が爆発的に拡大」していることを示す。日本でも企業・個人問わずAI活用が標準化しつつある。AIスクールやリスキリング市場にとっては「全員にAIリテラシーが必要な時代が来た」という追い風であり、「使える人と使えない人の格差」がこれからさらに広がることを示唆する歴史的マイルストーンだ。</div>
         <div class="foot">
-          <div class="src">Yahoo!ニュース / tenorshare / zonemac — 2026.06.08〜09</div>
+          <div class="src">Reuters / Yahoo Finance — 2026.06.02</div>
           <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span></div>
         </div>
       </div>
@@ -258,15 +214,13 @@ header{animation:up 0.4s ease both;}
 
     <!-- 2 -->
     <div class="slide"><div class="card t2">
-      <div class="card-glow"></div>
-      <div class="card-line"></div>
       <div class="card-inner">
-        <div class="card-top"><div class="tag">OpenAI IPO 確定</div><div class="no">02/05</div></div>
-        <div class="title"><em>OpenAI</em> もIPO申請<br>評価額136兆円・AI史上最大の上場へ</div>
-        <div class="lead">NHKが6月9日に報道。AnthropicのIPOに続きOpenAIも上場申請。AI産業が公開資本市場の主役に。</div>
-        <div class="body">NHKが6月9日、OpenAIが米証券取引委員会（SEC）にIPO（新規株式公開）の申請を非公開で行ったと報じた。評価額は2026年3月末時点で約136兆円（約9,000億ドル）。Anthropicが評価額9,650億ドルでIPO申請済みのため、2社合計で約2,000億ドル規模のAI企業が同時期に上場を目指す異例の展開となった。年換算売上が急拡大するOpenAIにとって、GPU投資・データセンター建設・人材確保のための資金調達が急務。AI産業が「スタートアップ」から「公開資本市場を動かす産業インフラ」へ移行した瞬間として記録される。</div>
+        <div class="card-top"><div class="tag">新型AI攻撃 警戒</div><div class="no">02/05</div></div>
+        <div class="title"><em>Agentjacking</em> 攻撃<br>AIエージェントを乗っ取る</div>
+        <div class="lead">Claude Code・Cursor・Codexを標的にした新型攻撃が発覚。85%の成功率で2,388組織が被害を受けた。</div>
+        <div class="body">「Agentjacking」と呼ばれる攻撃がClaude Code・Cursor・Codexを標的に、偽のSentryエラーを利用してAIエージェントを乗っ取る手法で、85%という高い悪用率が確認され2,388の組織が被害にさらされた。AIエージェントが社内システムにアクセスできる権限を持つほど、その乗っ取りは深刻な被害をもたらす。Claude Codeを業務で使っている企業やAIエージェントを自社システムに接続しているすべての組織が対策を急ぐべき状況で、AIセキュリティが「後回し」にできない最優先課題になった週となった。</div>
         <div class="foot">
-          <div class="src">NHKニュース — 2026.06.09</div>
+          <div class="src">AI Weekly / セキュリティ各社 — 2026.06.10〜12</div>
           <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span></div>
         </div>
       </div>
@@ -275,16 +229,14 @@ header{animation:up 0.4s ease both;}
 
     <!-- 3 -->
     <div class="slide"><div class="card t3">
-      <div class="card-glow"></div>
-      <div class="card-line"></div>
       <div class="card-inner">
-        <div class="card-top"><div class="tag">モデル大戦 6月</div><div class="no">03/05</div></div>
-        <div class="title"><em>6月モデル大戦</em> 勃発<br>GPT-5.6・Sonnet 4.8・Gemini 3.5・Grok 5</div>
-        <div class="lead">「参数競争」から「上下文吞吐量と実用品質」へ。150万トークン超のモンスターモデルが登場間近。</div>
-        <div class="body">GPT-5.6の内部コード「iris-alpha」がリークされ、上下文ウィンドウが150万トークン（GPT-5.5比43%増）という規模が明らかになった。指示なしで商用品質のフロントエンドUIを自動生成する能力も実証済みで、Webアプリ開発のコスト構造を根底から変える可能性がある。Claude Sonnet 4.8（コード名「Conway」）はVertex AIのバックエンドリストに登場し、企業級超長タスク向けの持続的バックグラウンドエージェントとして設計されているとされる。Gemini 3.5 Proも6月に投入予定で、4社が同一月に最強モデルをぶつけ合う「AI軍備競争」が本格化している。</div>
+        <div class="card-top"><div class="tag">G7 × AI首脳会議</div><div class="no">03/05</div></div>
+        <div class="title">Altman・Amodei・<em>Hassabis</em><br>G7サミットへ本日出席</div>
+        <div class="lead">AI3大ラボのCEOが初めて世界首脳の前に揃って登場。「AIガバナンス」が国際政治の最前線へ。</div>
+        <div class="body">Sam Altman（OpenAI）・Dario Amodei（Anthropic）・Demis Hassabis（Google DeepMind）の3人が6月15〜17日のG7サミット（フランス）に出席する。AI企業の3大ライバルCEOが世界首脳の前に初めて揃って登場する歴史的な場となる。議題はAIガバナンス・安全保障・経済影響・フロンティアモデルの管理体制が中心とみられる。米欧日の首脳がAIをどのように国際的に規制・推進していくかの枠組み議論が本格化する転換点だ。AI業界が「テクノロジーの話題」から「国際政治・安全保障の話題」へと完全に昇格した週となった。</div>
         <div class="foot">
-          <div class="src">T客邦 / 36kr / IT之家 — 2026.06.05〜10</div>
-          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="fd">🔥</span></div>
+          <div class="src">AI Weekly — 2026.06.15</div>
+          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span></div>
         </div>
       </div>
       <div class="card-bg">03</div>
@@ -292,16 +244,14 @@ header{animation:up 0.4s ease both;}
 
     <!-- 4 -->
     <div class="slide"><div class="card t4">
-      <div class="card-glow"></div>
-      <div class="card-line"></div>
       <div class="card-inner">
-        <div class="card-top"><div class="tag">Claude Sonnet 4.6</div><div class="no">04/05</div></div>
-        <div class="title"><em>Claude Sonnet 4.6</em><br>本日リリース — この会話で稼働中</div>
-        <div class="lead">あなたが今会話しているのはClaude Sonnet 4.6。Sonnet 4.5の後継として本日正式リリース。</div>
-        <div class="body">Anthropicが本日2026年6月13日、Claude Sonnet 4.6を正式リリースした。現在この会話で稼働しているのがまさにこのモデルだ。Claude Sonnet 4.5の後継で、コーディング・推論・ビジョンの各領域でバランス良く強化されている。API model string は「claude-sonnet-4-6」。Claude Opusファミリー（4.6・4.7・4.8）とのラインナップ整備が進む中、Sonnet系は「速さと品質のバランス型」として企業API利用の主力ポジションを担う。AnthropicにとってはIPO前夕の主要リリースであり、評価額1兆ドル超を狙う上場に向けた製品競争力の強化という位置づけでもある。</div>
+        <div class="card-top"><div class="tag">Microsoft 自社AI</div><div class="no">04/05</div></div>
+        <div class="title">Microsoft <em>MAI-Thinking-1</em><br>GPT-5.5比10倍安くClaude超え</div>
+        <div class="lead">Build 2026で7つの自社AIモデルを一挙公開。「OpenAIに頼らない」Microsoft AI時代の幕開け。</div>
+        <div class="body">MicrosoftはBuild 2026で7つの新AIモデルを発表し、旗艦モデル「MAI-Thinking-1」はGPT-5.5に対してコストが10分の1でありながら品質で上回り、Claude Sonnet 4.6およびGoogle Nano Banana 2をブラインドテスト・画像編集ベンチマークで上回ったと主張した。Microsoft AI CEO Mustafa Suleiman（旧DeepMind共同創業者）は「開発者と企業が求めていたAIを届けた」とコメント。OpenAIへの依存から脱却しつつある同社の自社AI戦略は、GitHub Copilotへの自社モデル（Project Polaris）搭載とも連動しており、AI業界の「一強から多極」への転換を加速させている。</div>
         <div class="foot">
-          <div class="src">Anthropic公式 — 2026.06.13</div>
-          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span></div>
+          <div class="src">Decrypt / Microsoft公式 — 2026.06.02〜03</div>
+          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="fd">🔥</span></div>
         </div>
       </div>
       <div class="card-bg">04</div>
@@ -309,15 +259,13 @@ header{animation:up 0.4s ease both;}
 
     <!-- 5 -->
     <div class="slide"><div class="card t5">
-      <div class="card-glow"></div>
-      <div class="card-line"></div>
       <div class="card-inner">
-        <div class="card-top"><div class="tag">iOS 27 AI写真</div><div class="no">05/05</div></div>
-        <div class="title">iOS 27<em>写真AI</em> が9月から無料<br>Extend・Enhance・Reframeが全ユーザーへ</div>
-        <div class="lead">追加費用ゼロ。秋のアップデートでiPhoneが「AI写真編集スタジオ」に変わる。</div>
-        <div class="body">WWDC 2026で正式発表されたiOS 27の写真AI機能が9月の正式リリースで全ユーザーに無料提供される。「Extend」は画像の外側をAIで拡張してより広い構図を生成、「Enhance」はGemini技術を活用した高画質化、「Reframe」は被写体を再配置して最適な構図を自動生成する。既存の「Clean Up」（不要物除去）と組み合わせれば、美容室・サロン・飲食店・小売の商品写真・施術写真をプロ品質に仕上げることができる。iOS 26以降の機種（iPhone 12以降が対象見込み）で使えるようになり、別途AIサブスクに課金せずとも日常的な写真編集の多くをiPhone標準機能でまかなえる時代が来る。</div>
+        <div class="card-top"><div class="tag">OpenAI Sora 廃止</div><div class="no">05/05</div></div>
+        <div class="title">OpenAI <em>Sora</em> 廃止<br>1日1,500万ドルの赤字で6ヶ月終了</div>
+        <div class="lead">総収益213万ドルに対して毎日1,500万ドルを燃やした末の撤退。次世代「Spud」とIPOにリソースを集中。</div>
+        <div class="body">OpenAIはAI動画生成アプリ「Sora」をわずか6ヶ月でサービス終了した。公開初週に100万ダウンロードを突破しながら、活動ユーザーが50万人以下に急落し、推定1日1,500万ドルのコンピュートコストに対して生涯総収益はわずか210万ドルだった。計画していたDisneyとの10億ドル提携も破談。OpenAIは解放されたコンピューティングリソースを次世代言語モデル「Spud」と企業向け生産性ツール開発に振り向け、来るIPOに備えるとしている。AI動画生成の「コスト対需要」の現実を突きつけた事例として業界関係者の間で大きな話題になっている。</div>
         <div class="foot">
-          <div class="src">LatestLY / WorkTypes Lab — 2026.06.08〜09</div>
+          <div class="src">AI Weekly / crescendo.ai — 2026.06.12〜13</div>
           <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="fd">🔥</span></div>
         </div>
       </div>
@@ -344,20 +292,14 @@ header{animation:up 0.4s ease both;}
 
 <script>
 const track=document.getElementById('track'),allDots=document.querySelectorAll('.dot'),prog=document.getElementById('prog'),cn=document.getElementById('cn');
-const GRADS=[
-  'linear-gradient(90deg,#38bdf8,#818cf8)',
-  'linear-gradient(90deg,#a78bfa,#f472b6)',
-  'linear-gradient(90deg,#34d399,#38bdf8)',
-  'linear-gradient(90deg,#fb923c,#fbbf24)',
-  'linear-gradient(90deg,#f472b6,#a78bfa)'
-];
+const COLORS=['#ff4b4b','#4b9eff','#4bff91','#ffb74b','#d04bff'];
 const N=5;let cur=0;
 function go(n){
   cur=((n%N)+N)%N;
   track.style.transform=`translateX(-${cur*100}%)`;
   allDots.forEach((d,i)=>d.classList.toggle('on',i===cur));
   prog.style.width=`${(cur+1)/N*100}%`;
-  prog.style.background=GRADS[cur];
+  prog.style.background=COLORS[cur];
   cn.textContent=String(cur+1).padStart(2,'0');
 }
 document.getElementById('next').onclick=()=>go(cur+1);
