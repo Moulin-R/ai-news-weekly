@@ -3,314 +3,453 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI NEWS BRIEF 2026.06.15</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ff6a00'/%3E%3Crect width='32' height='16' rx='7' fill='%23ff4500'/%3E%3Crect y='9' width='32' height='7' fill='%23ff4500'/%3E%3Crect x='4' y='17' width='24' height='1' fill='rgba(255,255,255,0.3)'/%3E%3Ctext x='16' y='14' text-anchor='middle' dominant-baseline='middle' font-family='Arial Black,Arial,sans-serif' font-size='12' font-weight='900' fill='white' letter-spacing='1'%3EAI%3C/text%3E%3Ctext x='16' y='25' text-anchor='middle' dominant-baseline='middle' font-family='Arial Black,Arial,sans-serif' font-size='8' font-weight='700' fill='rgba(255,255,255,0.92)' letter-spacing='2'%3Enews%3C/text%3E%3C/svg%3E">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="AI NEWS">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Barlow+Condensed:wght@400;700;900&family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
+<title>AI最新ニュース｜2026年6月</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-:root{
-  --bg:#0b0b0b;--s1:#141414;--s2:#1c1c1c;
-  --c1:#ff4b4b;--c2:#4b9eff;--c3:#4bff91;--c4:#ffb74b;--c5:#d04bff;
-  --text:#f0f0f0;--muted:#555;--border:rgba(255,255,255,0.08);
-}
-body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;height:100vh;overflow:hidden;display:flex;flex-direction:column;}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* HEADER */
-header{
-  flex-shrink:0;z-index:10;
-  background:var(--s1);border-bottom:1px solid var(--border);
-  padding:0.65rem 1.3rem;
-  display:flex;justify-content:space-between;align-items:center;
-}
-.logo{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:1.3rem;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;
-}
-.logo-ai{color:var(--c1);}
-.hdr-r{display:flex;flex-direction:column;align-items:flex-end;gap:2px;}
-.hdr-tag{
-  font-family:'Fira Mono',monospace;font-size:0.55rem;font-weight:700;
-  color:var(--c1);letter-spacing:0.12em;
-  border:1px solid rgba(255,75,75,0.35);
-  padding:0.1rem 0.4rem;border-radius:2px;
-}
-.hdr-date{font-family:'Fira Mono',monospace;font-size:0.55rem;color:var(--muted);letter-spacing:0.08em;}
+  :root {
+    --bg1: #0a0a1a;
+    --bg2: #0d0d2b;
+    --accent: #7c5cfc;
+    --accent2: #00d4ff;
+    --accent3: #ff6b9d;
+    --glass: rgba(255,255,255,0.06);
+    --glass-border: rgba(255,255,255,0.12);
+    --text: #e8e8f0;
+    --sub: #8888aa;
+  }
 
-/* TICKER */
-.ticker-wrap{
-  position:relative;z-index:10;flex-shrink:0;
-  overflow:hidden;padding:0.3rem 0;
-  background:var(--c1);
-}
-.ticker-label{
-  position:absolute;left:0;top:0;bottom:0;z-index:2;
-  background:#000;color:var(--c1);
-  display:flex;align-items:center;padding:0 0.7rem;
-  font-family:'Fira Mono',monospace;font-size:0.58rem;font-weight:700;
-  letter-spacing:0.15em;white-space:nowrap;
-}
-.ticker-track{
-  display:flex;align-items:center;white-space:nowrap;
-  animation:ticker 38s linear infinite;padding-left:95px;
-}
-.ticker-track:hover{animation-play-state:paused;}
-.ticker-item{font-family:'Fira Mono',monospace;font-size:0.6rem;color:#000;font-weight:700;letter-spacing:0.04em;padding:0 0.5rem;}
-.ticker-sep{color:rgba(0,0,0,0.4);margin:0 0.2rem;}
-@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--bg1);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-/* PROGRESS */
-.prog-wrap{height:2px;flex-shrink:0;z-index:10;background:var(--s2);}
-.prog-fill{height:100%;transition:width 0.4s ease;}
+  /* 背景アニメーション */
+  .bg-orbs {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  }
+  .orb {
+    position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.18;
+    animation: float 12s ease-in-out infinite alternate;
+  }
+  .orb1 { width: 500px; height: 500px; background: var(--accent); top: -100px; left: -100px; animation-duration: 14s; }
+  .orb2 { width: 400px; height: 400px; background: var(--accent2); bottom: -80px; right: -80px; animation-duration: 11s; }
+  .orb3 { width: 300px; height: 300px; background: var(--accent3); top: 40%; left: 30%; animation-duration: 16s; }
+  @keyframes float { from { transform: translate(0,0) scale(1); } to { transform: translate(30px, 20px) scale(1.05); } }
 
-/* SLIDER */
-.slider-outer{flex:1;overflow:hidden;position:relative;z-index:5;padding:0.9rem 0 0;}
-.slider-track{display:flex;height:100%;transition:transform 0.6s cubic-bezier(0.77,0,0.175,1);}
+  /* ティッカー */
+  .ticker-wrap {
+    position: relative; z-index: 10;
+    background: rgba(124,92,252,0.15);
+    border-bottom: 1px solid rgba(124,92,252,0.3);
+    padding: 8px 0; overflow: hidden;
+  }
+  .ticker {
+    display: flex; gap: 60px;
+    white-space: nowrap;
+    animation: ticker 30s linear infinite;
+  }
+  .ticker span { font-size: 11px; color: var(--accent2); letter-spacing: 0.08em; }
+  .ticker .dot { color: var(--accent); font-size: 16px; line-height: 1; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-/* CARD */
-.slide{min-width:100%;height:100%;padding:0 1.1rem 0.8rem;}
-.card{
-  width:100%;height:100%;
-  background:var(--s1);
-  border-left:3px solid var(--ac,var(--c1));
-  border-top:1px solid var(--border);
-  border-right:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  border-radius:0 12px 12px 0;
-  display:flex;flex-direction:column;overflow:hidden;position:relative;
-}
-.card-inner{padding:1.2rem 1.4rem 1rem;flex:1;display:flex;flex-direction:column;gap:0.75rem;overflow:hidden;}
+  /* ヘッダー */
+  header {
+    position: relative; z-index: 10;
+    text-align: center;
+    padding: 40px 20px 20px;
+  }
+  .header-label {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 8vw, 72px);
+    letter-spacing: 0.05em;
+    background: linear-gradient(135deg, #fff 0%, var(--accent2) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    line-height: 1;
+  }
+  .header-sub {
+    font-size: 12px; color: var(--sub); margin-top: 8px; letter-spacing: 0.1em;
+  }
 
-.card-top{display:flex;justify-content:space-between;align-items:center;}
-.tag{
-  font-family:'Barlow Condensed',monospace;font-size:0.65rem;font-weight:700;
-  letter-spacing:0.18em;text-transform:uppercase;
-  color:var(--ac,var(--c1));
-}
-.no{font-family:'Fira Mono',monospace;font-size:0.58rem;color:var(--muted);letter-spacing:0.1em;}
+  /* スライダー本体 */
+  .slider-container {
+    position: relative; z-index: 10;
+    max-width: 760px; margin: 20px auto 0;
+    padding: 0 20px;
+  }
 
-.title{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:clamp(1.2rem,5vw,1.9rem);
-  font-weight:900;line-height:1.15;letter-spacing:0.03em;text-transform:uppercase;
-}
-.title em{font-style:normal;color:var(--ac,var(--c1));}
+  .slider-track-wrap { overflow: hidden; border-radius: 24px; }
 
-.lead{
-  font-size:0.76rem;font-weight:700;line-height:1.5;
-  color:var(--ac,var(--c1));
-  padding-left:0.7rem;border-left:2px solid var(--ac,var(--c1));
-}
+  .slider-track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+  }
 
-.body{font-size:0.78rem;line-height:2;color:#888;flex:1;overflow-y:auto;scrollbar-width:none;}
-.body::-webkit-scrollbar{display:none;}
+  /* カード */
+  .card {
+    min-width: 100%;
+    background: var(--glass);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 36px 36px 32px;
+    position: relative; overflow: hidden;
+    animation: cardIn 0.5s ease both;
+  }
+  @keyframes cardIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-.foot{
-  display:flex;justify-content:space-between;align-items:center;
-  border-top:1px solid var(--border);padding-top:0.7rem;
-  flex-wrap:wrap;gap:0.4rem;flex-shrink:0;
-}
-.src{font-family:'Fira Mono',monospace;font-size:0.55rem;color:var(--muted);letter-spacing:0.05em;}
-.heat{display:flex;gap:1px;}
-.f{font-size:0.72rem;}.fd{font-size:0.72rem;opacity:0.12;}
+  .card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--card-accent, var(--accent)), transparent);
+  }
 
-.card-bg{
-  position:absolute;right:0.3rem;bottom:-1.5rem;
-  font-family:'Barlow Condensed',sans-serif;font-size:10rem;font-weight:900;
-  color:var(--ac,var(--c1));opacity:0.04;line-height:1;
-  pointer-events:none;user-select:none;letter-spacing:-0.02em;
-}
+  .card-header {
+    display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px;
+  }
 
-/* themes */
-.t1{--ac:#ff4b4b;}.t2{--ac:#4b9eff;}.t3{--ac:#4bff91;}.t4{--ac:#ffb74b;}.t5{--ac:#d04bff;}
+  .card-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px; line-height: 1;
+    background: linear-gradient(135deg, var(--card-accent, var(--accent)), transparent);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    flex-shrink: 0; opacity: 0.5;
+  }
 
-/* CONTROLS */
-.controls{
-  flex-shrink:0;z-index:10;
-  background:var(--s1);border-top:1px solid var(--border);
-  padding:0.55rem 1.1rem;
-  display:flex;justify-content:space-between;align-items:center;gap:1rem;
-}
-.navs{display:flex;gap:0.5rem;}
-.nb{
-  width:32px;height:32px;border-radius:4px;
-  background:var(--s2);border:1px solid var(--border);
-  color:var(--text);cursor:pointer;font-size:0.9rem;
-  display:flex;align-items:center;justify-content:center;transition:all 0.15s;
-}
-.nb:hover{background:var(--c1);border-color:var(--c1);color:#000;}
-.nb:active{transform:scale(0.9);}
-.dots{display:flex;gap:0.45rem;align-items:center;}
-.dot{width:6px;height:6px;border-radius:1px;background:var(--s2);border:1px solid var(--border);cursor:pointer;transition:all 0.25s;}
-.dot.on{width:20px;background:var(--c1);border-color:var(--c1);}
-.ctr{font-family:'Fira Mono',monospace;font-size:0.6rem;color:var(--muted);letter-spacing:0.15em;white-space:nowrap;}
-.ctr em{color:var(--c1);font-style:normal;font-weight:700;}
+  .card-meta { flex: 1; }
 
-@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-header{animation:up 0.4s ease both;}
-.ticker-wrap{animation:up 0.4s 0.05s ease both;}
-.slider-outer{animation:up 0.4s 0.1s ease both;}
-.controls{animation:up 0.4s 0.15s ease both;}
+  .tags {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px;
+  }
+  .tag {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    padding: 3px 10px; border-radius: 20px;
+    background: rgba(255,255,255,0.08); border: 1px solid var(--glass-border);
+    color: var(--card-accent, var(--accent));
+  }
+
+  .card-title {
+    font-size: clamp(16px, 3vw, 20px);
+    font-weight: 700; line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .card-body {
+    font-size: 13px; line-height: 1.9; color: rgba(232,232,240,0.78);
+    margin-bottom: 20px;
+  }
+
+  .card-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid var(--glass-border);
+  }
+  .card-source { font-size: 11px; color: var(--sub); }
+  .heat { font-size: 16px; letter-spacing: 2px; }
+
+  /* デコ */
+  .card-deco {
+    position: absolute; right: -20px; bottom: -20px;
+    width: 140px; height: 140px; border-radius: 50%;
+    background: radial-gradient(circle, var(--card-accent, var(--accent)), transparent 70%);
+    opacity: 0.08; pointer-events: none;
+  }
+
+  /* ナビ */
+  .nav-row {
+    display: flex; align-items: center; justify-content: center;
+    gap: 20px; margin-top: 24px;
+  }
+
+  .nav-btn {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--glass); border: 1px solid var(--glass-border);
+    color: #fff; font-size: 18px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(10px);
+    transition: all 0.2s;
+  }
+  .nav-btn:hover {
+    background: rgba(124,92,252,0.25);
+    border-color: var(--accent);
+    transform: scale(1.08);
+  }
+
+  .dots { display: flex; gap: 8px; align-items: center; }
+  .dot-btn {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(255,255,255,0.2); border: none; cursor: pointer;
+    transition: all 0.3s;
+  }
+  .dot-btn.active {
+    width: 24px; border-radius: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+  }
+
+  /* プログレスバー */
+  .progress-bar {
+    position: relative; z-index: 10;
+    max-width: 760px; margin: 16px auto 0;
+    padding: 0 20px;
+  }
+  .progress-track {
+    height: 2px; background: rgba(255,255,255,0.08); border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%; border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transition: width 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+  }
+
+  /* カウンター */
+  .counter {
+    text-align: center; margin-top: 10px;
+    font-size: 11px; color: var(--sub); letter-spacing: 0.1em;
+  }
+
+  /* キー操作ヒント */
+  .hint {
+    text-align: center; margin-top: 30px; padding-bottom: 40px;
+    font-size: 11px; color: rgba(136,136,170,0.5); letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 480px) {
+    .card { padding: 24px 20px 20px; }
+    .card-num { font-size: 38px; }
+  }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="logo"><span class="logo-ai">AI</span> NEWS BRIEF</div>
-  <div class="hdr-r">
-    <div class="hdr-tag">▶ G7サミット号 / ChatGPT 10億人突破</div>
-    <div class="hdr-date">2026.06.15 — WEEK 26</div>
+<div class="bg-orbs">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+</div>
+
+<!-- ティッカー -->
+<div class="ticker-wrap">
+  <div class="ticker" id="ticker">
+    <span>🔥 Anthropic IPO 申請 評価額9650億ドル</span><span class="dot">◆</span>
+    <span>🤖 Microsoft 独自AI「Project Polaris」発表</span><span class="dot">◆</span>
+    <span>💡 SpaceX が Cursor 運営会社を600億ドルで買収</span><span class="dot">◆</span>
+    <span>📱 Apple WWDC 2026 Siri を Gemini ベースで全面刷新</span><span class="dot">◆</span>
+    <span>🚀 NVIDIA RTX Spark 発表 ローカルAI PC 時代へ</span><span class="dot">◆</span>
+    <span>🔥 Anthropic IPO 申請 評価額9650億ドル</span><span class="dot">◆</span>
+    <span>🤖 Microsoft 独自AI「Project Polaris」発表</span><span class="dot">◆</span>
+    <span>💡 SpaceX が Cursor 運営会社を600億ドルで買収</span><span class="dot">◆</span>
+    <span>📱 Apple WWDC 2026 Siri を Gemini ベースで全面刷新</span><span class="dot">◆</span>
+    <span>🚀 NVIDIA RTX Spark 発表 ローカルAI PC 時代へ</span><span class="dot">◆</span>
   </div>
+</div>
+
+<header>
+  <div class="header-label">✦ Weekly AI Digest ✦</div>
+  <h1>AI最新ニュース</h1>
+  <div class="header-sub">2026年6月 — 最前線レポート</div>
 </header>
 
-<div class="ticker-wrap">
-  <div class="ticker-label">W26</div>
-  <div class="ticker-track">
-    <span class="ticker-item">01 &nbsp;ChatGPT 10億MAU突破 — 人類史上最速で10億ユーザー到達、Claude+640%・Meta AI+973%も急拡大</span>
-    <span class="ticker-sep">|</span>
-    <span class="ticker-item">02 &nbsp;Agentjacking攻撃 — Claude Code・Cursor・Codexを乗っ取る新攻撃、2,388組織が被害</span>
-    <span class="ticker-sep">|</span>
-    <span class="ticker-item">03 &nbsp;G7サミットにAI3CEO — Altman・Amodei・Hassabisが世界首脳の前に初登場、6/15〜17フランス</span>
-    <span class="ticker-sep">|</span>
-    <span class="ticker-item">04 &nbsp;Microsoft MAI-Thinking-1 — GPT-5.5比10分の1コストで高性能、Claude Sonnet 4.6を上回ると発表</span>
-    <span class="ticker-sep">|</span>
-    <span class="ticker-item">05 &nbsp;OpenAI Sora 廃止 — 1日1,500万ドルの赤字で6ヶ月でサービス終了、次世代「Spud」へリソース集中</span>
-    <span class="ticker-sep">|</span>
-    <span class="ticker-item">01 &nbsp;ChatGPT 10億MAU突破 — 人類史上最速で10億ユーザー到達、Claude+640%・Meta AI+973%も急拡大</span>
-    <span class="ticker-sep">|</span>
-    <span class="ticker-item">02 &nbsp;Agentjacking攻撃 — Claude Code・Cursor・Codexを乗っ取る新攻撃、2,388組織が被害</span>
-    <span class="ticker-sep">|</span>
-    <span class="ticker-item">03 &nbsp;G7サミットにAI3CEO — Altman・Amodei・Hassabisが世界首脳の前に初登場、6/15〜17フランス</span>
-    <span class="ticker-sep">|</span>
-    <span class="ticker-item">04 &nbsp;Microsoft MAI-Thinking-1 — GPT-5.5比10分の1コストで高性能、Claude Sonnet 4.6を上回ると発表</span>
-    <span class="ticker-sep">|</span>
-    <span class="ticker-item">05 &nbsp;OpenAI Sora 廃止 — 1日1,500万ドルの赤字で6ヶ月でサービス終了、次世代「Spud」へリソース集中</span>
-    <span class="ticker-sep">|</span>
+<!-- プログレスバー -->
+<div class="progress-bar">
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill" style="width:20%"></div>
   </div>
 </div>
 
-<div class="prog-wrap"><div class="prog-fill" id="prog" style="width:20%;background:#ff4b4b;"></div></div>
+<!-- スライダー -->
+<div class="slider-container">
+  <div class="slider-track-wrap">
+    <div class="slider-track" id="sliderTrack">
 
-<div class="slider-outer" id="outer">
-  <div class="slider-track" id="track">
-
-    <!-- 1 -->
-    <div class="slide"><div class="card t1">
-      <div class="card-inner">
-        <div class="card-top"><div class="tag">ChatGPT 歴史的突破</div><div class="no">01/05</div></div>
-        <div class="title"><em>ChatGPT</em> が<br>月間10億ユーザー突破</div>
-        <div class="lead">人類史上最速で10億MAUへ。Claude +640%・Meta AI +973%と競合も爆増、AI利用が当たり前の時代へ。</div>
-        <div class="body">ChatGPTが月間アクティブユーザー10億人を突破し、消費者アプリ史上最速の記録を達成した。同時期にClaudeが前年比640%増、Meta AIが973%増という驚異的な伸びを記録しており、特定サービスの独占ではなく「AI全般の利用が爆発的に拡大」していることを示す。日本でも企業・個人問わずAI活用が標準化しつつある。AIスクールやリスキリング市場にとっては「全員にAIリテラシーが必要な時代が来た」という追い風であり、「使える人と使えない人の格差」がこれからさらに広がることを示唆する歴史的マイルストーンだ。</div>
-        <div class="foot">
-          <div class="src">Reuters / Yahoo Finance — 2026.06.02</div>
-          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span></div>
+      <!-- カード1 -->
+      <div class="card" style="--card-accent:#7c5cfc">
+        <div class="card-deco"></div>
+        <div class="card-header">
+          <div class="card-num">01</div>
+          <div class="card-meta">
+            <div class="tags">
+              <span class="tag">Anthropic</span>
+              <span class="tag">IPO</span>
+              <span class="tag">資本市場</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-title">AnthropicがSECにIPOを機密申請<br>評価額9,650億ドル（約140兆円）でOpenAIを超えた</div>
+        <div class="card-body">
+          Claudeを開発するAnthropicが、米SECにForm S-1の草案を非公開提出。シリーズHで650億ドルを調達し評価額は約9,650億ドルに達し、初めてOpenAIを時価総額で上回りました。上場時に1兆ドルを達成すれば、サウジアラムコ・SpaceXに次ぐ史上3位規模の上場となる見通し。日立・富士通・ソフトバンクGなどClaude採用の国内大手にも影響が注目されています。
+        </div>
+        <div class="card-footer">
+          <div class="card-source">📅 2026年6月1日 ／ SEC提出資料ほか</div>
+          <div class="heat">🔥🔥🔥🔥🔥</div>
         </div>
       </div>
-      <div class="card-bg">01</div>
-    </div></div>
 
-    <!-- 2 -->
-    <div class="slide"><div class="card t2">
-      <div class="card-inner">
-        <div class="card-top"><div class="tag">新型AI攻撃 警戒</div><div class="no">02/05</div></div>
-        <div class="title"><em>Agentjacking</em> 攻撃<br>AIエージェントを乗っ取る</div>
-        <div class="lead">Claude Code・Cursor・Codexを標的にした新型攻撃が発覚。85%の成功率で2,388組織が被害を受けた。</div>
-        <div class="body">「Agentjacking」と呼ばれる攻撃がClaude Code・Cursor・Codexを標的に、偽のSentryエラーを利用してAIエージェントを乗っ取る手法で、85%という高い悪用率が確認され2,388の組織が被害にさらされた。AIエージェントが社内システムにアクセスできる権限を持つほど、その乗っ取りは深刻な被害をもたらす。Claude Codeを業務で使っている企業やAIエージェントを自社システムに接続しているすべての組織が対策を急ぐべき状況で、AIセキュリティが「後回し」にできない最優先課題になった週となった。</div>
-        <div class="foot">
-          <div class="src">AI Weekly / セキュリティ各社 — 2026.06.10〜12</div>
-          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span></div>
+      <!-- カード2 -->
+      <div class="card" style="--card-accent:#00d4ff">
+        <div class="card-deco"></div>
+        <div class="card-header">
+          <div class="card-num">02</div>
+          <div class="card-meta">
+            <div class="tags">
+              <span class="tag">Microsoft</span>
+              <span class="tag">Windows</span>
+              <span class="tag">AIエージェント</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-title">Microsoft Build 2026開幕<br>「Windowsはもはや人間だけのものではない」と宣言</div>
+        <div class="card-body">
+          Satya Nadella CEOがサンフランシスコで開催されたBuild 2026でWindowsをAIエージェント専用OSへ刷新すると宣言。Windows Agent Framework（オープンソース）・Azure Agent Mesh・WSL 3・Copilot Workspace一般提供など大規模なエージェントスタックを発表。さらに自社製コーディングAI「Project Polaris」（MoEアーキテクチャ）を発表し、GitHub Copilotのデフォルトモデルを2026年8月からPolarisへ移行する計画も明らかにしました。
+        </div>
+        <div class="card-footer">
+          <div class="card-source">📅 2026年6月1〜2日 ／ Microsoft Build</div>
+          <div class="heat">🔥🔥🔥🔥🔥</div>
         </div>
       </div>
-      <div class="card-bg">02</div>
-    </div></div>
 
-    <!-- 3 -->
-    <div class="slide"><div class="card t3">
-      <div class="card-inner">
-        <div class="card-top"><div class="tag">G7 × AI首脳会議</div><div class="no">03/05</div></div>
-        <div class="title">Altman・Amodei・<em>Hassabis</em><br>G7サミットへ本日出席</div>
-        <div class="lead">AI3大ラボのCEOが初めて世界首脳の前に揃って登場。「AIガバナンス」が国際政治の最前線へ。</div>
-        <div class="body">Sam Altman（OpenAI）・Dario Amodei（Anthropic）・Demis Hassabis（Google DeepMind）の3人が6月15〜17日のG7サミット（フランス）に出席する。AI企業の3大ライバルCEOが世界首脳の前に初めて揃って登場する歴史的な場となる。議題はAIガバナンス・安全保障・経済影響・フロンティアモデルの管理体制が中心とみられる。米欧日の首脳がAIをどのように国際的に規制・推進していくかの枠組み議論が本格化する転換点だ。AI業界が「テクノロジーの話題」から「国際政治・安全保障の話題」へと完全に昇格した週となった。</div>
-        <div class="foot">
-          <div class="src">AI Weekly — 2026.06.15</div>
-          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span></div>
+      <!-- カード3 -->
+      <div class="card" style="--card-accent:#ff6b9d">
+        <div class="card-deco"></div>
+        <div class="card-header">
+          <div class="card-num">03</div>
+          <div class="card-meta">
+            <div class="tags">
+              <span class="tag">Apple</span>
+              <span class="tag">Siri</span>
+              <span class="tag">WWDC 2026</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-title">iOS 27のSiriがGoogle Gemini基盤で全面刷新<br>Claude・ChatGPTも選択可能に</div>
+        <div class="card-body">
+          Apple WWDC 2026（6月8〜12日）にてiOS 27が発表。SiriをGoogle Geminiベースで全面的に作り直し、Private Cloud Computeで処理する新アーキテクチャを採用。ExtensionsフレームワークによりClaude・ChatGPT・Geminiを用途に応じて選択できる仕組みを導入。Googleへの年間支払いは約10億ドルと報じられており、AI主導のスマートフォン体験が大きく変わります。
+        </div>
+        <div class="card-footer">
+          <div class="card-source">📅 2026年6月8〜12日 ／ Apple WWDC</div>
+          <div class="heat">🔥🔥🔥🔥</div>
         </div>
       </div>
-      <div class="card-bg">03</div>
-    </div></div>
 
-    <!-- 4 -->
-    <div class="slide"><div class="card t4">
-      <div class="card-inner">
-        <div class="card-top"><div class="tag">Microsoft 自社AI</div><div class="no">04/05</div></div>
-        <div class="title">Microsoft <em>MAI-Thinking-1</em><br>GPT-5.5比10倍安くClaude超え</div>
-        <div class="lead">Build 2026で7つの自社AIモデルを一挙公開。「OpenAIに頼らない」Microsoft AI時代の幕開け。</div>
-        <div class="body">MicrosoftはBuild 2026で7つの新AIモデルを発表し、旗艦モデル「MAI-Thinking-1」はGPT-5.5に対してコストが10分の1でありながら品質で上回り、Claude Sonnet 4.6およびGoogle Nano Banana 2をブラインドテスト・画像編集ベンチマークで上回ったと主張した。Microsoft AI CEO Mustafa Suleiman（旧DeepMind共同創業者）は「開発者と企業が求めていたAIを届けた」とコメント。OpenAIへの依存から脱却しつつある同社の自社AI戦略は、GitHub Copilotへの自社モデル（Project Polaris）搭載とも連動しており、AI業界の「一強から多極」への転換を加速させている。</div>
-        <div class="foot">
-          <div class="src">Decrypt / Microsoft公式 — 2026.06.02〜03</div>
-          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="fd">🔥</span></div>
+      <!-- カード4 -->
+      <div class="card" style="--card-accent:#f0c040">
+        <div class="card-deco"></div>
+        <div class="card-header">
+          <div class="card-num">04</div>
+          <div class="card-meta">
+            <div class="tags">
+              <span class="tag">NVIDIA</span>
+              <span class="tag">ローカルAI</span>
+              <span class="tag">ハードウェア</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-title">NVIDIA「RTX Spark」発表<br>AIエージェントがPCの中で動く時代へ</div>
+        <div class="card-body">
+          Jensen Huang CEOがComputex 2026でローカルAI推論に特化したスーパーチップ「RTX Spark」を発表。秋よりDell・HP・ASUS・Lenovo・MSIの搭載PCが登場予定。クラウドに依存せず手元のPCでAIエージェントを動かせる環境が整い、機密データを扱う医療・金融・法務分野での活用が加速する見通し。次世代「Vera Rubin（2027）」・「Rosa Feynman（2029）」のロードマップも公表しました。
+        </div>
+        <div class="card-footer">
+          <div class="card-source">📅 2026年6月 ／ Computex 2026</div>
+          <div class="heat">🔥🔥🔥🔥</div>
         </div>
       </div>
-      <div class="card-bg">04</div>
-    </div></div>
 
-    <!-- 5 -->
-    <div class="slide"><div class="card t5">
-      <div class="card-inner">
-        <div class="card-top"><div class="tag">OpenAI Sora 廃止</div><div class="no">05/05</div></div>
-        <div class="title">OpenAI <em>Sora</em> 廃止<br>1日1,500万ドルの赤字で6ヶ月終了</div>
-        <div class="lead">総収益213万ドルに対して毎日1,500万ドルを燃やした末の撤退。次世代「Spud」とIPOにリソースを集中。</div>
-        <div class="body">OpenAIはAI動画生成アプリ「Sora」をわずか6ヶ月でサービス終了した。公開初週に100万ダウンロードを突破しながら、活動ユーザーが50万人以下に急落し、推定1日1,500万ドルのコンピュートコストに対して生涯総収益はわずか210万ドルだった。計画していたDisneyとの10億ドル提携も破談。OpenAIは解放されたコンピューティングリソースを次世代言語モデル「Spud」と企業向け生産性ツール開発に振り向け、来るIPOに備えるとしている。AI動画生成の「コスト対需要」の現実を突きつけた事例として業界関係者の間で大きな話題になっている。</div>
-        <div class="foot">
-          <div class="src">AI Weekly / crescendo.ai — 2026.06.12〜13</div>
-          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="fd">🔥</span></div>
+      <!-- カード5 -->
+      <div class="card" style="--card-accent:#40d9a0">
+        <div class="card-deco"></div>
+        <div class="card-header">
+          <div class="card-num">05</div>
+          <div class="card-meta">
+            <div class="tags">
+              <span class="tag">SpaceX</span>
+              <span class="tag">Cursor</span>
+              <span class="tag">コーディングAI</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-title">SpaceXがAIコーディングツール「Cursor」の<br>運営会社を600億ドルで買収へ</div>
+        <div class="card-body">
+          SpaceXが、人気AIコーディングツール「Cursor」を開発するAnysphere社を600億ドルで買収する方向で交渉中と報じられました。上場直後の大型AI投資として業界に衝撃を与えています。開発者の生産性向上ツールへの争奪戦が激化するなか、宇宙企業が本格的なAIソフトウェア企業へと変貌する象徴的な動きとして注目されています。（Ledge.ai 2026年6月報道）
+        </div>
+        <div class="card-footer">
+          <div class="card-source">📅 2026年6月 ／ Ledge.ai</div>
+          <div class="heat">🔥🔥🔥🔥🔥</div>
         </div>
       </div>
-      <div class="card-bg">05</div>
-    </div></div>
 
+    </div>
+  </div>
+
+  <!-- ナビゲーション -->
+  <div class="nav-row">
+    <button class="nav-btn" id="prevBtn" aria-label="前へ">&#8592;</button>
+    <div class="dots" id="dots"></div>
+    <button class="nav-btn" id="nextBtn" aria-label="次へ">&#8594;</button>
   </div>
 </div>
 
-<div class="controls">
-  <div class="navs">
-    <button class="nb" id="prev">&#8592;</button>
-    <button class="nb" id="next">&#8594;</button>
-  </div>
-  <div class="dots" id="dots">
-    <div class="dot on" data-i="0"></div>
-    <div class="dot" data-i="1"></div>
-    <div class="dot" data-i="2"></div>
-    <div class="dot" data-i="3"></div>
-    <div class="dot" data-i="4"></div>
-  </div>
-  <div class="ctr"><em id="cn">01</em> / 05</div>
-</div>
+<div class="counter" id="counter">1 / 5</div>
+<div class="hint">← → キーボード操作 ／ スワイプ対応</div>
 
 <script>
-const track=document.getElementById('track'),allDots=document.querySelectorAll('.dot'),prog=document.getElementById('prog'),cn=document.getElementById('cn');
-const COLORS=['#ff4b4b','#4b9eff','#4bff91','#ffb74b','#d04bff'];
-const N=5;let cur=0;
-function go(n){
-  cur=((n%N)+N)%N;
-  track.style.transform=`translateX(-${cur*100}%)`;
-  allDots.forEach((d,i)=>d.classList.toggle('on',i===cur));
-  prog.style.width=`${(cur+1)/N*100}%`;
-  prog.style.background=COLORS[cur];
-  cn.textContent=String(cur+1).padStart(2,'0');
-}
-document.getElementById('next').onclick=()=>go(cur+1);
-document.getElementById('prev').onclick=()=>go(cur-1);
-allDots.forEach(d=>d.addEventListener('click',()=>go(+d.dataset.i)));
-document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1);});
-let sx=0,o=document.getElementById('outer');
-o.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;},{passive:true});
-o.addEventListener('touchend',e=>{const d=sx-e.changedTouches[0].clientX;if(Math.abs(d)>45)d>0?go(cur+1):go(cur-1);},{passive:true});
-o.addEventListener('mousedown',e=>{sx=e.clientX;});
-o.addEventListener('mouseup',e=>{const d=sx-e.clientX;if(Math.abs(d)>45)d>0?go(cur+1):go(cur-1);});
+  const track = document.getElementById('sliderTrack');
+  const cards = document.querySelectorAll('.card');
+  const dotsContainer = document.getElementById('dots');
+  const counter = document.getElementById('counter');
+  const progressFill = document.getElementById('progressFill');
+  const total = cards.length;
+  let current = 0;
+  let startX = 0;
+
+  // ドット生成
+  for (let i = 0; i < total; i++) {
+    const d = document.createElement('button');
+    d.className = 'dot-btn' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', `${i+1}枚目`);
+    d.addEventListener('click', () => goTo(i));
+    dotsContainer.appendChild(d);
+  }
+
+  function goTo(n) {
+    current = (n + total) % total;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    document.querySelectorAll('.dot-btn').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+    counter.textContent = `${current + 1} / ${total}`;
+    progressFill.style.width = `${((current + 1) / total) * 100}%`;
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
+  document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') goTo(current - 1);
+    if (e.key === 'ArrowRight') goTo(current + 1);
+  });
+
+  // タッチスワイプ
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
+  });
+
+  // ティッカー複製
+  const ticker = document.getElementById('ticker');
+  ticker.innerHTML += ticker.innerHTML;
 </script>
 </body>
 </html>
