@@ -3,248 +3,343 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI最新ニュース｜2026年6月 第4週</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<title>AI NEWS PRINT 2026.06.22</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ff6a00'/%3E%3Crect width='32' height='16' rx='7' fill='%23ff4500'/%3E%3Crect y='9' width='32' height='7' fill='%23ff4500'/%3E%3Crect x='4' y='17' width='24' height='1' fill='rgba(255,255,255,0.3)'/%3E%3Ctext x='16' y='14' text-anchor='middle' dominant-baseline='middle' font-family='Arial Black,Arial,sans-serif' font-size='12' font-weight='900' fill='white' letter-spacing='1'%3EAI%3C/text%3E%3Ctext x='16' y='25' text-anchor='middle' dominant-baseline='middle' font-family='Arial Black,Arial,sans-serif' font-size='8' font-weight='700' fill='rgba(255,255,255,0.92)' letter-spacing='2'%3Enews%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="AI NEWS">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Oswald:wght@400;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --paper:#f5f0e8;--ink:#1a1410;--rule:#c8b89a;
-  --red:#c0392b;--blue:#1a4a7a;--green:#2d6a4f;
-  --gold:#b8860b;--orange:#d35400;--purple:#6c3483;
-  --col1:#c0392b;--col2:#1a4a7a;--col3:#d35400;--col4:#2d6a4f;--col5:#6c3483;
+  --ink:#1a0e05;--paper:#f5f0e8;--cream:#ede8d8;
+  --c1:#c0392b;--c2:#1a5276;--c3:#1e8449;--c4:#d68910;--c5:#6c3483;
+  --muted:#7d6e5a;--line:rgba(26,14,5,0.12);
 }
-body{font-family:'Noto Sans JP',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh;overflow-x:hidden}
+body{background:var(--paper);color:var(--ink);font-family:'Noto Sans JP',sans-serif;height:100vh;overflow:hidden;display:flex;flex-direction:column;position:relative;}
 
-/* 新聞ルーラー */
-.ruler{height:6px;background:repeating-linear-gradient(90deg,var(--ink) 0 4px,transparent 4px 8px);opacity:0.15}
-.thick-rule{height:3px;background:var(--ink)}
-.thin-rule{height:1px;background:var(--ink);opacity:0.4}
+/* PAPER TEXTURE */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%23f5f0e8'/%3E%3Ccircle cx='1' cy='1' r='0.5' fill='rgba(26,14,5,0.04)'/%3E%3Ccircle cx='3' cy='3' r='0.5' fill='rgba(26,14,5,0.04)'/%3E%3C/svg%3E");
+}
 
-/* ティッカー */
-.ticker-bar{background:var(--ink);color:var(--paper);padding:6px 0;overflow:hidden}
-.ticker-inner{display:flex;gap:48px;white-space:nowrap;animation:tick 28s linear infinite}
-.ticker-inner span{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.05em}
-.ticker-inner .sep{color:var(--gold);font-size:14px}
-@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* HEADER */
+header{
+  position:relative;z-index:10;flex-shrink:0;
+  background:var(--ink);
+  padding:0.7rem 1.3rem 0.6rem;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.logo{
+  font-family:'Oswald',sans-serif;font-size:1.3rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;color:var(--paper);
+}
+.logo-accent{color:var(--c1);}
+.hdr-r{display:flex;flex-direction:column;align-items:flex-end;gap:2px;}
+.hdr-special{
+  font-family:'Source Code Pro',monospace;font-size:0.55rem;font-weight:600;
+  color:var(--c1);letter-spacing:0.12em;
+  border:1px solid var(--c1);padding:0.1rem 0.4rem;
+}
+.hdr-date{font-family:'Source Code Pro',monospace;font-size:0.55rem;color:rgba(245,240,232,0.45);letter-spacing:0.08em;}
 
-header{padding:24px 20px 0;text-align:center}
-.masthead-sub{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.3em;color:var(--ink);opacity:0.5;margin-bottom:8px}
-header h1{font-family:'DM Serif Display',serif;font-size:clamp(32px,8vw,68px);line-height:1;color:var(--ink);margin-bottom:4px}
-header h1 em{font-style:italic;color:var(--red)}
-.dateline{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.15em;color:var(--ink);opacity:0.6;margin-bottom:16px}
+/* TICKER */
+.ticker-wrap{
+  position:relative;z-index:10;flex-shrink:0;
+  overflow:hidden;padding:0.28rem 0;
+  background:var(--c1);
+}
+.ticker-label{
+  position:absolute;left:0;top:0;bottom:0;z-index:2;
+  background:var(--ink);color:var(--paper);
+  display:flex;align-items:center;padding:0 0.7rem;
+  font-family:'Source Code Pro',monospace;font-size:0.58rem;font-weight:600;
+  letter-spacing:0.15em;white-space:nowrap;
+}
+.ticker-track{
+  display:flex;align-items:center;white-space:nowrap;
+  animation:ticker 38s linear infinite;padding-left:95px;
+}
+.ticker-track:hover{animation-play-state:paused;}
+.ticker-item{font-family:'Source Code Pro',monospace;font-size:0.6rem;color:var(--paper);font-weight:600;letter-spacing:0.04em;padding:0 0.5rem;}
+.ticker-sep{color:rgba(245,240,232,0.5);margin:0 0.25rem;}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* スライダー */
-.slider-wrap{max-width:720px;margin:0 auto;padding:0 16px 40px}
-.overflow{overflow:hidden;border:2px solid var(--ink)}
-.track{display:flex;transition:transform 0.55s cubic-bezier(.77,0,.18,1)}
+/* PROGRESS */
+.prog-wrap{height:3px;flex-shrink:0;z-index:10;background:var(--cream);}
+.prog-fill{height:100%;transition:width 0.4s ease;}
 
-/* カード */
-.card{min-width:100%;padding:28px 28px 24px;position:relative;background:var(--paper)}
-.card::before{content:'';display:block;height:3px;background:var(--card-color);margin-bottom:20px}
+/* SLIDER */
+.slider-outer{flex:1;overflow:hidden;position:relative;z-index:5;padding:0.9rem 0 0;}
+.slider-track{display:flex;height:100%;transition:transform 0.55s cubic-bezier(0.86,0,0.07,1);}
 
-.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;flex-wrap:wrap;gap:8px}
-.issue-num{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--card-color)}
-.tags{display:flex;flex-wrap:wrap;gap:5px}
-.tag{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;padding:2px 8px;border:1px solid var(--card-color);color:var(--card-color)}
+/* CARD */
+.slide{min-width:100%;height:100%;padding:0 1.1rem 0.8rem;}
+.card{
+  width:100%;height:100%;
+  background:var(--paper);
+  border:2px solid var(--ink);
+  display:flex;flex-direction:column;overflow:hidden;position:relative;
+}
+.card-header-band{
+  background:var(--ac,var(--c1));
+  padding:0.35rem 1.2rem;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-shrink:0;
+}
+.tag{
+  font-family:'Oswald',sans-serif;font-size:0.65rem;font-weight:700;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:white;
+}
+.no{font-family:'Source Code Pro',monospace;font-size:0.6rem;color:rgba(255,255,255,0.7);letter-spacing:0.1em;}
 
-.card-title{font-family:'DM Serif Display',serif;font-size:clamp(18px,3.5vw,24px);line-height:1.45;margin-bottom:14px;color:var(--ink)}
-.card-title em{color:var(--card-color);font-style:normal}
+.card-inner{padding:1rem 1.3rem 0.9rem;flex:1;display:flex;flex-direction:column;gap:0.7rem;overflow:hidden;}
 
-.divider{height:1px;background:var(--rule);margin:14px 0}
+.title{
+  font-family:'Oswald',sans-serif;
+  font-size:clamp(1.2rem,5vw,1.9rem);
+  font-weight:700;line-height:1.15;letter-spacing:0.03em;text-transform:uppercase;
+  color:var(--ink);
+}
+.title em{font-style:normal;color:var(--ac,var(--c1));}
 
-.card-body{font-size:13px;line-height:2;color:#333;margin-bottom:16px}
+.divider{height:2px;background:var(--ink);flex-shrink:0;}
 
-.card-foot{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid var(--rule)}
-.source{font-family:'Space Mono',monospace;font-size:10px;color:#888;letter-spacing:0.05em}
-.heat{font-size:15px;letter-spacing:1px}
+.lead{
+  font-size:0.78rem;font-weight:700;line-height:1.5;
+  color:var(--ac,var(--c1));font-family:'Oswald',sans-serif;
+  letter-spacing:0.03em;font-weight:400;font-style:italic;
+}
 
-/* ドロップキャップ風番号 */
-.drop{float:left;font-family:'DM Serif Display',serif;font-size:56px;line-height:0.8;margin:4px 10px 0 0;color:var(--card-color);opacity:0.25}
+.body{font-size:0.78rem;line-height:1.95;color:#3d2b1a;flex:1;overflow-y:auto;scrollbar-width:none;}
+.body::-webkit-scrollbar{display:none;}
 
-/* ナビ */
-.nav{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:16px}
-.nav-btn{width:36px;height:36px;border:2px solid var(--ink);background:transparent;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;transition:all .2s}
-.nav-btn:hover{background:var(--ink);color:var(--paper)}
-.dots{display:flex;gap:6px;align-items:center}
-.dot{width:8px;height:8px;border:1.5px solid var(--ink);background:transparent;cursor:pointer;transition:all .2s;padding:0}
-.dot.active{background:var(--ink)}
+.foot{
+  display:flex;justify-content:space-between;align-items:center;
+  border-top:1.5px solid var(--ink);padding-top:0.65rem;
+  flex-wrap:wrap;gap:0.4rem;flex-shrink:0;
+}
+.src{font-family:'Source Code Pro',monospace;font-size:0.55rem;color:var(--muted);letter-spacing:0.04em;}
+.heat{display:flex;gap:1px;}
+.f{font-size:0.72rem;}.fd{font-size:0.72rem;opacity:0.12;}
 
-/* プログレス */
-.progress{height:2px;background:#ddd;margin-top:10px}
-.prog-fill{height:100%;background:var(--ink);transition:width .55s cubic-bezier(.77,0,.18,1)}
+.card-bg{
+  position:absolute;right:0.3rem;bottom:-1.5rem;
+  font-family:'Oswald',sans-serif;font-size:10rem;font-weight:700;
+  color:var(--ac,var(--c1));opacity:0.05;line-height:1;
+  pointer-events:none;user-select:none;letter-spacing:-0.02em;
+}
 
-.counter{text-align:center;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.15em;color:#999;margin-top:8px}
-.hint{text-align:center;font-family:'Space Mono',monospace;font-size:9px;color:#bbb;letter-spacing:0.1em;margin-top:6px;padding-bottom:20px}
+/* themes */
+.t1{--ac:#c0392b;}.t2{--ac:#1a5276;}.t3{--ac:#1e8449;}.t4{--ac:#d68910;}.t5{--ac:#6c3483;}
 
-@media(max-width:480px){.card{padding:20px 16px 18px}.drop{font-size:40px}}
+/* CONTROLS */
+.controls{
+  flex-shrink:0;z-index:10;
+  background:var(--cream);border-top:2px solid var(--ink);
+  padding:0.5rem 1.1rem;
+  display:flex;justify-content:space-between;align-items:center;gap:1rem;
+}
+.navs{display:flex;gap:0.5rem;}
+.nb{
+  width:30px;height:30px;
+  background:var(--ink);color:var(--paper);border:none;
+  cursor:pointer;font-size:0.85rem;
+  display:flex;align-items:center;justify-content:center;transition:all 0.15s;
+}
+.nb:hover{background:var(--c1);}
+.nb:active{transform:scale(0.9);}
+.dots{display:flex;gap:0.45rem;align-items:center;}
+.dot{width:7px;height:7px;border:1.5px solid var(--ink);cursor:pointer;transition:all 0.25s;}
+.dot.on{background:var(--ink);width:20px;}
+.ctr{font-family:'Source Code Pro',monospace;font-size:0.6rem;color:var(--muted);letter-spacing:0.15em;white-space:nowrap;}
+.ctr em{color:var(--ink);font-style:normal;font-weight:700;}
+
+@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+header{animation:up 0.4s ease both;}
+.ticker-wrap{animation:up 0.4s 0.05s ease both;}
+.slider-outer{animation:up 0.4s 0.1s ease both;}
+.controls{animation:up 0.4s 0.15s ease both;}
 </style>
 </head>
 <body>
 
-<div class="thick-rule"></div>
-<div class="ruler"></div>
-
-<div class="ticker-bar">
-  <div class="ticker-inner" id="tk">
-    <span>速報</span><span class="sep">◆</span>
-    <span>Claude Fable5 米政府命令で3日で全世界停止</span><span class="sep">◆</span>
-    <span>中国がAI56社に報復ブラックリスト</span><span class="sep">◆</span>
-    <span>Qualcomm AI新興買収で4000億円規模</span><span class="sep">◆</span>
-    <span>Visa×OpenAI エージェントが決済代行</span><span class="sep">◆</span>
-    <span>Mythos バグ修正ベンチ正答率83%の衝撃</span><span class="sep">◆</span>
-    <span>速報</span><span class="sep">◆</span>
-    <span>Claude Fable5 米政府命令で3日で全世界停止</span><span class="sep">◆</span>
-    <span>中国がAI56社に報復ブラックリスト</span><span class="sep">◆</span>
-    <span>Qualcomm AI新興買収で4000億円規模</span><span class="sep">◆</span>
-    <span>Visa×OpenAI エージェントが決済代行</span><span class="sep">◆</span>
-    <span>Mythos バグ修正ベンチ正答率83%の衝撃</span><span class="sep">◆</span>
-  </div>
-</div>
-
 <header>
-  <div class="masthead-sub">✦ THE WEEKLY AI CHRONICLE ✦</div>
-  <div class="thin-rule" style="margin:0 auto 10px;max-width:400px"></div>
-  <h1>AI <em>最新</em> ニュース</h1>
-  <div class="dateline">2026年6月24日（水）｜第4週号</div>
+  <div class="logo"><span class="logo-accent">AI</span> NEWS PRINT</div>
+  <div class="hdr-r">
+    <div class="hdr-special">▶ SpaceX Cursor 9.6兆円買収号</div>
+    <div class="hdr-date">2026.06.22 — WEEK 27</div>
+  </div>
 </header>
-<div class="thick-rule" style="max-width:720px;margin:0 auto"></div>
 
-<div class="slider-wrap">
-  <div class="overflow">
-    <div class="track" id="track">
-
-      <!-- カード1 -->
-      <div class="card" style="--card-color:var(--red)">
-        <div class="card-top">
-          <div class="issue-num">STORY 01 / 05</div>
-          <div class="tags"><span class="tag">ANTHROPIC</span><span class="tag">輸出規制</span><span class="tag">国家安全保障</span></div>
-        </div>
-        <div class="card-title"><em>Claude Fable 5</em> が公開3日で全世界停止<br>米政府の輸出管理指令、猶予はたった90分</div>
-        <div class="divider"></div>
-        <div class="card-body">
-          <span class="drop">01</span>
-          Anthropicが6月9日に一般公開した最上位モデル「Fable 5」と研究者向け「Mythos 5」が、わずか3日後の6月12日午後5時21分（米東部時間）に届いた政府書簡で全世界即時停止となった。米商務省は国家安全保障を理由に外国籍者のアクセス禁止を命令。Anthropicは外国人ユーザーの特定が困難として全ユーザーを対象に両モデルを遮断し、「これは誤解だ」と公式声明で反論しつつ早期復旧を宣言した。引き金はAmazon研究者がMythosのジェイルブレイクに成功したと当局に報告したこととされており、76名のサイバーセキュリティ専門家が公開書簡で撤回を要求する事態に。
-        </div>
-        <div class="card-foot">
-          <div class="source">ITmedia / GIGAZINE ／ 2026.06.12〜13</div>
-          <div class="heat">🔥🔥🔥🔥🔥</div>
-        </div>
-      </div>
-
-      <!-- カード2 -->
-      <div class="card" style="--card-color:var(--blue)">
-        <div class="card-top">
-          <div class="issue-num">STORY 02 / 05</div>
-          <div class="tags"><span class="tag">米中摩擦</span><span class="tag">AI地政学</span><span class="tag">輸出規制</span></div>
-        </div>
-        <div class="card-title">中国が米AI企業56社を<br><em>ブラックリスト</em> に　報復合戦が激化</div>
-        <div class="divider"></div>
-        <div class="card-body">
-          <span class="drop">02</span>
-          Anthropicの最上位モデル輸出規制から10日後、中国は米国AI・半導体関連企業56社をブラックリストに追加した。Anthropic自身も今回のFable停止の書類提出で「ルーティンのコーディングリクエストが規制の引き金となった」と認め、Microsoft CEOは「少数のモデルが市場を独占する構造は政治的に長続きしない」と警告。AIの制度・規制を巡る米中の対立は、「チップ」から「モデルそのもの」へと戦線が拡大し、日本を含む第三国企業のAI調達リスクが急速に高まっている。
-        </div>
-        <div class="card-foot">
-          <div class="source">AI Weekly / Liberators ／ 2026.06.15〜23</div>
-          <div class="heat">🔥🔥🔥🔥🔥</div>
-        </div>
-      </div>
-
-      <!-- カード3 -->
-      <div class="card" style="--card-color:var(--orange)">
-        <div class="card-top">
-          <div class="issue-num">STORY 03 / 05</div>
-          <div class="tags"><span class="tag">VISA</span><span class="tag">OpenAI</span><span class="tag">AIエージェント</span></div>
-        </div>
-        <div class="card-title">Visa × OpenAI 提携<br>AIが<em>購入まで代行</em>する時代が到来</div>
-        <div class="divider"></div>
-        <div class="card-body">
-          <span class="drop">03</span>
-          世界最大のカード決済網Visaと OpenAI が提携し、AIエージェントがユーザーに代わって実際の決済まで実行する「エージェンティックコマース」が正式に始動した。ChatGPTを通じて商品の検索から注文・支払いまでをAIが一括担当する仕組みで、Robinhoodが6月1日に発表したAIエージェント向け株式取引機能と合わせ、「AIが考えるだけでなく使う」時代の幕開けを示している。ただし誤発注・不正利用リスクへの対策と、人間による最終確認の設計が急務とされる。
-        </div>
-        <div class="card-foot">
-          <div class="source">Ledge.ai / AI Weekly ／ 2026.06.中旬</div>
-          <div class="heat">🔥🔥🔥🔥</div>
-        </div>
-      </div>
-
-      <!-- カード4 -->
-      <div class="card" style="--card-color:var(--green)">
-        <div class="card-top">
-          <div class="issue-num">STORY 04 / 05</div>
-          <div class="tags"><span class="tag">Qualcomm</span><span class="tag">M&A</span><span class="tag">ローカルAI</span></div>
-        </div>
-        <div class="card-title">Qualcomm が AI新興 Modular を<br><em>約4,000億円</em>で買収へ　6月2件目の大型M&A</div>
-        <div class="divider"></div>
-        <div class="card-body">
-          <span class="drop">04</span>
-          Qualcommが6月だけで2件の大型AI買収に動いていることが明らかになった。AI推論スタートアップ「Modular」を約40億ドル（約4,000億円）で取得する交渉が進んでおり、同月に動いた80〜100億ドル規模のTenstorrent買収と合わせると、スマートフォン・PC向けの「ローカルAIチップ」覇権を巡る争奪戦が一段と加速している。NVIDIAが「RTX Spark」でローカルAI推論を制しようとする動きに対し、Qualcommはソフト・ハード両面での囲い込みで対抗する構図だ。（AI Weekly 2026.06.23）
-        </div>
-        <div class="card-foot">
-          <div class="source">AI Weekly ／ 2026.06.23</div>
-          <div class="heat">🔥🔥🔥🔥</div>
-        </div>
-      </div>
-
-      <!-- カード5 -->
-      <div class="card" style="--card-color:var(--purple)">
-        <div class="card-top">
-          <div class="issue-num">STORY 05 / 05</div>
-          <div class="tags"><span class="tag">日本</span><span class="tag">Mythos</span><span class="tag">安全保障</span></div>
-        </div>
-        <div class="card-title">Mythos 正答率83%——<em>日本政府・金融機関</em>も<br>アクセス権を付与直後に停止の余波</div>
-        <div class="divider"></div>
-        <div class="card-body">
-          <span class="drop">05</span>
-          今回停止された「Mythos 5」はサイバーセキュリティ特化モデルで、バグ修正ベンチマークで83.1%という競合（66.6%）を大幅に上回るスコアを記録。Project Glasswingに参加していた日立・富士通・ソフトバンクG、さらに片山金融担当相がアクセス権付与を公表したばかりの金融機関も今回の停止に巻き込まれた。日経電子版（6月24日付）は「バグ修正試験で突出したMythosが米禁輸の引き金になった」と報道。単一モデルへの依存リスクの見直しと、マルチモデル体制への移行が国内企業の急務となっている。
-        </div>
-        <div class="card-foot">
-          <div class="source">日経 / ITmedia ／ 2026.06.24</div>
-          <div class="heat">🔥🔥🔥🔥🔥</div>
-        </div>
-      </div>
-
-    </div>
+<div class="ticker-wrap">
+  <div class="ticker-label">W27</div>
+  <div class="ticker-track">
+    <span class="ticker-item">01 &nbsp;SpaceX が Cursor を9.6兆円で買収 — IPO4日後の電撃発表、マスクAI帝国が完成へ</span>
+    <span class="ticker-sep">◆</span>
+    <span class="ticker-item">02 &nbsp;ノーベル賞受賞者 John Jumper が DeepMind → Anthropic へ — AlphaFold開発者が移籍</span>
+    <span class="ticker-sep">◆</span>
+    <span class="ticker-item">03 &nbsp;Trump が Anthropic の国家安全保障指定を解除 — Fable 5・Mythos 5 のアクセス復活へ</span>
+    <span class="ticker-sep">◆</span>
+    <span class="ticker-item">04 &nbsp;Transformer共同発明者 Noam Shazeer が Google → OpenAI へ — AI人材争奪戦が最高潮</span>
+    <span class="ticker-sep">◆</span>
+    <span class="ticker-item">05 &nbsp;日仏AI高級対話 初開催 — 政府×企業参加の国際AIガバナンス枠組み作りが本格化</span>
+    <span class="ticker-sep">◆</span>
+    <span class="ticker-item">01 &nbsp;SpaceX が Cursor を9.6兆円で買収 — IPO4日後の電撃発表、マスクAI帝国が完成へ</span>
+    <span class="ticker-sep">◆</span>
+    <span class="ticker-item">02 &nbsp;ノーベル賞受賞者 John Jumper が DeepMind → Anthropic へ — AlphaFold開発者が移籍</span>
+    <span class="ticker-sep">◆</span>
+    <span class="ticker-item">03 &nbsp;Trump が Anthropic の国家安全保障指定を解除 — Fable 5・Mythos 5 のアクセス復活へ</span>
+    <span class="ticker-sep">◆</span>
+    <span class="ticker-item">04 &nbsp;Transformer共同発明者 Noam Shazeer が Google → OpenAI へ — AI人材争奪戦が最高潮</span>
+    <span class="ticker-sep">◆</span>
+    <span class="ticker-item">05 &nbsp;日仏AI高級対話 初開催 — 政府×企業参加の国際AIガバナンス枠組み作りが本格化</span>
+    <span class="ticker-sep">◆</span>
   </div>
-
-  <div class="nav">
-    <button class="nav-btn" id="prev">←</button>
-    <div class="dots" id="dots"></div>
-    <button class="nav-btn" id="next">→</button>
-  </div>
-  <div class="progress"><div class="prog-fill" id="fill" style="width:20%"></div></div>
-  <div class="counter" id="cnt">01 / 05</div>
-  <div class="hint">← → KEY / SWIPE</div>
 </div>
 
-<div class="thick-rule" style="max-width:720px;margin:0 auto"></div>
-<div class="ruler"></div>
+<div class="prog-wrap"><div class="prog-fill" id="prog" style="width:20%;background:#c0392b;"></div></div>
+
+<div class="slider-outer" id="outer">
+  <div class="slider-track" id="track">
+
+    <!-- 1 -->
+    <div class="slide"><div class="card t1">
+      <div class="card-header-band">
+        <div class="tag">SpaceX × Cursor 衝撃買収</div>
+        <div class="no">01 / 05</div>
+      </div>
+      <div class="card-inner">
+        <div class="title">SpaceX が <em>Cursor</em> を<br>9.6兆円で電撃買収</div>
+        <div class="divider"></div>
+        <div class="lead">IPO完了のわずか4日後。マスクがAIコーディング市場に9.6兆円を投じ、OpenAI・Anthropicへの逆転を狙う。</div>
+        <div class="body">SpaceXは6月16日、AIコードエディター「Cursor」の親会社Anysphereを600億ドル（約9.6兆円）の全株式交換で買収すると発表した。SpaceXのIPO完了からわずか4日後の電撃発表だ。Cursorは年換算売上高40億ドル、フォーチュン500企業の60%が利用する世界最大のAIコーディングツール。SpaceXはIpo前に「600億ドルで買収するか、しなければ100億ドルを支払う」オプションを確保しており、今回そのオプションを行使した。Colossus 1（22万GPU）の計算資源をCursorに開放することで、Claude CodeとGitHub Copilotへの反攻を狙う。買収発表後にSpaceX株は一時16%急騰し、時価総額が瞬間的にMicrosoftを抜く場面もあった。</div>
+        <div class="foot">
+          <div class="src">GIGAZINE / ITmedia / BigGo Finance — 2026.06.16〜17</div>
+          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span></div>
+        </div>
+      </div>
+      <div class="card-bg">01</div>
+    </div></div>
+
+    <!-- 2 -->
+    <div class="slide"><div class="card t2">
+      <div class="card-header-band">
+        <div class="tag">ノーベル賞 科学者 移籍</div>
+        <div class="no">02 / 05</div>
+      </div>
+      <div class="card-inner">
+        <div class="title">AlphaFold の <em>John Jumper</em><br>DeepMind → Anthropic へ</div>
+        <div class="divider"></div>
+        <div class="lead">2024年ノーベル化学賞受賞者がAnthropicに加入。AI創薬・科学AIへの本格展開を示唆する歴史的移籍。</div>
+        <div class="body">タンパク質構造予測AI「AlphaFold」の開発を率い、2024年ノーベル化学賞を受賞したJohn Jumper氏がGoogle DeepMindを離れ、Anthropicに加入することが明らかになった。ノーベル賞受賞者レベルの科学者がAI安全研究・科学AIを掲げるAnthropicに移籍することは、同社がIPO前夕に「科学AIの旗手」としてのポジションを確立しようとする意志の現れだ。同週にはTransformerの共同発明者Noam Shazeer氏がGoogle→OpenAI移籍も発表されており、「科学の頭脳」と「アーキテクチャの天才」がそれぞれ競合ラボに移った週として業界史に刻まれる。</div>
+        <div class="foot">
+          <div class="src">Reuters / Medium (Fabio Chiusano) — 2026.06.19〜22</div>
+          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span></div>
+        </div>
+      </div>
+      <div class="card-bg">02</div>
+    </div></div>
+
+    <!-- 3 -->
+    <div class="slide"><div class="card t3">
+      <div class="card-header-band">
+        <div class="tag">Anthropic 規制解除</div>
+        <div class="no">03 / 05</div>
+      </div>
+      <div class="card-inner">
+        <div class="title">Trump が Anthropic の<br>国家安全保障指定を <em>解除</em></div>
+        <div class="divider"></div>
+        <div class="lead">Fable 5・Mythos 5への世界規模アクセス禁止が1週間で解除。Anthropicのソウル拠点開設など主権危機は後遺症も。</div>
+        <div class="body">6月12日に米国政府がAnthropicのFable 5・Mythos 5を「国家安全保障上の懸念」として世界規模でアクセス禁止にした措置を、トランプ大統領がわずか1週間後に解除した。禁止期間中、Anthropicは韓国ソウルにオフィスを開設し、韓国主要パートナーと新たなAI提携を締結するなど「AI主権危機」に対応した。この一連の出来事は「フロンティアAIがいつでも国際規制によって停止させられる」というリスクを浮き彫りにし、OpenソースAIやローカルLLMへの関心が高まる契機ともなった。Project Glasswingメンバー（AWS・Apple・Cisco・Google・JPMorgan等）へのプレビュー提供は禁止中も継続されていた。</div>
+        <div class="foot">
+          <div class="src">GIGAZINE / Medium (Fabio Chiusano) — 2026.06.12〜22</div>
+          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="fd">🔥</span></div>
+        </div>
+      </div>
+      <div class="card-bg">03</div>
+    </div></div>
+
+    <!-- 4 -->
+    <div class="slide"><div class="card t4">
+      <div class="card-header-band">
+        <div class="tag">AI人材争奪戦 最高潮</div>
+        <div class="no">04 / 05</div>
+      </div>
+      <div class="card-inner">
+        <div class="title">Transformer発明者 <em>Shazeer</em><br>Google → OpenAI へ移籍</div>
+        <div class="divider"></div>
+        <div class="lead">「Attention Is All You Need」共著者・Gemini共同開発者が、Googleに戻ってわずか22ヶ月でOpenAIへ。</div>
+        <div class="body">現代のAI革命の礎となった論文「Attention Is All You Need」の共著者であり、Google Geminiの共同リードでもあるNoam Shazeer氏が、GoogleへのGoogleのCharacter.AIからの引き戻し（27億ドル）からわずか22ヶ月でOpenAIのAIアーキテクチャ研究リードに就任した。John Jumper氏のAnthropic加入と同週に発表されたため「AI界の最大の人材シャッフル週」と呼ばれている。AI研究者の最高峰人材を巡る争奪戦が、企業の競争力を直接左右する時代に突入したことを示している。</div>
+        <div class="foot">
+          <div class="src">Medium (Fabio Chiusano) — 2026.06.22</div>
+          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="fd">🔥</span></div>
+        </div>
+      </div>
+      <div class="card-bg">04</div>
+    </div></div>
+
+    <!-- 5 -->
+    <div class="slide"><div class="card t5">
+      <div class="card-header-band">
+        <div class="tag">日仏 × AIガバナンス</div>
+        <div class="no">05 / 05</div>
+      </div>
+      <div class="card-inner">
+        <div class="title">日本×フランス<br><em>AI高級対話</em> が初開催</div>
+        <div class="divider"></div>
+        <div class="lead">G7の中で唯一、日仏が政府+企業が参加するAI二国間枠組みを先行設置。EUとアジアのAI橋渡し役に。</div>
+        <div class="body">日本とフランスが政府と企業の両者が参加する初のAI高級事務レベル対話を開催した。G7の中でも特に日仏が二国間AI連携の先陣を切る形で、EUのAI規制枠組みとアジアの産業応用の橋渡し役として機能する狙いがある。同週にはGoogle DeepMindでAlphaFoldの開発を率いたJohn Jumper氏がAnthropicへ移籍し（別記事）、AIの「科学×外交」の両面での国際展開が加速した週となった。日本のAIスクール・コンサル分野でも「EU規制対応」と「日本型AI推進モデル」の両立支援という新たなビジネス領域が広がりつつある。</div>
+        <div class="foot">
+          <div class="src">猫P note / Reuters — 2026.06.19〜22</div>
+          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="fd">🔥</span><span class="fd">🔥</span></div>
+        </div>
+      </div>
+      <div class="card-bg">05</div>
+    </div></div>
+
+  </div>
+</div>
+
+<div class="controls">
+  <div class="navs">
+    <button class="nb" id="prev">&#8592;</button>
+    <button class="nb" id="next">&#8594;</button>
+  </div>
+  <div class="dots" id="dots">
+    <div class="dot on" data-i="0"></div>
+    <div class="dot" data-i="1"></div>
+    <div class="dot" data-i="2"></div>
+    <div class="dot" data-i="3"></div>
+    <div class="dot" data-i="4"></div>
+  </div>
+  <div class="ctr"><em id="cn">01</em> / 05</div>
+</div>
 
 <script>
-const track=document.getElementById('track');
-const total=5;let cur=0,sx=0;
-const dotsEl=document.getElementById('dots');
-const fillEl=document.getElementById('fill');
-const cntEl=document.getElementById('cnt');
-for(let i=0;i<total;i++){
-  const b=document.createElement('button');
-  b.className='dot'+(i===0?' active':'');
-  b.onclick=()=>go(i);
-  dotsEl.appendChild(b);
-}
+const track=document.getElementById('track'),allDots=document.querySelectorAll('.dot'),prog=document.getElementById('prog'),cn=document.getElementById('cn');
+const COLORS=['#c0392b','#1a5276','#1e8449','#d68910','#6c3483'];
+const N=5;let cur=0;
 function go(n){
-  cur=(n+total)%total;
+  cur=((n%N)+N)%N;
   track.style.transform=`translateX(-${cur*100}%)`;
-  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===cur));
-  fillEl.style.width=`${(cur+1)/total*100}%`;
-  cntEl.textContent=String(cur+1).padStart(2,'0')+' / '+String(total).padStart(2,'0');
+  allDots.forEach((d,i)=>d.classList.toggle('on',i===cur));
+  prog.style.width=`${(cur+1)/N*100}%`;
+  prog.style.background=COLORS[cur];
+  cn.textContent=String(cur+1).padStart(2,'0');
 }
-document.getElementById('prev').onclick=()=>go(cur-1);
 document.getElementById('next').onclick=()=>go(cur+1);
-document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')go(cur-1);if(e.key==='ArrowRight')go(cur+1)});
-track.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
-track.addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>40)go(cur+(d<0?1:-1))});
-// duplicate ticker
-const tk=document.getElementById('tk');tk.innerHTML+=tk.innerHTML;
+document.getElementById('prev').onclick=()=>go(cur-1);
+allDots.forEach(d=>d.addEventListener('click',()=>go(+d.dataset.i)));
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1);});
+let sx=0,o=document.getElementById('outer');
+o.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;},{passive:true});
+o.addEventListener('touchend',e=>{const d=sx-e.changedTouches[0].clientX;if(Math.abs(d)>45)d>0?go(cur+1):go(cur-1);},{passive:true});
+o.addEventListener('mousedown',e=>{sx=e.clientX;});
+o.addEventListener('mouseup',e=>{const d=sx-e.clientX;if(Math.abs(d)>45)d>0?go(cur+1):go(cur-1);});
 </script>
 </body>
 </html>
