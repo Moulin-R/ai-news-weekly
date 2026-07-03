@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI最新ニュース｜2026年7月第1週</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Unbounded:wght@700;900&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#fdf6ff;
+  --c1:#ff6b9d;--c2:#7c5cfc;--c3:#00b894;--c4:#e67e22;--c5:#0984e3;
+  --ink:#1a1030;--soft:#888;
+}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;overflow-x:hidden}
+
+/* カラフル帯 */
+.stripe{height:5px;background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3),var(--c4),var(--c5))}
+
+/* ティッカー */
+.ticker{background:var(--ink);overflow:hidden;padding:7px 0}
+.tk-inner{display:flex;gap:50px;white-space:nowrap;animation:tk 26s linear infinite}
+.tk-inner span{font-size:11px;color:#fff;opacity:.85;letter-spacing:.06em}
+.tk-inner .dot{color:var(--c1);font-size:16px;line-height:1}
+@keyframes tk{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ヘッダー */
+header{text-align:center;padding:32px 16px 8px;position:relative}
+.head-tag{display:inline-block;background:var(--c1);color:#fff;font-size:10px;font-weight:700;letter-spacing:.2em;padding:4px 14px;border-radius:20px;margin-bottom:12px}
+header h1{font-family:'Unbounded',sans-serif;font-size:clamp(26px,7vw,60px);line-height:1.1;color:var(--ink)}
+header h1 span{color:var(--c2)}
+.head-date{font-size:11px;color:var(--soft);margin-top:8px;letter-spacing:.1em}
+
+/* スライダー */
+.wrap{max-width:700px;margin:24px auto 48px;padding:0 16px}
+.overflow{overflow:hidden;border-radius:28px}
+.track{display:flex;transition:transform .58s cubic-bezier(.77,0,.18,1)}
+
+/* カード */
+.card{
+  min-width:100%;border-radius:28px;padding:32px 30px 28px;
+  background:#fff;position:relative;overflow:hidden;
+  box-shadow:0 8px 40px rgba(0,0,0,.06);
+}
+.card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:5px;
+  background:var(--cc);
+}
+.card-blob{
+  position:absolute;top:-40px;right:-40px;width:160px;height:160px;
+  border-radius:50%;background:var(--cc);opacity:.06;pointer-events:none;
+}
+
+.meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.num{font-family:'Unbounded',sans-serif;font-size:11px;color:var(--cc);letter-spacing:.15em}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;background:color-mix(in srgb,var(--cc) 12%,white);color:var(--cc)}
+
+.card-title{font-size:clamp(17px,3vw,22px);font-weight:900;line-height:1.5;margin-bottom:14px;color:var(--ink)}
+.card-title em{color:var(--cc);font-style:normal}
+
+.divline{height:1px;background:rgba(0,0,0,.07);margin:14px 0}
+
+.card-body{font-size:13px;line-height:2;color:#444;margin-bottom:18px}
+
+/* AI講師向けひとこと */
+.tip{
+  border-left:3px solid var(--cc);padding:10px 14px;
+  background:color-mix(in srgb,var(--cc) 8%,white);
+  border-radius:0 12px 12px 0;margin-bottom:16px;
+}
+.tip-label{font-family:'Caveat',cursive;font-size:13px;color:var(--cc);font-weight:600;margin-bottom:4px}
+.tip-body{font-size:12px;color:#555;line-height:1.8}
+
+.foot{display:flex;justify-content:space-between;align-items:center}
+.source{font-size:10px;color:var(--soft);letter-spacing:.05em}
+.heat{font-size:16px;letter-spacing:2px}
+
+/* ナビ */
+.nav{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:20px}
+.nbtn{width:42px;height:42px;border-radius:50%;border:2px solid var(--ink);background:transparent;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.nbtn:hover{background:var(--ink);color:var(--bg)}
+.dots{display:flex;gap:7px}
+.dot{width:9px;height:9px;border-radius:50%;border:2px solid var(--soft);background:transparent;cursor:pointer;padding:0;transition:all .25s}
+.dot.on{background:var(--ink);border-color:var(--ink);width:24px;border-radius:5px}
+.prog{height:3px;background:#eee;border-radius:3px;margin-top:12px}
+.pfill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--c2),var(--c1));transition:width .58s cubic-bezier(.77,0,.18,1)}
+.cnt{text-align:center;font-size:11px;color:var(--soft);margin-top:6px;letter-spacing:.12em}
+.hint{text-align:center;font-size:10px;color:#ccc;letter-spacing:.1em;margin-top:4px;padding-bottom:16px}
+
+@media(max-width:480px){.card{padding:24px 18px 20px}}
+</style>
+</head>
+<body>
+
+<div class="stripe"></div>
+
+<div class="ticker">
+  <div class="tk-inner" id="tk">
+    <span>🎉 Claude Fable 5 が7月1日に全面復活！</span><span class="dot">◆</span>
+    <span>🆕 OpenAI GPT-5.6「Sol / Terra / Luna」限定プレビュー開始</span><span class="dot">◆</span>
+    <span>📉 ChatGPTシェア初の50%割れ　Claude・Geminiが躍進</span><span class="dot">◆</span>
+    <span>🔬 Googleからノーベル賞研究者がAnthropicへ移籍</span><span class="dot">◆</span>
+    <span>💳 AIエージェントが互いに「雇用＆支払い」する経済圏が誕生</span><span class="dot">◆</span>
+    <span>🎉 Claude Fable 5 が7月1日に全面復活！</span><span class="dot">◆</span>
+    <span>🆕 OpenAI GPT-5.6「Sol / Terra / Luna」限定プレビュー開始</span><span class="dot">◆</span>
+    <span>📉 ChatGPTシェア初の50%割れ　Claude・Geminiが躍進</span><span class="dot">◆</span>
+    <span>🔬 Googleからノーベル賞研究者がAnthropicへ移籍</span><span class="dot">◆</span>
+    <span>💳 AIエージェントが互いに「雇用＆支払い」する経済圏が誕生</span><span class="dot">◆</span>
+  </div>
+</div>
+
+<header>
+  <div class="head-tag">✦ WEEKLY AI DIGEST ✦</div>
+  <h1>AI <span>最新</span> ニュース</h1>
+  <div class="head-date">2026年7月4日（土）｜7月第1週号</div>
+</header>
+
+<div class="wrap">
+  <div class="overflow">
+    <div class="track" id="track">
+
+      <!-- 01 -->
+      <div class="card" style="--cc:var(--c1)">
+        <div class="card-blob"></div>
+        <div class="meta">
+          <div class="num">01 / 05</div>
+          <div class="tags"><span class="tag">Anthropic</span><span class="tag">復活</span><span class="tag">Claude</span></div>
+        </div>
+        <div class="card-title">🎉 <em>Claude Fable 5</em> が7月1日に全面復活<br>3週間の停止を経て安全対策を強化して再始動</div>
+        <div class="divline"></div>
+        <div class="card-body">
+          6月12日の米政府輸出規制命令で全世界停止となっていたClaudeの最上位モデル「Fable 5」が、6月30日に規制解除・7月1日から Claude.ai・Claude Code・Claude Coworkで正式に再提供開始。Anthropicは安全対策の強化と政府との協議を経て再稼働を実現した。Mythos 5は引き続き重要インフラ組織向けの限定提供が続いており、日立・富士通などGlasswing参加企業のアクセスも段階的に再開される見通しです。
+        </div>
+        <div class="tip">
+          <div class="tip-label">✏️ AIスクール講師的ひとこと</div>
+          <div class="tip-body">「AIが政府に止められた3週間」は生きた教材になります。「技術は凄くても社会とのルール設計が追いついてない」という現実を授業で語ってみて！</div>
+        </div>
+        <div class="foot">
+          <div class="source">📅 2026.07.01 ／ AI Watch・774::Blog</div>
+          <div class="heat">🔥🔥🔥🔥🔥</div>
+        </div>
+      </div>
+
+      <!-- 02 -->
+      <div class="card" style="--cc:var(--c2)">
+        <div class="card-blob"></div>
+        <div class="meta">
+          <div class="num">02 / 05</div>
+          <div class="tags"><span class="tag">OpenAI</span><span class="tag">GPT-5.6</span><span class="tag">新モデル</span></div>
+        </div>
+        <div class="card-title">🆕 OpenAIが <em>GPT-5.6</em> 3モデルを発表<br>Sol・Terra・Luna で用途別に使い分けへ</div>
+        <div class="divline"></div>
+        <div class="card-body">
+          6月26日、OpenAIが次世代モデル群「GPT-5.6」の限定プレビューを開始。最上位「Sol」・日常業務向け低価格「Terra」・高速軽量「Luna」の3モデル構成。Solはコマンドライン作業のベンチマーク（Terminal-Bench 2.1）で最高性能を記録し、コーディング領域ではClaude Fable 5と並ぶ水準とされる。ChatGPT本体への一般展開は7月上旬〜中旬が見込まれ、「気づいたら使えるようになっている」タイプのアップデートになりそうです。
+        </div>
+        <div class="tip">
+          <div class="tip-label">✏️ AIスクール講師的ひとこと</div>
+          <div class="tip-body">「3モデル使い分け」は授業ネタとして最高！美容室の「シャンプー・カラー・トリートメントは目的で使い分ける」のと同じ感覚で説明できます✨</div>
+        </div>
+        <div class="foot">
+          <div class="source">📅 2026.06.26〜07.02 ／ Ledge.ai・Uravation</div>
+          <div class="heat">🔥🔥🔥🔥🔥</div>
+        </div>
+      </div>
+
+      <!-- 03 -->
+      <div class="card" style="--cc:var(--c3)">
+        <div class="card-blob"></div>
+        <div class="meta">
+          <div class="num">03 / 05</div>
+          <div class="tags"><span class="tag">市場シェア</span><span class="tag">ChatGPT</span><span class="tag">三極化</span></div>
+        </div>
+        <div class="card-title">📉 <em>ChatGPTシェアが初の50%割れ</em><br>Claude・Geminiが急伸し三極化が鮮明に</div>
+        <div class="divline"></div>
+        <div class="card-body">
+          生成AIアシスタント市場でChatGPTの利用者シェアが初めて50%を下回ったとLedge.aiが報じた。ClaudeとGeminiの台頭が背景にあり、Claude（Anthropic）のシェアは2026年1月の1.5%から4月に13%超へ急拡大。「ChatGPT一強」から「ChatGPT・Claude・Gemini の三極時代」へ移行が鮮明に。AIスクールで教えるツール選びの基準も、「ChatGPTだけ」から「目的別に選ぶ」時代に突入しています。
+        </div>
+        <div class="tip">
+          <div class="tip-label">✏️ AIスクール講師的ひとこと</div>
+          <div class="tip-body">受講生に「どのAI使ってる？」と聞くと意外とばらける時代に。「用途別にAIを選べる人が強い」という軸で授業設計を更新するタイミングかも✨</div>
+        </div>
+        <div class="foot">
+          <div class="source">📅 2026年7月頭 ／ Ledge.ai</div>
+          <div class="heat">🔥🔥🔥🔥</div>
+        </div>
+      </div>
+
+      <!-- 04 -->
+      <div class="card" style="--cc:var(--c4)">
+        <div class="card-blob"></div>
+        <div class="meta">
+          <div class="num">04 / 05</div>
+          <div class="tags"><span class="tag">Google</span><span class="tag">人材流出</span><span class="tag">Anthropic</span></div>
+        </div>
+        <div class="card-title">🔬 Google DeepMindから <em>ノーベル賞研究者</em> がAnthropicへ<br>AI大物流出が相次ぎ業界地図が塗り替わる</div>
+        <div class="divline"></div>
+        <div class="card-body">
+          Googleから立て続けにAI業界の重鎮が流出している。ノーベル賞受賞研究者のJohn Jumper氏がAnthropicへ移籍し、Geminiの共同リードだった研究者がOpenAIに転籍したと報じられた。6月下旬だけで2件の大物移籍が明らかになり、AlphabetはDeepMind VPの退職と合わせて株価が一時7%超下落。AI覇権争いは「どのモデルが強いか」だけでなく、「どこが優秀な研究者を集めているか」という人材戦争でもある現実が浮き彫りになっています。
+        </div>
+        <div class="tip">
+          <div class="tip-label">✏️ AIスクール講師的ひとこと</div>
+          <div class="tip-body">「人が動くところに次のトレンドがある」——AIも美容業界も同じ。優秀な人がどこへ向かっているかを追いかけると先読みができます！</div>
+        </div>
+        <div class="foot">
+          <div class="source">📅 2026.06.19〜下旬 ／ Ledge.ai・Reuters</div>
+          <div class="heat">🔥🔥🔥🔥</div>
+        </div>
+      </div>
+
+      <!-- 05 -->
+      <div class="card" style="--cc:var(--c5)">
+        <div class="card-blob"></div>
+        <div class="meta">
+          <div class="num">05 / 05</div>
+          <div class="tags"><span class="tag">エージェント経済</span><span class="tag">OKX</span><span class="tag">決済</span></div>
+        </div>
+        <div class="card-title">💳 AIエージェントが互いに <em>「雇用」して「支払い」</em> する<br>エージェント経済インフラが始動</div>
+        <div class="divline"></div>
+        <div class="card-body">
+          暗号通貨取引所OKXが「OKX.AI」を発表。AIエージェント同士が自律的にタスクを発注・受注し、ブロックチェーンで少額決済まで完結する「エージェント経済」のインフラを整備。Visa×OpenAI連携でAIが購入まで代行する動きと合わせ、「AIが働いて稼いで使う」という概念が急速に現実化しています。ユーザーが介在しないビジネスフローが増えるなかで、「人間にしかできない価値」を問い直す時代に入っています。
+        </div>
+        <div class="tip">
+          <div class="tip-label">✏️ AIスクール講師的ひとこと</div>
+          <div class="tip-body">電子書籍でも「AIが集客して決済して納品する」自動化の流れが来ます。今のうちにエージェント概念を受講生に伝えておくと、先生として一歩リードできます✨</div>
+        </div>
+        <div class="foot">
+          <div class="source">📅 2026.06.30 ／ TechCrunch・こたぽんノート</div>
+          <div class="heat">🔥🔥🔥🔥</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="nav">
+    <button class="nbtn" id="prev">←</button>
+    <div class="dots" id="dots"></div>
+    <button class="nbtn" id="next">→</button>
+  </div>
+  <div class="prog"><div class="pfill" id="fill" style="width:20%"></div></div>
+  <div class="cnt" id="cnt">01 / 05</div>
+  <div class="hint">← → キー操作 ／ スワイプ対応</div>
+</div>
+
+<div class="stripe"></div>
+
+<script>
+const track=document.getElementById('track');
+const total=5;let cur=0,sx=0;
+const dotsEl=document.getElementById('dots');
+const fill=document.getElementById('fill');
+const cnt=document.getElementById('cnt');
+for(let i=0;i<total;i++){
+  const b=document.createElement('button');
+  b.className='dot'+(i===0?' on':'');
+  b.onclick=()=>go(i);dotsEl.appendChild(b);
+}
+function go(n){
+  cur=(n+total)%total;
+  track.style.transform=`translateX(-${cur*100}%)`;
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on',i===cur));
+  fill.style.width=`${(cur+1)/total*100}%`;
+  cnt.textContent=String(cur+1).padStart(2,'0')+' / '+String(total).padStart(2,'0');
+}
+document.getElementById('prev').onclick=()=>go(cur-1);
+document.getElementById('next').onclick=()=>go(cur+1);
+document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')go(cur-1);if(e.key==='ArrowRight')go(cur+1)});
+track.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
+track.addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>40)go(cur+(d<0?1:-1))});
+const tk=document.getElementById('tk');tk.innerHTML+=tk.innerHTML;
+</script>
+</body>
+</html>
