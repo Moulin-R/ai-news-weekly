@@ -3,73 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI NEWS WAVE 2026.07.06</title>
+<title>AI NEWS LUXE 2026.07.13</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ff6a00'/%3E%3Crect width='32' height='16' rx='7' fill='%23ff4500'/%3E%3Crect y='9' width='32' height='7' fill='%23ff4500'/%3E%3Crect x='4' y='17' width='24' height='1' fill='rgba(255,255,255,0.3)'/%3E%3Ctext x='16' y='14' text-anchor='middle' dominant-baseline='middle' font-family='Arial Black,Arial,sans-serif' font-size='12' font-weight='900' fill='white' letter-spacing='1'%3EAI%3C/text%3E%3Ctext x='16' y='25' text-anchor='middle' dominant-baseline='middle' font-family='Arial Black,Arial,sans-serif' font-size='8' font-weight='700' fill='rgba(255,255,255,0.92)' letter-spacing='2'%3Enews%3C/text%3E%3C/svg%3E">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="AI NEWS">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --bg:#07091a;--s1:#0d1128;
-  --c1:#f97316;--c2:#8b5cf6;--c3:#22d3ee;--c4:#4ade80;--c5:#fb7185;
-  --text:#f1f5f9;--muted:#475569;--border:rgba(255,255,255,0.07);
+  --bg:#0a0800;--s1:#111009;--s2:#1a1508;
+  --gold:#c9a84c;--gold2:#f0d078;--gold3:#8a6f2e;
+  --c1:#c9a84c;--c2:#e07b3a;--c3:#5ba8d4;--c4:#72c472;--c5:#c470c4;
+  --text:#f0ead8;--muted:#6b5f3a;--border:rgba(201,168,76,0.15);
 }
-body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;height:100vh;overflow:hidden;display:flex;flex-direction:column;}
+body{background:var(--bg);color:var(--text);font-family:'Noto Serif JP',serif;height:100vh;overflow:hidden;display:flex;flex-direction:column;}
 
 body::before{
   content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
   background:
-    radial-gradient(ellipse 80% 50% at 10% 20%,rgba(249,115,22,0.08),transparent 55%),
-    radial-gradient(ellipse 70% 45% at 90% 80%,rgba(139,92,246,0.08),transparent 55%),
-    radial-gradient(ellipse 60% 40% at 50% 50%,rgba(34,211,238,0.04),transparent 65%);
+    radial-gradient(ellipse 70% 50% at 20% 30%,rgba(201,168,76,0.06),transparent 55%),
+    radial-gradient(ellipse 60% 40% at 80% 70%,rgba(201,168,76,0.04),transparent 55%);
 }
 
 header{
   position:relative;z-index:10;flex-shrink:0;
-  background:rgba(7,9,26,0.92);backdrop-filter:blur(20px);
+  background:rgba(10,8,0,0.95);
   border-bottom:1px solid var(--border);
-  padding:0.65rem 1.3rem;
+  padding:0.7rem 1.3rem;
   display:flex;justify-content:space-between;align-items:center;
 }
-.logo{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;letter-spacing:0.06em;}
-.logo-g{
-  background:linear-gradient(90deg,var(--c1),var(--c2));
+.logo{
+  font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;
+  letter-spacing:0.12em;
+  background:linear-gradient(135deg,var(--gold),var(--gold2),var(--gold));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;
 }
 .hdr-r{display:flex;flex-direction:column;align-items:flex-end;gap:2px;}
 .hdr-badge{
-  font-family:'JetBrains Mono',monospace;font-size:0.55rem;font-weight:600;
-  color:var(--c1);border:1px solid rgba(249,115,22,0.4);
-  padding:0.1rem 0.42rem;border-radius:3px;letter-spacing:0.1em;
+  font-family:'Fira Code',monospace;font-size:0.54rem;font-weight:600;
+  color:var(--gold);border:1px solid rgba(201,168,76,0.4);
+  padding:0.1rem 0.42rem;letter-spacing:0.1em;
 }
-.hdr-date{font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:var(--muted);letter-spacing:0.08em;}
+.hdr-date{font-family:'Fira Code',monospace;font-size:0.54rem;color:var(--muted);letter-spacing:0.08em;}
 
 .ticker-wrap{
   position:relative;z-index:10;flex-shrink:0;
   overflow:hidden;padding:0.3rem 0;
-  background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3),var(--c4));
+  background:linear-gradient(90deg,var(--gold3),var(--gold),var(--gold2),var(--gold),var(--gold3));
 }
 .ticker-label{
   position:absolute;left:0;top:0;bottom:0;z-index:2;
-  background:var(--bg);color:var(--c1);
+  background:var(--bg);color:var(--gold);
   display:flex;align-items:center;padding:0 0.7rem;
-  font-family:'JetBrains Mono',monospace;font-size:0.58rem;font-weight:600;
+  font-family:'Fira Code',monospace;font-size:0.58rem;font-weight:600;
   letter-spacing:0.14em;white-space:nowrap;
-  border-right:1px solid rgba(249,115,22,0.3);
+  border-right:1px solid rgba(201,168,76,0.3);
 }
 .ticker-track{
   display:flex;align-items:center;white-space:nowrap;
   animation:ticker 38s linear infinite;padding-left:100px;
 }
 .ticker-track:hover{animation-play-state:paused;}
-.ticker-item{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:rgba(255,255,255,0.95);font-weight:600;letter-spacing:0.04em;padding:0 0.5rem;}
-.ticker-sep{color:rgba(255,255,255,0.45);margin:0 0.2rem;}
+.ticker-item{font-family:'Fira Code',monospace;font-size:0.59rem;color:var(--bg);font-weight:600;letter-spacing:0.04em;padding:0 0.5rem;}
+.ticker-sep{color:rgba(10,8,0,0.45);margin:0 0.2rem;}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-.prog-wrap{height:2px;flex-shrink:0;z-index:10;background:rgba(255,255,255,0.05);}
+.prog-wrap{height:2px;flex-shrink:0;z-index:10;background:rgba(201,168,76,0.08);}
 .prog-fill{height:100%;transition:width 0.4s ease;}
 
 .slider-outer{flex:1;overflow:hidden;position:relative;z-index:5;padding:0.9rem 0 0;}
@@ -79,148 +80,145 @@ header{
 .card{
   width:100%;height:100%;
   background:var(--s1);
-  border:1px solid var(--border);border-radius:14px;
+  border:1px solid var(--border);border-radius:12px;
   display:flex;flex-direction:column;overflow:hidden;position:relative;
+  box-shadow:0 0 30px rgba(201,168,76,0.04),inset 0 1px 0 rgba(201,168,76,0.08);
 }
-.card-stripe{
-  height:3px;
-  background:linear-gradient(90deg,var(--ac1,var(--c1)),var(--ac2,var(--c2)));
-  flex-shrink:0;border-radius:14px 14px 0 0;
+.card-gold-line{
+  height:2px;
+  background:linear-gradient(90deg,transparent,var(--ac,var(--gold)),transparent);
+  flex-shrink:0;
 }
 .card-inner{padding:1.15rem 1.4rem 1rem;flex:1;display:flex;flex-direction:column;gap:0.72rem;overflow:hidden;}
 
 .card-top{display:flex;justify-content:space-between;align-items:center;}
 .tag{
-  font-family:'JetBrains Mono',monospace;font-size:0.57rem;font-weight:600;
-  letter-spacing:0.12em;text-transform:uppercase;
-  background:linear-gradient(135deg,var(--ac1,var(--c1)),var(--ac2,var(--c2)));
-  color:white;border-radius:3px;padding:0.15rem 0.5rem;
+  font-family:'Fira Code',monospace;font-size:0.56rem;font-weight:600;
+  letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--ac,var(--gold));border:1px solid var(--ac,var(--gold));
+  padding:0.14rem 0.5rem;border-radius:2px;
+  background:color-mix(in srgb,var(--ac) 8%,transparent);
 }
-.no{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--muted);letter-spacing:0.1em;}
+.no{font-family:'Fira Code',monospace;font-size:0.56rem;color:var(--muted);letter-spacing:0.1em;}
 
 .title{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(1.05rem,4vw,1.6rem);
-  font-weight:800;line-height:1.25;letter-spacing:-0.01em;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.15rem,4.5vw,1.75rem);
+  font-weight:700;line-height:1.25;letter-spacing:0.02em;
+  color:var(--text);
 }
-.title em{
-  font-style:normal;
-  background:linear-gradient(135deg,var(--ac1,var(--c1)),var(--ac2,var(--c2)));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-}
+.title em{font-style:italic;font-weight:400;color:var(--ac,var(--gold));}
+
 .lead{
-  font-size:0.75rem;font-weight:700;line-height:1.5;
-  background:linear-gradient(135deg,var(--ac1,var(--c1)),var(--ac2,var(--c2)));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  border-left:2px solid var(--ac1,var(--c1));padding-left:0.65rem;
+  font-family:'Noto Serif JP',serif;
+  font-size:0.77rem;font-weight:700;line-height:1.5;
+  color:var(--ac,var(--gold));
+  border-left:2px solid var(--ac,var(--gold));padding-left:0.65rem;
+  opacity:0.9;
 }
-.body{font-size:0.78rem;line-height:2;color:#7e8fa8;flex:1;overflow-y:auto;scrollbar-width:none;}
+.body{
+  font-family:'Noto Serif JP',serif;
+  font-size:0.77rem;line-height:2;color:#9a8a64;
+  flex:1;overflow-y:auto;scrollbar-width:none;
+}
 .body::-webkit-scrollbar{display:none;}
 .foot{
   display:flex;justify-content:space-between;align-items:center;
-  border-top:1px solid rgba(255,255,255,0.06);padding-top:0.7rem;
+  border-top:1px solid rgba(201,168,76,0.1);padding-top:0.7rem;
   flex-wrap:wrap;gap:0.4rem;flex-shrink:0;
 }
-.src{font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:var(--muted);letter-spacing:0.05em;}
+.src{font-family:'Fira Code',monospace;font-size:0.54rem;color:var(--muted);letter-spacing:0.05em;}
 .heat{display:flex;gap:1px;}
 .f{font-size:0.72rem;}.fd{font-size:0.72rem;opacity:0.12;}
 .card-bg{
   position:absolute;right:0.5rem;bottom:-1rem;
-  font-family:'Syne',sans-serif;font-size:8rem;font-weight:800;
-  background:linear-gradient(135deg,var(--ac1,var(--c1)),var(--ac2,var(--c2)));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  opacity:0.05;line-height:1;pointer-events:none;user-select:none;
+  font-family:'Cormorant Garamond',serif;font-size:9rem;font-weight:700;
+  color:var(--ac,var(--gold));opacity:0.04;line-height:1;
+  pointer-events:none;user-select:none;
 }
 
-.t1{--ac1:#f97316;--ac2:#fbbf24;}
-.t2{--ac1:#8b5cf6;--ac2:#ec4899;}
-.t3{--ac1:#22d3ee;--ac2:#38bdf8;}
-.t4{--ac1:#4ade80;--ac2:#22d3ee;}
-.t5{--ac1:#fb7185;--ac2:#f97316;}
+.t1{--ac:#c9a84c;}.t2{--ac:#e07b3a;}.t3{--ac:#5ba8d4;}.t4{--ac:#72c472;}.t5{--ac:#c470c4;}
 
 .controls{
   flex-shrink:0;z-index:10;
-  background:rgba(7,9,26,0.92);backdrop-filter:blur(20px);
+  background:rgba(10,8,0,0.95);
   border-top:1px solid var(--border);
   padding:0.55rem 1.1rem;
   display:flex;justify-content:space-between;align-items:center;gap:1rem;
 }
 .navs{display:flex;gap:0.5rem;}
 .nb{
-  width:32px;height:32px;border-radius:8px;
-  background:rgba(249,115,22,0.08);border:1px solid var(--border);
-  color:var(--c1);cursor:pointer;font-size:0.9rem;
+  width:32px;height:32px;border-radius:6px;
+  background:rgba(201,168,76,0.08);border:1px solid var(--border);
+  color:var(--gold);cursor:pointer;font-size:0.9rem;
   display:flex;align-items:center;justify-content:center;transition:all 0.15s;
 }
-.nb:hover{background:rgba(249,115,22,0.18);border-color:var(--c1);}
+.nb:hover{background:rgba(201,168,76,0.16);border-color:var(--gold);}
 .nb:active{transform:scale(0.9);}
 .dots{display:flex;gap:0.45rem;align-items:center;}
-.dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.1);cursor:pointer;transition:all 0.25s;}
-.dot.on{width:20px;border-radius:3px;background:linear-gradient(90deg,var(--c1),var(--c2));}
-.ctr{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);letter-spacing:0.15em;white-space:nowrap;}
-.ctr em{
-  background:linear-gradient(90deg,var(--c1),var(--c2));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  font-style:normal;font-weight:700;
-}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(201,168,76,0.12);cursor:pointer;transition:all 0.25s;border:1px solid rgba(201,168,76,0.2);}
+.dot.on{width:20px;border-radius:3px;background:var(--gold);border-color:var(--gold);}
+.ctr{font-family:'Fira Code',monospace;font-size:0.6rem;color:var(--muted);letter-spacing:0.15em;white-space:nowrap;}
+.ctr em{color:var(--gold);font-style:normal;font-weight:600;}
+
 @keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-header{animation:up 0.4s ease both;}
-.ticker-wrap{animation:up 0.4s 0.05s ease both;}
-.slider-outer{animation:up 0.4s 0.1s ease both;}
-.controls{animation:up 0.4s 0.15s ease both;}
+header{animation:up 0.45s ease both;}
+.ticker-wrap{animation:up 0.45s 0.05s ease both;}
+.slider-outer{animation:up 0.45s 0.1s ease both;}
+.controls{animation:up 0.45s 0.15s ease both;}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo"><span class="logo-g">AI NEWS</span> WAVE</div>
+  <div class="logo">AI NEWS LUXE</div>
   <div class="hdr-r">
-    <div class="hdr-badge">▶ GPT-5.6 Sol 発表号</div>
-    <div class="hdr-date">2026.07.06 — WEEK 28</div>
+    <div class="hdr-badge">▶ GPT-5.6一般公開 / Noetra始動号</div>
+    <div class="hdr-date">2026.07.13 — WEEK 29</div>
   </div>
 </header>
 
 <div class="ticker-wrap">
-  <div class="ticker-label">W28</div>
+  <div class="ticker-label">W29</div>
   <div class="ticker-track">
-    <span class="ticker-item">01 &nbsp;GPT-5.6 Sol/Terra/Luna 発表 — Claude Mythos 5超え・価格3分の1・米政府承認制限付き</span>
-    <span class="ticker-sep">✦</span>
-    <span class="ticker-item">02 &nbsp;Anthropic Claude Science 発表 — 全有料ユーザー即日ベータ開放・Claude Code以来最大のプロダクト</span>
-    <span class="ticker-sep">✦</span>
-    <span class="ticker-item">03 &nbsp;Meta Llama 終焉・Muse Spark 誕生 — 143億ドルでScale AI買収・Llama終了でオープンAI終わる?</span>
-    <span class="ticker-sep">✦</span>
-    <span class="ticker-item">04 &nbsp;カリフォルニア州政府 × Anthropic 提携 — 州の全機関・自治体がClaudeを50%割引で導入へ</span>
-    <span class="ticker-sep">✦</span>
-    <span class="ticker-item">05 &nbsp;AI自動再帰的改善 — Altman「6ヶ月以内に可能」Anthropic Jack Clark「2028年末」で論争</span>
-    <span class="ticker-sep">✦</span>
-    <span class="ticker-item">01 &nbsp;GPT-5.6 Sol/Terra/Luna 発表 — Claude Mythos 5超え・価格3分の1・米政府承認制限付き</span>
-    <span class="ticker-sep">✦</span>
-    <span class="ticker-item">02 &nbsp;Anthropic Claude Science 発表 — 全有料ユーザー即日ベータ開放・Claude Code以来最大のプロダクト</span>
-    <span class="ticker-sep">✦</span>
-    <span class="ticker-item">03 &nbsp;Meta Llama 終焉・Muse Spark 誕生 — 143億ドルでScale AI買収・Llama終了でオープンAI終わる?</span>
-    <span class="ticker-sep">✦</span>
-    <span class="ticker-item">04 &nbsp;カリフォルニア州政府 × Anthropic 提携 — 州の全機関・自治体がClaudeを50%割引で導入へ</span>
-    <span class="ticker-sep">✦</span>
-    <span class="ticker-item">05 &nbsp;AI自動再帰的改善 — Altman「6ヶ月以内に可能」Anthropic Jack Clark「2028年末」で論争</span>
-    <span class="ticker-sep">✦</span>
+    <span class="ticker-item">01 &nbsp;GPT-5.6が一般公開 — M365 Copilotにも追加、Claude Fable 5の無償提供7/19まで延長</span>
+    <span class="ticker-sep">◆</span>
+    <span class="ticker-item">02 &nbsp;日本「Noetra」始動 — 国内大手共同出資の日本AI基盤モデルが新名称で産総研と始動</span>
+    <span class="ticker-sep">◆</span>
+    <span class="ticker-item">03 &nbsp;OpenAI「GPT-Live」— 間を空けずに考えながら会話する「まるで人間」の音声AIが話題</span>
+    <span class="ticker-sep">◆</span>
+    <span class="ticker-item">04 &nbsp;Anthropic J-space 発見 — AIの内なる思考が宿る空間をJ-lensで可視化・安全性監視に応用</span>
+    <span class="ticker-sep">◆</span>
+    <span class="ticker-item">05 &nbsp;デジタル庁 tsuzumi をさくらのクラウドで稼働 — 国産AIで「日本の自律性確保」へ</span>
+    <span class="ticker-sep">◆</span>
+    <span class="ticker-item">01 &nbsp;GPT-5.6が一般公開 — M365 Copilotにも追加、Claude Fable 5の無償提供7/19まで延長</span>
+    <span class="ticker-sep">◆</span>
+    <span class="ticker-item">02 &nbsp;日本「Noetra」始動 — 国内大手共同出資の日本AI基盤モデルが新名称で産総研と始動</span>
+    <span class="ticker-sep">◆</span>
+    <span class="ticker-item">03 &nbsp;OpenAI「GPT-Live」— 間を空けずに考えながら会話する「まるで人間」の音声AIが話題</span>
+    <span class="ticker-sep">◆</span>
+    <span class="ticker-item">04 &nbsp;Anthropic J-space 発見 — AIの内なる思考が宿る空間をJ-lensで可視化・安全性監視に応用</span>
+    <span class="ticker-sep">◆</span>
+    <span class="ticker-item">05 &nbsp;デジタル庁 tsuzumi をさくらのクラウドで稼働 — 国産AIで「日本の自律性確保」へ</span>
+    <span class="ticker-sep">◆</span>
   </div>
 </div>
 
-<div class="prog-wrap"><div class="prog-fill" id="prog" style="width:20%;background:linear-gradient(90deg,#f97316,#fbbf24);"></div></div>
+<div class="prog-wrap"><div class="prog-fill" id="prog" style="width:20%;background:linear-gradient(90deg,#c9a84c,#f0d078);"></div></div>
 
 <div class="slider-outer" id="outer">
   <div class="slider-track" id="track">
 
     <!-- 1 -->
     <div class="slide"><div class="card t1">
-      <div class="card-stripe"></div>
+      <div class="card-gold-line"></div>
       <div class="card-inner">
-        <div class="card-top"><div class="tag">OpenAI 新世代</div><div class="no">01/05</div></div>
-        <div class="title"><em>GPT-5.6 Sol</em> 発表<br>Claude Mythos超え・価格3分の1</div>
-        <div class="lead">Sol・Terra・Lunaの3階層構成。TerminalBench 2.1で91.9%とMythos 5の88%を上回り、米政府承認制で限定公開。</div>
-        <div class="body"><cite index="51-1">OpenAIが発表したGPT-5.6シリーズは、フラッグシップの「Sol（太陽）」、日常業務向けバランス型の「Terra（地球）」、高速・低価格の「Luna（月）」という3階層で構成される。</cite>SolはTerminal-Bench 2.1でultraモード91.9%を達成し、Anthropicの最高峰Claude Mythos 5（88%）を上回った。<cite index="58-1">価格はSolが入力$5・出力$30（100万トークンあたり）でGPT-5.5と同額、TerraはGPT-5.5と同等性能の半額、Lunaは入力$1・出力$6。</cite>一方でトランプ大統領令によりAI企業は強力なモデルを事前に政府に提出する義務が生じ、<cite index="56-1">現在は一部パートナー限定プレビューで、ChatGPTへの一般展開は7月中旬以降の見込み。</cite>美容室・サロン経営者にとっては、Claude・Geminiとの価格競争でAIツールの利用コストがさらに下がる恩恵がある。</div>
+        <div class="card-top"><div class="tag">GPT-5.6 一般公開</div><div class="no">01/05</div></div>
+        <div class="title">GPT-5.6 <em>Sol/Terra/Luna</em><br>本週ついに一般公開へ</div>
+        <div class="lead">M365 Copilotへの統合も完了。Claude Fable 5は無償アクセスを7/19まで延長し対抗。</div>
+        <div class="body"><cite index="40-1">GPT-5.6シリーズがM365 Copilotに追加され、複雑な作業をより効率的に処理できるようになった</cite>ことが7月10日に発表された。6月26日の限定プレビューから数週間を経て、企業・個人への本格展開が始まった。一方<cite index="40-1">AnthropicはClaude Fable 5の無償アクセスとClaude Code利用上限50%増を7月19日まで延長した。</cite>GPT-5.6への対抗策として、ユーザーの流出を防ぐ戦略的な価格施策だ。AIスクール・業務活用者にとっては「今週から使える最強クラスのモデルが複数存在する」という、かつてない恵まれた環境になった。Sol（入力$5/M）・Terra（$2.5/M）・Luna（$1/M）の3段階から用途別に選べる。</div>
         <div class="foot">
-          <div class="src">BigGo Finance / ギズモード / 財経新聞 — 2026.06.26〜27</div>
+          <div class="src">ITmedia AI＋ / Anthropic公式 — 2026.07.08〜13</div>
           <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span></div>
         </div>
       </div>
@@ -229,14 +227,14 @@ header{animation:up 0.4s ease both;}
 
     <!-- 2 -->
     <div class="slide"><div class="card t2">
-      <div class="card-stripe"></div>
+      <div class="card-gold-line"></div>
       <div class="card-inner">
-        <div class="card-top"><div class="tag">Anthropic 新プロダクト</div><div class="no">02/05</div></div>
-        <div class="title">Anthropic <em>Claude Science</em> 発表<br>Claude Code以来最大のプロダクト</div>
-        <div class="lead">科学研究・医療・ゲノム解析向けAIワークベンチ。全有料ユーザーが即日ベータアクセス可能。</div>
-        <div class="body"><cite index="60-1">6月30日、AnthropicはClaude Code以来最大のプロダクトとなる科学研究向けAIワークベンチ「Claude Science」を発表。全有料Claude加入者（Pro、Max、Team、Enterprise）が即座にベータ版を利用できる。</cite>ゲノム解析・生物学・医療研究などの高度な科学タスクに特化した設計で、AlphaFold開発者John Jumper氏のAnthropic加入も相まって「科学AIの本命」としての地位確立を狙う。AIスクール・健康プロデュース分野でも、栄養学・美容科学・セルフケアの研究にAIを活用するユースケースが広がる可能性があり、AIリテラシー教育の新たなテーマとして注目される。</div>
+        <div class="card-top"><div class="tag">日本AI 国産基盤</div><div class="no">02/05</div></div>
+        <div class="title">日本AI基盤モデル<br><em>「Noetra」</em> が始動</div>
+        <div class="lead">国内大手共同出資の日本語特化AI基盤が「Noetra」として産総研とマルチモーダルAI開発へ。</div>
+        <div class="body"><cite index="43-1">国内大手が共同出資する「日本AI基盤モデル開発」プロジェクトが新名称「Noetra」として始動し、産総研と国産マルチモーダルAI開発に乗り出した。</cite>日本語・日本文化・日本の法制度に深く最適化された独自LLMを開発する取り組みで、海外モデルへの依存を減らし「AIの自律性確保」を目指す国家プロジェクトの一環だ。デジタル庁が国産AIのtsuzumiを<cite index="40-1">さくらのクラウドで稼働させ「日本の自律性確保」を目指す取り組み</cite>とも連動しており、「国産AI × 国産クラウド」の組み合わせが政府・産業界で本格化している。AIスクール・美容室経営者にとっても、国産AIの普及は日本語精度・プライバシー・コストの面で追い風になる。</div>
         <div class="foot">
-          <div class="src">Qiita AI Daily / Anthropic公式 — 2026.06.30</div>
+          <div class="src">ITmedia AI＋ / デジタル庁 — 2026.07.10〜13</div>
           <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="fd">🔥</span></div>
         </div>
       </div>
@@ -245,15 +243,15 @@ header{animation:up 0.4s ease both;}
 
     <!-- 3 -->
     <div class="slide"><div class="card t3">
-      <div class="card-stripe"></div>
+      <div class="card-gold-line"></div>
       <div class="card-inner">
-        <div class="card-top"><div class="tag">Meta 大転換</div><div class="no">03/05</div></div>
-        <div class="title">Meta が <em>Llama 終了</em><br>Scale AI 143億ドル買収で反攻</div>
-        <div class="lead">Llama 4の惨敗を受けZuckerbergが決断。オープンソースAIの旗手Metaが完全プロプライエタリへ転換。</div>
-        <div class="body"><cite index="60-1">Llama 4のIntelligence Indexスコアが18と惨憺たる結果に終わり、ZuckerbergはScale AIを143億ドルで49%出資し、Alexandr WangをMeta初のChief AI Officerに招聘。MSL（Meta Superintelligence Labs）を設立しOpenAIやDeepMindから積極的に人材を引き抜いた。その結果、新モデル「Muse Spark」はIntelligence Indexで52を記録し、主要ラボ史上最大の一世代ジャンプを達成した。</cite>しかし問題はLlamaが実質メンテナンスモードに入り、12億ダウンロードのオープンソースエコシステムが座礁資産化した点だ。Andrew Ngは「開発者コミュニティにとって重大な損失」と述べており、オープンAI時代の終焉を象徴する出来事として業界に衝撃を与えた。</div>
+        <div class="card-top"><div class="tag">OpenAI 音声AI</div><div class="no">03/05</div></div>
+        <div class="title">OpenAI <em>GPT-Live</em><br>「まるで人間」の音声AIが話題</div>
+        <div class="lead">間を空けずに考えながら会話できる新モデル。従来の音声AIとは一線を画す「自然な対話」が実現。</div>
+        <div class="body"><cite index="40-1">OpenAIの新モデル「GPT-Live」が「まるで人間」と評されるほどのトーク力で話題になっている。間を空けずに考えながら会話できる</cite>という特徴が、従来の音声AIとの大きな差別化になっている。テキストを音声に変換するのではなく、音声信号をそのまま理解・生成する設計で、相槌や言い淀みなど人間的なリズムを再現する。美容室のカウンセリング・AIスクールのリアルタイム質疑応答・サロンの予約対応など、音声接客AIへの応用が加速しそうだ。Meta Ray-Banや各種スマートグラスとの統合も見越した設計で、「見えないAIアシスタント」として日常に溶け込む存在になる可能性がある。</div>
         <div class="foot">
-          <div class="src">Qiita AI Daily Digest — 2026.07.06</div>
-          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span></div>
+          <div class="src">ITmedia AI＋ — 2026.07.10</div>
+          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="fd">🔥</span></div>
         </div>
       </div>
       <div class="card-bg">03</div>
@@ -261,15 +259,15 @@ header{animation:up 0.4s ease both;}
 
     <!-- 4 -->
     <div class="slide"><div class="card t4">
-      <div class="card-stripe"></div>
+      <div class="card-gold-line"></div>
       <div class="card-inner">
-        <div class="card-top"><div class="tag">行政 × AI</div><div class="no">04/05</div></div>
-        <div class="title">カリフォルニア州政府<br>× Anthropic が <em>50%割引</em> 提携</div>
-        <div class="lead">米国最大の州がClaudeを公式採用。サイバーセキュリティ強化・行政サービス効率化が目的。</div>
-        <div class="body"><cite index="41-1">米国カリフォルニア州はAnthropicと提携し、州政府機関や地方自治体がClaudeを50%割引で利用できる新たな取り組みを発表した。州全体でサイバーセキュリティの強化や行政サービスの効率化を進める狙いがある。</cite>人口4,000万人・GDPが世界第5位規模のカリフォルニア州が公式にAIを行政インフラとして採用したことは、「AIが社会の基盤」になった象徴的な出来事だ。日本でも「源内」（全省庁18万人展開）が進んでおり、行政AIの世界標準化が加速する。AIスクール講師にとっては「行政DX×AI活用」という新たな受講ニーズが生まれるビジネスチャンスでもある。</div>
+        <div class="card-top"><div class="tag">Anthropic AI解釈</div><div class="no">04/05</div></div>
+        <div class="title">Anthropic が <em>「J-space」</em> を発見<br>AIの内なる思考を可視化</div>
+        <div class="lead">AIが何を「考えて」いるのかを新手法「J-lens」で可視化。安全性監視への応用が始まる。</div>
+        <div class="body"><cite index="40-1">Anthropicは、AIの"内なる思考"が宿る「J-space」を発見し、新手法「J-lens」で可視化することに成功した。安全性監視への応用が始まっている。</cite>AIがどのように判断しているかをリアルタイムで監視できるこの技術は、AIが有害な行動をしようとする前に検知・介入できる可能性を持つ。John Jumper（AlphaFold開発者）のAnthropic加入とも相まって、同社が「最も安全なAIラボ」という位置づけをIPO前に確立しようとする戦略的な研究発表でもある。「ブラックボックスだったAIの中身が見えるようになる」という転換は、AI規制・医療・法律・金融での信頼ある活用を大きく前進させる可能性がある。</div>
         <div class="foot">
-          <div class="src">note:まめ / Anthropic公式 — 2026.06.29</div>
-          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="fd">🔥</span></div>
+          <div class="src">ITmedia AI＋ / Anthropic公式 — 2026.07.07</div>
+          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span></div>
         </div>
       </div>
       <div class="card-bg">04</div>
@@ -277,15 +275,15 @@ header{animation:up 0.4s ease both;}
 
     <!-- 5 -->
     <div class="slide"><div class="card t5">
-      <div class="card-stripe"></div>
+      <div class="card-gold-line"></div>
       <div class="card-inner">
-        <div class="card-top"><div class="tag">AI自己改善 論争</div><div class="no">05/05</div></div>
-        <div class="title">「AIが次のAIを作る」<br>Altman <em>6ヶ月以内</em> vs Clark 2028年末</div>
-        <div class="lead">再帰的自己改善の実現時期をめぐり、Altman「6ヶ月以内」・Jack Clark「2028年末」で業界が二分。</div>
-        <div class="body"><cite index="56-1">GPT-5.6発表の裏で、Anthropic共同創業者のジャック・クラークが2028年末までの再帰的自己改善（AIがAIを作る）の実現を予測し、OpenAIのサム・アルトマンCEOは6カ月以内の可能性に言及。これにより1兆ドル規模のIPOが延期される可能性も示唆した。</cite>「AIが次世代AIを自ら開発する」時代が到来すると、現在のすべてのスキルの価値が根本的に問い直される。AIスクール講師・電子書籍ライター・美容室経営者という複数の顔を持つ発信者にとっては「人間にしかできない価値とは何か」を問い直す、最も重要な問いが迫っている週だ。</div>
+        <div class="card-top"><div class="tag">国連 × AIガバナンス</div><div class="no">05/05</div></div>
+        <div class="title">国連 <em>グローバルAIガバナンス</em><br>対話が初開催・193ヶ国参加</div>
+        <div class="lead">ジュネーブで193ヶ国・企業・市民社会が一堂に。「AIが壊滅的被害を引き起こさないと科学は保証できない」。</div>
+        <div class="body"><cite index="48-1">7月6日、国連は初の「グローバルAIガバナンス対話」をスイス・ジュネーブのPalexpoで開幕した。193の国連加盟国に加え、民間企業、学界、市民社会が一堂に会し、AIの国際的な統治のあり方を議論した。科学パネルのヨシュア・ベンジオ氏は「能力が上がり続けるなかで、AIが壊滅的な被害を引き起こさないと科学はまだ保証できない」と述べた。</cite>またAppleがOpenAIを「企業秘密を盗まれた」として提訴するニュースも同週に飛び込み（NHK報道）、AI企業間の知財争いも新局面に入った。AI業界が「テクノロジー」から「国際政治・法律・安全保障」すべてを横断する社会インフラへと完全に昇格した週となった。</div>
         <div class="foot">
-          <div class="src">BigGo Finance / Qiita AI Daily — 2026.06.26〜07.06</div>
-          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span></div>
+          <div class="src">note:宮野宏樹 / NHKニュース — 2026.07.06〜13</div>
+          <div class="heat"><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="f">🔥</span><span class="fd">🔥</span></div>
         </div>
       </div>
       <div class="card-bg">05</div>
@@ -311,14 +309,14 @@ header{animation:up 0.4s ease both;}
 
 <script>
 const track=document.getElementById('track'),allDots=document.querySelectorAll('.dot'),prog=document.getElementById('prog'),cn=document.getElementById('cn');
-const GRADS=['linear-gradient(90deg,#f97316,#fbbf24)','linear-gradient(90deg,#8b5cf6,#ec4899)','linear-gradient(90deg,#22d3ee,#38bdf8)','linear-gradient(90deg,#4ade80,#22d3ee)','linear-gradient(90deg,#fb7185,#f97316)'];
+const COLORS=['linear-gradient(90deg,#c9a84c,#f0d078)','linear-gradient(90deg,#e07b3a,#f0a060)','linear-gradient(90deg,#5ba8d4,#38bdf8)','linear-gradient(90deg,#72c472,#4ade80)','linear-gradient(90deg,#c470c4,#a855f7)'];
 const N=5;let cur=0;
 function go(n){
   cur=((n%N)+N)%N;
   track.style.transform=`translateX(-${cur*100}%)`;
   allDots.forEach((d,i)=>d.classList.toggle('on',i===cur));
   prog.style.width=`${(cur+1)/N*100}%`;
-  prog.style.background=GRADS[cur];
+  prog.style.background=COLORS[cur];
   cn.textContent=String(cur+1).padStart(2,'0');
 }
 document.getElementById('next').onclick=()=>go(cur+1);
