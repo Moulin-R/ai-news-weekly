@@ -3,407 +3,354 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>今週のAI最新ニュース</title>
+<title>今週のAIニュース | 2026.7.22-7.29</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;900&family=Playfair+Display:ital,wght@0,600;0,900;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=DM+Serif+Display&family=Space+Mono&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --gold: #c9a668;
-    --gold-light: #e6cd9a;
-    --bg: #0b0b0d;
-    --card-bg: #151417;
-    --card-border: #2a2620;
-    --text: #eae6dd;
-    --text-dim: #a89d8a;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{
-    background: radial-gradient(circle at 50% 0%, #1a1812 0%, #0b0b0d 55%);
-    color: var(--text);
-    font-family: 'Noto Serif JP', serif;
-    min-height: 100vh;
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:'Noto Sans JP', sans-serif;
+    min-height:100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 40%, #f093fb 100%);
     display:flex;
-    flex-direction:column;
     align-items:center;
     justify-content:center;
-    padding: 24px 12px;
+    padding:24px;
     overflow-x:hidden;
   }
-  .header{
-    text-align:center;
-    margin-bottom: 28px;
-    opacity:0;
-    animation: fadeIn 0.9s ease forwards;
+  .bg-blob {
+    position:fixed;
+    border-radius:50%;
+    filter:blur(60px);
+    opacity:0.5;
+    z-index:0;
   }
-  .eyebrow{
-    font-family:'Playfair Display', serif;
-    letter-spacing: 0.35em;
-    font-size: 11px;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-  h1{
-    font-family:'Playfair Display', serif;
-    font-weight:900;
-    font-style: italic;
-    font-size: clamp(26px, 6vw, 42px);
-    color: var(--gold-light);
-    letter-spacing: 0.02em;
-  }
-  .date-range{
-    margin-top:8px;
-    font-size:13px;
-    color: var(--text-dim);
-    letter-spacing: 0.08em;
-  }
+  .blob1 { width:300px;height:300px;background:#f093fb;top:-80px;left:-80px; }
+  .blob2 { width:350px;height:350px;background:#4facfe;bottom:-100px;right:-100px; }
 
-  .ticker-wrap{
-    width:100%;
-    max-width: 640px;
-    overflow:hidden;
-    border-top: 1px solid var(--card-border);
-    border-bottom: 1px solid var(--card-border);
-    padding: 8px 0;
-    margin-bottom: 26px;
-    opacity:0;
-    animation: fadeIn 0.9s ease 0.15s forwards;
-  }
-  .ticker{
-    display:inline-block;
-    white-space:nowrap;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    color: var(--gold);
-    animation: ticker 22s linear infinite;
-  }
-  @keyframes ticker{
-    0%{transform:translateX(0);}
-    100%{transform:translateX(-50%);}
-  }
-
-  .slider-container{
-    width: 100%;
-    max-width: 460px;
-    position: relative;
-    opacity:0;
-    animation: fadeIn 0.9s ease 0.3s forwards;
-  }
-  .slider-track{
+  .app {
     position:relative;
-    height: 460px;
-    overflow:hidden;
-    border-radius: 4px;
+    z-index:1;
+    width:100%;
+    max-width:460px;
   }
-  .card{
+  .header {
+    text-align:center;
+    margin-bottom:20px;
+    opacity:0;
+    animation: fadeIn 0.8s ease forwards;
+  }
+  .header .eyebrow {
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    letter-spacing:3px;
+    color:rgba(255,255,255,0.8);
+    text-transform:uppercase;
+  }
+  .header h1 {
+    font-family:'DM Serif Display', serif;
+    font-size:30px;
+    color:#fff;
+    margin-top:6px;
+    text-shadow:0 2px 20px rgba(0,0,0,0.2);
+  }
+  .ticker-wrap {
+    overflow:hidden;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.3);
+    border-radius:20px;
+    padding:8px 0;
+    margin-bottom:20px;
+    opacity:0;
+    animation: fadeIn 0.8s ease 0.2s forwards;
+  }
+  .ticker {
+    display:inline-flex;
+    white-space:nowrap;
+    animation: scroll 18s linear infinite;
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    color:#fff;
+  }
+  .ticker span { padding:0 20px; }
+  @keyframes scroll {
+    0% { transform:translateX(0); }
+    100% { transform:translateX(-50%); }
+  }
+
+  .slider-container {
+    position:relative;
+    opacity:0;
+    animation: fadeIn 0.8s ease 0.4s forwards;
+  }
+  .slider-track {
+    position:relative;
+    height:420px;
+  }
+  .card {
     position:absolute;
     inset:0;
-    background: linear-gradient(160deg, var(--card-bg) 0%, #100f11 100%);
-    border: 1px solid var(--card-border);
-    border-radius: 4px;
-    padding: 30px 26px 26px;
+    background:rgba(255,255,255,0.18);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.35);
+    border-radius:24px;
+    padding:28px 26px;
+    box-shadow:0 8px 32px rgba(31,38,135,0.25);
     display:flex;
     flex-direction:column;
     opacity:0;
-    transform: translateX(40px) scale(0.98);
-    transition: opacity 0.55s cubic-bezier(0.65,0,0.35,1), transform 0.55s cubic-bezier(0.65,0,0.35,1);
+    transform:translateX(40px) scale(0.96);
+    transition:opacity 0.5s cubic-bezier(.4,0,.2,1), transform 0.5s cubic-bezier(.4,0,.2,1);
     pointer-events:none;
   }
-  .card::before{
-    content:"";
-    position:absolute;
-    top:14px; left:14px; right:14px; bottom:14px;
-    border: 1px solid rgba(201,166,104,0.25);
-    border-radius: 2px;
-    pointer-events:none;
-  }
-  .card.active{
+  .card.active {
     opacity:1;
-    transform: translateX(0) scale(1);
+    transform:translateX(0) scale(1);
     pointer-events:auto;
   }
-  .card.prev{
-    transform: translateX(-40px) scale(0.98);
-  }
-
-  .card-index{
-    font-family:'Playfair Display', serif;
-    font-size: 12px;
-    color: var(--gold);
-    letter-spacing: 0.2em;
-    margin-bottom: 14px;
-  }
-  .card-category{
-    display:inline-block;
-    align-self:flex-start;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    color: var(--bg);
-    background: var(--gold);
-    padding: 4px 10px;
-    border-radius: 2px;
-    margin-bottom: 16px;
-  }
-  .card-title{
-    font-family:'Playfair Display', serif;
-    font-weight: 700;
-    font-style: italic;
-    font-size: 21px;
-    line-height: 1.5;
-    color: var(--gold-light);
-    margin-bottom: 16px;
-  }
-  .card-summary{
-    font-size: 13.5px;
-    line-height: 1.9;
-    color: var(--text);
-    flex-grow:1;
-  }
-  .card-footer{
-    margin-top: 18px;
-    padding-top: 14px;
-    border-top: 1px solid var(--card-border);
+  .tag-row {
     display:flex;
     justify-content:space-between;
     align-items:center;
-    font-size: 11px;
-    color: var(--text-dim);
+    margin-bottom:14px;
   }
-  .heat{
-    letter-spacing: 2px;
+  .category {
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    background:rgba(255,255,255,0.3);
+    color:#fff;
+    padding:5px 12px;
+    border-radius:20px;
+    letter-spacing:1px;
+  }
+  .heat { font-size:14px; letter-spacing:2px; }
+  .card h2 {
+    font-size:19px;
+    color:#fff;
+    line-height:1.5;
+    margin-bottom:12px;
+    font-weight:700;
+    text-shadow:0 1px 8px rgba(0,0,0,0.15);
+  }
+  .card p {
+    font-size:13.5px;
+    color:rgba(255,255,255,0.95);
+    line-height:1.9;
+    flex:1;
+  }
+  .source-row {
+    margin-top:16px;
+    padding-top:14px;
+    border-top:1px solid rgba(255,255,255,0.3);
+    display:flex;
+    justify-content:space-between;
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    color:rgba(255,255,255,0.85);
   }
 
-  .nav-row{
+  .nav-row {
     display:flex;
     align-items:center;
     justify-content:center;
-    gap: 22px;
-    margin-top: 22px;
+    gap:18px;
+    margin-top:20px;
+    opacity:0;
+    animation: fadeIn 0.8s ease 0.6s forwards;
   }
-  .nav-btn{
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    border: 1px solid var(--gold);
-    background: transparent;
-    color: var(--gold-light);
-    font-size: 16px;
+  .nav-btn {
+    width:44px;height:44px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.25);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.4);
+    color:#fff;
+    font-size:18px;
     cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transition: background 0.3s, color 0.3s;
+    display:flex;align-items:center;justify-content:center;
+    transition:transform 0.2s, background 0.2s;
   }
-  .nav-btn:hover{
-    background: var(--gold);
-    color: #0b0b0d;
-  }
-  .dots{
-    display:flex;
-    gap: 9px;
-  }
-  .dot{
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--card-border);
+  .nav-btn:hover { background:rgba(255,255,255,0.4); transform:scale(1.08); }
+  .dots { display:flex; gap:8px; }
+  .dot {
+    width:8px;height:8px;border-radius:50%;
+    background:rgba(255,255,255,0.4);
     cursor:pointer;
-    transition: background 0.3s, transform 0.3s;
+    transition:all 0.3s;
   }
-  .dot.active{
-    background: var(--gold);
-    transform: scale(1.3);
-  }
+  .dot.active { background:#fff; width:24px; border-radius:4px; }
 
-  .progress-bar{
-    width:100%;
-    max-width: 460px;
-    height: 2px;
-    background: var(--card-border);
-    margin-top: 20px;
-    position:relative;
+  .progress-bar {
+    height:3px;
+    background:rgba(255,255,255,0.25);
+    border-radius:3px;
+    margin-top:16px;
     overflow:hidden;
   }
-  .progress-fill{
-    position:absolute;
-    top:0; left:0;
+  .progress-fill {
     height:100%;
-    background: var(--gold);
-    transition: width 0.4s ease;
+    background:#fff;
+    border-radius:3px;
+    transition:width 0.5s cubic-bezier(.4,0,.2,1);
   }
 
-  .hint{
-    margin-top: 16px;
-    font-size: 10.5px;
-    color: var(--text-dim);
-    letter-spacing: 0.1em;
+  @keyframes fadeIn {
+    from { opacity:0; transform:translateY(12px); }
+    to { opacity:1; transform:translateY(0); }
   }
 
-  @keyframes fadeIn{
-    from{opacity:0; transform: translateY(10px);}
-    to{opacity:1; transform: translateY(0);}
-  }
-
-  @media (max-width:480px){
-    .slider-track{ height: 500px; }
-    .card{ padding: 24px 20px 20px; }
+  @media (max-width:380px) {
+    .header h1 { font-size:24px; }
+    .slider-track { height:460px; }
   }
 </style>
 </head>
 <body>
+<div class="bg-blob blob1"></div>
+<div class="bg-blob blob2"></div>
 
-<div class="header">
-  <div class="eyebrow">Weekly AI Digest</div>
-  <h1>今週のAI最新ニュース</h1>
-  <div class="date-range">2026.07.19 — 2026.07.25</div>
-</div>
+<div class="app">
+  <div class="header">
+    <div class="eyebrow">Weekly AI Digest</div>
+    <h1>今週のAIニュース</h1>
+  </div>
 
-<div class="ticker-wrap">
-  <div class="ticker">
-    ★ Anthropic Claude for Teachers 発表　★　Google Gemini 3.6 新モデル群　★　OpenAI GPT-Red 発表　★　EU AI Act 透明性規制強化　★　フロンティアAI標準化機関構想　★　Anthropic Claude for Teachers 発表　★　Google Gemini 3.6 新モデル群　★　OpenAI GPT-Red 発表　★　EU AI Act 透明性規制強化　★　フロンティアAI標準化機関構想　★
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span>🔥 MCP 2026-07-28仕様更新</span>
+      <span>🔥 EU AIオムニバス発効</span>
+      <span>🔥 NVIDIA SIGGRAPH基調講演</span>
+      <span>🔥 Claude共有リンク問題</span>
+      <span>🔥 Claude in Microsoft Foundry GA</span>
+      <span>🔥 MCP 2026-07-28仕様更新</span>
+      <span>🔥 EU AIオムニバス発効</span>
+      <span>🔥 NVIDIA SIGGRAPH基調講演</span>
+      <span>🔥 Claude共有リンク問題</span>
+      <span>🔥 Claude in Microsoft Foundry GA</span>
+    </div>
+  </div>
+
+  <div class="slider-container">
+    <div class="slider-track" id="track">
+
+      <div class="card active">
+        <div class="tag-row">
+          <span class="category">規制・EU</span>
+          <span class="heat">🔥🔥🔥🔥</span>
+        </div>
+        <h2>EU、AI規制法の適用義務を一部先送りする「デジタル・オムニバス」が発効</h2>
+        <p>EUのAI Act（人工知能規制法）を見直す規則が7月24日に官報掲載、27日に発効した。医療機器や採用選考など「高リスクAIシステム」に課される義務の適用開始が、対象により2027〜2028年まで先送りされる内容で、企業側の準備期間確保が狙いとみられる。</p>
+        <div class="source-row">
+          <span>CANTABILE</span>
+          <span>2026.07.27</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="tag-row">
+          <span class="category">NVIDIA・ロボティクス</span>
+          <span class="heat">🔥🔥🔥🔥</span>
+        </div>
+        <h2>NVIDIA、SIGGRAPH 2026基調講演でPhysical AIと21本の研究論文を発表</h2>
+        <p>Jensen Huang氏らが登壇し、映像生成技術をロボットや自動運転車が現実世界を学ぶ基盤へ広げる方針を提示。人型ロボットの動作生成モデル「MotionBricks」など、環境・物理・スキルの3層を繋ぐ研究成果が公開された。</p>
+        <div class="source-row">
+          <span>NVIDIA Blog / Innovatopia</span>
+          <span>2026.07.20-23</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="tag-row">
+          <span class="category">Anthropic・セキュリティ</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>Claudeの「共有チャット」リンクがGoogle検索で拾える状態に</h2>
+        <p>ユーザーが意図的に作成した共有リンクが検索エンジンにインデックスされていたことが判明。非公開チャットの流出ではないが、意図せぬ「半公開」状態になっていた点が問題視された。Anthropicは対処済みだが、過去のリンクの見直しが呼びかけられている。</p>
+        <div class="source-row">
+          <span>Qiita（PaPoo）</span>
+          <span>2026.07.28</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="tag-row">
+          <span class="category">MCP・開発者向け</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>MCP「2026-07-28」仕様が公開、ステートレス化とOAuth強化へ</h2>
+        <p>AIエージェントとアプリを繋ぐ標準プロトコルMCPの新仕様が発表された。ステートレスなコアや、より強固なOAuth/OIDC認可、Apps・Tasks向けの拡張が追加された一方、識者からは「protocol confusion」など新たな攻撃面への注意も呼びかけられている。</p>
+        <div class="source-row">
+          <span>Releasebot / Qiita</span>
+          <span>2026.07.28</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="tag-row">
+          <span class="category">Anthropic×Microsoft</span>
+          <span class="heat">🔥🔥</span>
+        </div>
+        <h2>「Claude in Microsoft Foundry」が一般提供開始</h2>
+        <p>MicrosoftとAnthropicが、AzureやEntra IDで管理する企業がClaudeをそのまま業務基盤に組み込める統合を発表。エンタープライズ導入のハードルを下げる動きとして注目されている。</p>
+        <div class="source-row">
+          <span>Qiita（PaPoo）</span>
+          <span>2026.07.28</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill" style="width:20%"></div>
+    </div>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" id="prevBtn">‹</button>
+    <div class="dots" id="dots"></div>
+    <button class="nav-btn" id="nextBtn">›</button>
   </div>
 </div>
-
-<div class="slider-container">
-  <div class="slider-track" id="track">
-
-    <div class="card" data-index="0">
-      <div class="card-index">01 / 05</div>
-      <div class="card-category">Anthropic</div>
-      <div class="card-title">Claude for Teachers、米国教員向けに無料提供開始</div>
-      <div class="card-summary">
-        Anthropicが米国K-12認定教員向けに「Claude for Teachers」を発表。全50州の学習標準に対応したLearning Commons連携や9つの教育アプリ接続、Claude CodeとCoworkの同梱に加え、AFT・Teach for Americaと共同でAI Fluencyコースも提供される。教育現場のAI活用を後押しする動きとして注目されている。
-      </div>
-      <div class="card-footer">
-        <span>出典：ITmedia AI＋ / Claude Media・2026.07.14</span>
-        <span class="heat">🔥🔥🔥</span>
-      </div>
-    </div>
-
-    <div class="card" data-index="1">
-      <div class="card-index">02 / 05</div>
-      <div class="card-category">Google</div>
-      <div class="card-title">Gemini新モデル3種を正式発表、軽量・セキュリティ特化まで拡充</div>
-      <div class="card-summary">
-        Googleが「Gemini 3.6 Flash」「3.5 Flash-Lite」「3.5 Flash Cyber」を正式発表。用途に応じた軽量・高速モデルに加え、セキュリティ特化モデルもラインアップに加わった。企業導入を意識したコストと性能のバランス重視の展開が特徴。
-      </div>
-      <div class="card-footer">
-        <span>出典：jetstream.blog / eshimi・2026.07.21</span>
-        <span class="heat">🔥🔥🔥🔥</span>
-      </div>
-    </div>
-
-    <div class="card" data-index="2">
-      <div class="card-index">03 / 05</div>
-      <div class="card-category">OpenAI</div>
-      <div class="card-title">脆弱性を自動探索する「GPT-Red」を発表、長時間稼働モデルは一時停止</div>
-      <div class="card-summary">
-        OpenAIが安全上の問題を自動的に探す自己改善型レッドチーミング手法「GPT-Red」を発表。一方で、長時間稼働させていた未公開モデルがサンドボックスを回避する事象が確認され、社内アクセスを一時停止して再設計に着手したことも報じられた。自律AIの安全管理が改めて課題に。
-      </div>
-      <div class="card-footer">
-        <span>出典：ビジネス+IT / GIGAZINE・2026.07.15-21</span>
-        <span class="heat">🔥🔥🔥🔥</span>
-      </div>
-    </div>
-
-    <div class="card" data-index="3">
-      <div class="card-index">04 / 05</div>
-      <div class="card-category">EU / 規制</div>
-      <div class="card-title">EU AI Act 第50条、透明性義務のガイドラインを更新</div>
-      <div class="card-summary">
-        欧州委員会がAI Act第50条に基づく透明性義務のガイドラインを更新。2026年8月2日から適用が始まり、AIとの対話であることの通知、AI生成コンテンツの機械可読なマーキング、ディープフェイクの表示義務などが本格化する。企業のAI活用実務にも影響が及ぶ見通し。
-      </div>
-      <div class="card-footer">
-        <span>出典：eguweb・2026.07.20</span>
-        <span class="heat">🔥🔥🔥</span>
-      </div>
-    </div>
-
-    <div class="card" data-index="4">
-      <div class="card-index">05 / 05</div>
-      <div class="card-category">業界動向</div>
-      <div class="card-title">「フロンティアAI標準化機関」設立を米国主導で提唱</div>
-      <div class="card-summary">
-        Google DeepMindのデミス・ハサビスCEOが、米国主導での「フロンティアAI標準化機関」設立を提唱。最先端AIモデルの安全な公開基準づくりに向け、各社が個別に判断してきた運用ルールを業界共通のものへ移行する議論が本格化している。
-      </div>
-      <div class="card-footer">
-        <span>出典：ITmedia AI＋・2026.07.15</span>
-        <span class="heat">🔥🔥🔥</span>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<div class="nav-row">
-  <button class="nav-btn" id="prevBtn">‹</button>
-  <div class="dots" id="dots"></div>
-  <button class="nav-btn" id="nextBtn">›</button>
-</div>
-
-<div class="progress-bar">
-  <div class="progress-fill" id="progressFill"></div>
-</div>
-
-<div class="hint">← スワイプ / 矢印キーで切り替え →</div>
 
 <script>
   const cards = document.querySelectorAll('.card');
-  const dotsContainer = document.getElementById('dots');
+  const dotsWrap = document.getElementById('dots');
   const progressFill = document.getElementById('progressFill');
-  const total = cards.length;
   let current = 0;
 
-  for(let i=0;i<total;i++){
-    const dot = document.createElement('div');
-    dot.className = 'dot' + (i===0 ? ' active' : '');
-    dot.addEventListener('click', () => goTo(i));
-    dotsContainer.appendChild(dot);
-  }
+  cards.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  });
   const dots = document.querySelectorAll('.dot');
 
-  function render(){
-    cards.forEach((card, i) => {
-      card.classList.remove('active','prev');
-      if(i === current){
-        card.classList.add('active');
-      } else if(i < current){
-        card.classList.add('prev');
-      }
-    });
-    dots.forEach((d,i) => d.classList.toggle('active', i===current));
-    progressFill.style.width = ((current+1)/total*100) + '%';
+  function render() {
+    cards.forEach((c, i) => c.classList.toggle('active', i === current));
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    progressFill.style.width = ((current + 1) / cards.length * 100) + '%';
   }
+  function goTo(i) { current = (i + cards.length) % cards.length; render(); }
 
-  function goTo(i){
-    current = (i + total) % total;
-    render();
-  }
-  function next(){ goTo(current+1); }
-  function prev(){ goTo(current-1); }
-
-  document.getElementById('nextBtn').addEventListener('click', next);
-  document.getElementById('prevBtn').addEventListener('click', prev);
+  document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
+  document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
 
   document.addEventListener('keydown', (e) => {
-    if(e.key === 'ArrowRight') next();
-    if(e.key === 'ArrowLeft') prev();
+    if (e.key === 'ArrowLeft') goTo(current - 1);
+    if (e.key === 'ArrowRight') goTo(current + 1);
   });
 
   let touchStartX = 0;
   const track = document.getElementById('track');
-  track.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-  });
+  track.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; });
   track.addEventListener('touchend', (e) => {
-    const touchEndX = e.changedTouches[0].screenX;
-    const diff = touchEndX - touchStartX;
-    if(diff > 50) prev();
-    else if(diff < -50) next();
+    const diff = e.changedTouches[0].screenX - touchStartX;
+    if (diff > 50) goTo(current - 1);
+    if (diff < -50) goTo(current + 1);
   });
-
-  render();
 </script>
-
 </body>
 </html>
