@@ -3,106 +3,106 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>今週のAIニュース | 2026.7.22-7.29</title>
+<title>今週のAI最新ニュース</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=DM+Serif+Display&family=Space+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   body {
     font-family:'Noto Sans JP', sans-serif;
     min-height:100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 40%, #f093fb 100%);
+    background: linear-gradient(135deg,#3a1c71,#d76d77,#ffaf7b);
+    background-size: 200% 200%;
+    animation: bgShift 18s ease infinite;
     display:flex;
+    flex-direction:column;
     align-items:center;
     justify-content:center;
-    padding:24px;
+    padding:24px 12px;
     overflow-x:hidden;
   }
-  .bg-blob {
-    position:fixed;
-    border-radius:50%;
-    filter:blur(60px);
-    opacity:0.5;
-    z-index:0;
-  }
-  .blob1 { width:300px;height:300px;background:#f093fb;top:-80px;left:-80px; }
-  .blob2 { width:350px;height:350px;background:#4facfe;bottom:-100px;right:-100px; }
-
-  .app {
-    position:relative;
-    z-index:1;
-    width:100%;
-    max-width:460px;
-  }
-  .header {
-    text-align:center;
-    margin-bottom:20px;
-    opacity:0;
-    animation: fadeIn 0.8s ease forwards;
-  }
-  .header .eyebrow {
-    font-family:'Space Mono', monospace;
-    font-size:11px;
-    letter-spacing:3px;
-    color:rgba(255,255,255,0.8);
-    text-transform:uppercase;
-  }
-  .header h1 {
-    font-family:'DM Serif Display', serif;
-    font-size:30px;
-    color:#fff;
-    margin-top:6px;
-    text-shadow:0 2px 20px rgba(0,0,0,0.2);
+  @keyframes bgShift {
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
   }
   .ticker-wrap {
+    width:100%;
+    max-width:520px;
     overflow:hidden;
     background:rgba(255,255,255,0.15);
     backdrop-filter:blur(10px);
     border:1px solid rgba(255,255,255,0.3);
-    border-radius:20px;
+    border-radius:999px;
     padding:8px 0;
     margin-bottom:20px;
     opacity:0;
-    animation: fadeIn 0.8s ease 0.2s forwards;
+    animation: fadeIn 0.8s ease forwards;
   }
   .ticker {
-    display:inline-flex;
+    display:inline-block;
     white-space:nowrap;
-    animation: scroll 18s linear infinite;
-    font-family:'Space Mono', monospace;
-    font-size:12px;
+    animation: ticker 16s linear infinite;
     color:#fff;
+    font-size:13px;
+    letter-spacing:0.05em;
+    font-weight:500;
   }
-  .ticker span { padding:0 20px; }
-  @keyframes scroll {
-    0% { transform:translateX(0); }
-    100% { transform:translateX(-50%); }
+  @keyframes ticker { 0%{transform:translateX(100%);} 100%{transform:translateX(-100%);} }
+
+  .header {
+    text-align:center;
+    color:#fff;
+    margin-bottom:20px;
+    opacity:0;
+    animation: fadeIn 0.8s ease 0.1s forwards;
+  }
+  .header .en {
+    font-family:'DM Serif Display', serif;
+    font-style:italic;
+    font-size:14px;
+    letter-spacing:0.15em;
+    opacity:0.85;
+  }
+  .header h1 {
+    font-size:26px;
+    font-weight:900;
+    margin-top:4px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+  .header .sub {
+    font-size:12px;
+    opacity:0.8;
+    margin-top:6px;
   }
 
   .slider-container {
     position:relative;
+    width:100%;
+    max-width:420px;
     opacity:0;
-    animation: fadeIn 0.8s ease 0.4s forwards;
+    animation: fadeIn 0.8s ease 0.2s forwards;
   }
   .slider-track {
     position:relative;
-    height:420px;
+    height:460px;
   }
   .card {
     position:absolute;
     inset:0;
     background:rgba(255,255,255,0.18);
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
+    backdrop-filter:blur(18px) saturate(160%);
+    -webkit-backdrop-filter:blur(18px) saturate(160%);
     border:1px solid rgba(255,255,255,0.35);
     border-radius:24px;
-    padding:28px 26px;
-    box-shadow:0 8px 32px rgba(31,38,135,0.25);
+    padding:26px 24px;
+    color:#fff;
+    box-shadow: 0 8px 32px rgba(31,38,135,0.25);
     display:flex;
     flex-direction:column;
     opacity:0;
     transform:translateX(40px) scale(0.96);
-    transition:opacity 0.5s cubic-bezier(.4,0,.2,1), transform 0.5s cubic-bezier(.4,0,.2,1);
+    transition: opacity 0.55s cubic-bezier(.4,0,.2,1), transform 0.55s cubic-bezier(.4,0,.2,1);
     pointer-events:none;
   }
   .card.active {
@@ -110,247 +110,302 @@
     transform:translateX(0) scale(1);
     pointer-events:auto;
   }
-  .tag-row {
+  .card.prev {
+    opacity:0;
+    transform:translateX(-40px) scale(0.96);
+  }
+  .card-top {
     display:flex;
     justify-content:space-between;
     align-items:center;
     margin-bottom:14px;
   }
-  .category {
-    font-family:'Space Mono', monospace;
+  .tag {
+    background:rgba(255,255,255,0.25);
+    border:1px solid rgba(255,255,255,0.4);
+    border-radius:999px;
+    padding:4px 14px;
     font-size:11px;
-    background:rgba(255,255,255,0.3);
-    color:#fff;
-    padding:5px 12px;
-    border-radius:20px;
+    font-weight:700;
+    letter-spacing:0.05em;
+  }
+  .heat {
+    font-size:13px;
     letter-spacing:1px;
   }
-  .heat { font-size:14px; letter-spacing:2px; }
   .card h2 {
     font-size:19px;
-    color:#fff;
     line-height:1.5;
-    margin-bottom:12px;
+    margin-bottom:14px;
     font-weight:700;
-    text-shadow:0 1px 8px rgba(0,0,0,0.15);
   }
   .card p {
     font-size:13.5px;
-    color:rgba(255,255,255,0.95);
-    line-height:1.9;
+    line-height:1.85;
+    opacity:0.95;
     flex:1;
   }
-  .source-row {
+  .card-footer {
     margin-top:16px;
-    padding-top:14px;
-    border-top:1px solid rgba(255,255,255,0.3);
+    padding-top:12px;
+    border-top:1px solid rgba(255,255,255,0.25);
     display:flex;
     justify-content:space-between;
-    font-family:'Space Mono', monospace;
     font-size:11px;
-    color:rgba(255,255,255,0.85);
+    opacity:0.8;
   }
 
-  .nav-row {
+  .nav-btns {
     display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:18px;
-    margin-top:20px;
-    opacity:0;
-    animation: fadeIn 0.8s ease 0.6s forwards;
+    justify-content:space-between;
+    margin-top:18px;
   }
   .nav-btn {
-    width:44px;height:44px;
+    width:46px;
+    height:46px;
     border-radius:50%;
-    background:rgba(255,255,255,0.25);
+    background:rgba(255,255,255,0.2);
     backdrop-filter:blur(10px);
     border:1px solid rgba(255,255,255,0.4);
     color:#fff;
-    font-size:18px;
+    font-size:20px;
     cursor:pointer;
-    display:flex;align-items:center;justify-content:center;
-    transition:transform 0.2s, background 0.2s;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition: transform 0.2s, background 0.2s;
   }
-  .nav-btn:hover { background:rgba(255,255,255,0.4); transform:scale(1.08); }
-  .dots { display:flex; gap:8px; }
-  .dot {
-    width:8px;height:8px;border-radius:50%;
-    background:rgba(255,255,255,0.4);
-    cursor:pointer;
-    transition:all 0.3s;
-  }
-  .dot.active { background:#fff; width:24px; border-radius:4px; }
+  .nav-btn:hover { background:rgba(255,255,255,0.35); transform:scale(1.08); }
+  .nav-btn:active { transform:scale(0.94); }
 
-  .progress-bar {
+  .dots {
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin-top:16px;
+  }
+  .dot {
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.35);
+    cursor:pointer;
+    transition: all 0.3s;
+  }
+  .dot.active {
+    background:#fff;
+    width:22px;
+    border-radius:4px;
+  }
+
+  .progress-wrap {
+    width:100%;
     height:3px;
-    background:rgba(255,255,255,0.25);
+    background:rgba(255,255,255,0.2);
     border-radius:3px;
     margin-top:16px;
     overflow:hidden;
   }
-  .progress-fill {
+  .progress-bar {
     height:100%;
     background:#fff;
     border-radius:3px;
-    transition:width 0.5s cubic-bezier(.4,0,.2,1);
+    transition: width 0.5s cubic-bezier(.4,0,.2,1);
   }
 
-  @keyframes fadeIn {
-    from { opacity:0; transform:translateY(12px); }
-    to { opacity:1; transform:translateY(0); }
-  }
+  @keyframes fadeIn { to { opacity:1; } }
 
-  @media (max-width:380px) {
-    .header h1 { font-size:24px; }
-    .slider-track { height:460px; }
+  @media (max-width:420px) {
+    .slider-track { height:500px; }
   }
 </style>
 </head>
 <body>
-<div class="bg-blob blob1"></div>
-<div class="bg-blob blob2"></div>
-
-<div class="app">
-  <div class="header">
-    <div class="eyebrow">Weekly AI Digest</div>
-    <h1>今週のAIニュース</h1>
-  </div>
 
   <div class="ticker-wrap">
-    <div class="ticker">
-      <span>🔥 MCP 2026-07-28仕様更新</span>
-      <span>🔥 EU AIオムニバス発効</span>
-      <span>🔥 NVIDIA SIGGRAPH基調講演</span>
-      <span>🔥 Claude共有リンク問題</span>
-      <span>🔥 Claude in Microsoft Foundry GA</span>
-      <span>🔥 MCP 2026-07-28仕様更新</span>
-      <span>🔥 EU AIオムニバス発効</span>
-      <span>🔥 NVIDIA SIGGRAPH基調講演</span>
-      <span>🔥 Claude共有リンク問題</span>
-      <span>🔥 Claude in Microsoft Foundry GA</span>
-    </div>
+    <span class="ticker">🔥 GPT-5.6が全世界公開　🔥 EU AI Act 第50条が8月2日施行　🔥 Gemini Enterprise新機能登場　🔥 Claude Opus 5登場　🔥 Google Workspace Drop 7月版　🔥 国産AI連合44社が始動　🔥 Meta、Llama API終了しMuseへ移行　🔥 OpenAI 1000億ドル調達交渉</span>
+  </div>
+
+  <div class="header">
+    <div class="en">Weekly AI Digest</div>
+    <h1>今週のAI最新ニュース</h1>
+    <div class="sub">2026年7月25日〜8月1日 セレクト8</div>
   </div>
 
   <div class="slider-container">
     <div class="slider-track" id="track">
 
-      <div class="card active">
-        <div class="tag-row">
-          <span class="category">規制・EU</span>
+      <div class="card" data-index="0">
+        <div class="card-top">
+          <span class="tag">EU / 規制</span>
+          <span class="heat">🔥🔥🔥🔥🔥</span>
+        </div>
+        <h2>EU AI Act「透明性義務」8月2日から適用開始</h2>
+        <p>欧州委員会が公開したAI Act第50条のガイドラインが8月2日に適用開始。対話型AI・生成AI・ディープフェイクなどについて、AI利用の明示や機械可読なラベル表示が求められる。EU向けだけでなく、越境ECやグローバルSNS運用にも影響が及ぶため、AI生成コンテンツの表示ルールを今のうちに整えておく企業が増えている。</p>
+        <div class="card-footer">
+          <span>出典：eguweb</span>
+          <span>2026.07.30</span>
+        </div>
+      </div>
+
+      <div class="card" data-index="1">
+        <div class="card-top">
+          <span class="tag">Google</span>
           <span class="heat">🔥🔥🔥🔥</span>
         </div>
-        <h2>EU、AI規制法の適用義務を一部先送りする「デジタル・オムニバス」が発効</h2>
-        <p>EUのAI Act（人工知能規制法）を見直す規則が7月24日に官報掲載、27日に発効した。医療機器や採用選考など「高リスクAIシステム」に課される義務の適用開始が、対象により2027〜2028年まで先送りされる内容で、企業側の準備期間確保が狙いとみられる。</p>
-        <div class="source-row">
-          <span>CANTABILE</span>
-          <span>2026.07.27</span>
+        <h2>Google Cloud Next Tokyo 26で「Gemini Spark」など新機能</h2>
+        <p>7月30日の基調講演で、ノーコードでAIエージェントを作れる「Gemini Enterprise app」や、業務をバックグラウンドで監視・処理する常駐型アシスタント「Gemini Spark」が発表された。開発ツールを一元管理する「Google Antigravity」も公開され、企業向けAI活用の裾野が一段と広がりそうだ。</p>
+        <div class="card-footer">
+          <span>出典：impress AI Watch</span>
+          <span>2026.07.30</span>
         </div>
       </div>
 
-      <div class="card">
-        <div class="tag-row">
-          <span class="category">NVIDIA・ロボティクス</span>
+      <div class="card" data-index="2">
+        <div class="card-top">
+          <span class="tag">OpenAI</span>
+          <span class="heat">🔥🔥🔥🔥🔥</span>
+        </div>
+        <h2>GPT-5.6が世界公開、「聞きながら話す」新音声AIも</h2>
+        <p>OpenAIはSol・Terra・Lunaの3モデル構成「GPT-5.6」をChatGPT・Codex・APIで全世界公開。あわせて全二重（フルデュプレックス）方式の新音声モデル「GPT-Live」も発表され、割り込みながら自然に会話できる体験が話題になっている。ChatGPT Voiceは週1.5億人超が利用中とのこと。</p>
+        <div class="card-footer">
+          <span>出典：Qiita AI Daily Digest</span>
+          <span>2026.07.19</span>
+        </div>
+      </div>
+
+      <div class="card" data-index="3">
+        <div class="card-top">
+          <span class="tag">Anthropic</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>ClaudeがMCP新仕様に対応、コネクタ機能を強化</h2>
+        <p>Claudeが新しいMCP（2026-07-28版）仕様への対応を拡大。ステートレスなコア構造や強化されたOAuth/OIDC認証、埋め込みUIなど、外部サービス連携の機能が拡充された。MCPは月間4億回超のSDKダウンロードを記録し、AIエージェント連携の業界標準になりつつある。</p>
+        <div class="card-footer">
+          <span>出典：Releasebot</span>
+          <span>2026.07.28</span>
+        </div>
+      </div>
+
+      <div class="card" data-index="4">
+        <div class="card-top">
+          <span class="tag">Google Workspace</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>Workspace 7月版アップデート、Geminiがスライド自動生成</h2>
+        <p>Googleが7月30日に公開した月例アップデート「Workspace Drop」では、Google スライドでのプレゼン自動生成やGoogleドキュメントでのコメント対応・画像生成が強化された。Geminiアプリの多言語対応も拡大し、中国語・オランダ語など11言語が新たにサポートされた。</p>
+        <div class="card-footer">
+          <span>出典：HelenTech</span>
+          <span>2026.07.30</span>
+        </div>
+      </div>
+
+      <div class="card" data-index="5">
+        <div class="card-top">
+          <span class="tag">日本 / 政策</span>
           <span class="heat">🔥🔥🔥🔥</span>
         </div>
-        <h2>NVIDIA、SIGGRAPH 2026基調講演でPhysical AIと21本の研究論文を発表</h2>
-        <p>Jensen Huang氏らが登壇し、映像生成技術をロボットや自動運転車が現実世界を学ぶ基盤へ広げる方針を提示。人型ロボットの動作生成モデル「MotionBricks」など、環境・物理・スキルの3層を繋ぐ研究成果が公開された。</p>
-        <div class="source-row">
-          <span>NVIDIA Blog / Innovatopia</span>
-          <span>2026.07.20-23</span>
+        <h2>国産AI連合「44社」が正式発足、国が最大1兆円支援</h2>
+        <p>ソフトバンクやホンダ、ソニーなど44社が連携し、ロボットや機械を自律的に動かす「フィジカルAI」の国産基盤づくりに乗り出した。国も最大1兆円規模で開発・運用を支援し、NVIDIAのAI半導体を大量調達して2028年にも堺市に専用計算拠点を設ける計画。製造業の競争力強化を狙う国家プロジェクトとして注目されている。</p>
+        <div class="card-footer">
+          <span>出典：日本経済新聞</span>
+          <span>2026.07.16</span>
         </div>
       </div>
 
-      <div class="card">
-        <div class="tag-row">
-          <span class="category">Anthropic・セキュリティ</span>
+      <div class="card" data-index="6">
+        <div class="card-top">
+          <span class="tag">Meta</span>
           <span class="heat">🔥🔥🔥</span>
         </div>
-        <h2>Claudeの「共有チャット」リンクがGoogle検索で拾える状態に</h2>
-        <p>ユーザーが意図的に作成した共有リンクが検索エンジンにインデックスされていたことが判明。非公開チャットの流出ではないが、意図せぬ「半公開」状態になっていた点が問題視された。Anthropicは対処済みだが、過去のリンクの見直しが呼びかけられている。</p>
-        <div class="source-row">
-          <span>Qiita（PaPoo）</span>
-          <span>2026.07.28</span>
+        <h2>Meta、Llama APIサービスを終了しMuseへ転換</h2>
+        <p>Metaは14ヶ月続けたLlama APIの外部提供を終了し、オープンソースの「Llama」とクローズドソースの新シリーズ「Muse」の二本立て戦略へ移行すると発表。より大規模な次期モデル「Watermelon」の学習も進めており、GPT-5.5級のベンチマーク結果が出ているとも報じられている。</p>
+        <div class="card-footer">
+          <span>出典：The Verge / Qiita</span>
+          <span>2026.07.06</span>
         </div>
       </div>
 
-      <div class="card">
-        <div class="tag-row">
-          <span class="category">MCP・開発者向け</span>
-          <span class="heat">🔥🔥🔥</span>
+      <div class="card" data-index="7">
+        <div class="card-top">
+          <span class="tag">OpenAI / 資金</span>
+          <span class="heat">🔥🔥🔥🔥</span>
         </div>
-        <h2>MCP「2026-07-28」仕様が公開、ステートレス化とOAuth強化へ</h2>
-        <p>AIエージェントとアプリを繋ぐ標準プロトコルMCPの新仕様が発表された。ステートレスなコアや、より強固なOAuth/OIDC認可、Apps・Tasks向けの拡張が追加された一方、識者からは「protocol confusion」など新たな攻撃面への注意も呼びかけられている。</p>
-        <div class="source-row">
-          <span>Releasebot / Qiita</span>
-          <span>2026.07.28</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="tag-row">
-          <span class="category">Anthropic×Microsoft</span>
-          <span class="heat">🔥🔥</span>
-        </div>
-        <h2>「Claude in Microsoft Foundry」が一般提供開始</h2>
-        <p>MicrosoftとAnthropicが、AzureやEntra IDで管理する企業がClaudeをそのまま業務基盤に組み込める統合を発表。エンタープライズ導入のハードルを下げる動きとして注目されている。</p>
-        <div class="source-row">
-          <span>Qiita（PaPoo）</span>
-          <span>2026.07.28</span>
+        <h2>OpenAI、評価額8300億ドルで1000億ドル調達交渉との報道</h2>
+        <p>OpenAIが評価額8300億ドル（約128兆円）規模で、1000億ドル（約15兆円）の追加資金調達を交渉しているとの報道が業界を賑わせている。AI開発競争の激化と巨額マネーの流入が計算資源・人材獲得の争奪戦を一段と加速させており、業界全体の設備投資規模の大きさを改めて示す動きとなっている。</p>
+        <div class="card-footer">
+          <span>出典：AIコンパス by ALLFORCES</span>
+          <span>2026.07</span>
         </div>
       </div>
 
     </div>
 
-    <div class="progress-bar">
-      <div class="progress-fill" id="progressFill" style="width:20%"></div>
+    <div class="progress-wrap">
+      <div class="progress-bar" id="progressBar" style="width:20%"></div>
     </div>
-  </div>
 
-  <div class="nav-row">
-    <button class="nav-btn" id="prevBtn">‹</button>
+    <div class="nav-btns">
+      <div class="nav-btn" id="prevBtn">‹</div>
+      <div class="nav-btn" id="nextBtn">›</div>
+    </div>
+
     <div class="dots" id="dots"></div>
-    <button class="nav-btn" id="nextBtn">›</button>
   </div>
-</div>
 
 <script>
   const cards = document.querySelectorAll('.card');
   const dotsWrap = document.getElementById('dots');
-  const progressFill = document.getElementById('progressFill');
+  const progressBar = document.getElementById('progressBar');
   let current = 0;
+  const total = cards.length;
 
   cards.forEach((_, i) => {
-    const d = document.createElement('div');
-    d.className = 'dot' + (i === 0 ? ' active' : '');
-    d.addEventListener('click', () => goTo(i));
-    dotsWrap.appendChild(d);
+    const dot = document.createElement('div');
+    dot.classList.add('dot');
+    if (i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(dot);
   });
   const dots = document.querySelectorAll('.dot');
 
   function render() {
-    cards.forEach((c, i) => c.classList.toggle('active', i === current));
-    dots.forEach((d, i) => d.classList.toggle('active', i === current));
-    progressFill.style.width = ((current + 1) / cards.length * 100) + '%';
+    cards.forEach((card, i) => {
+      card.classList.remove('active','prev');
+      if (i === current) card.classList.add('active');
+      else if (i < current) card.classList.add('prev');
+    });
+    dots.forEach((d,i) => d.classList.toggle('active', i===current));
+    progressBar.style.width = ((current+1)/total*100) + '%';
   }
-  function goTo(i) { current = (i + cards.length) % cards.length; render(); }
 
-  document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
-  document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
+  function goTo(i) {
+    current = (i + total) % total;
+    render();
+  }
+
+  document.getElementById('nextBtn').addEventListener('click', () => goTo(current+1));
+  document.getElementById('prevBtn').addEventListener('click', () => goTo(current-1));
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') goTo(current - 1);
-    if (e.key === 'ArrowRight') goTo(current + 1);
+    if (e.key === 'ArrowRight') goTo(current+1);
+    if (e.key === 'ArrowLeft') goTo(current-1);
   });
 
+  // タッチスワイプ
   let touchStartX = 0;
   const track = document.getElementById('track');
   track.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; });
   track.addEventListener('touchend', (e) => {
-    const diff = e.changedTouches[0].screenX - touchStartX;
-    if (diff > 50) goTo(current - 1);
-    if (diff < -50) goTo(current + 1);
+    const touchEndX = e.changedTouches[0].screenX;
+    const diff = touchEndX - touchStartX;
+    if (Math.abs(diff) > 40) {
+      if (diff < 0) goTo(current+1);
+      else goTo(current-1);
+    }
   });
+
+  render();
 </script>
 </body>
 </html>
