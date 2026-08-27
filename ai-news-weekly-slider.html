@@ -3,518 +3,515 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>今週のAIニュース TOP7</title>
+<title>AI NEWS DASHBOARD — 2026.08.18-08.26</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;900&family=Noto+Serif+JP:wght@400;600;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --gold: #c9a24b;
-    --gold-light: #e8cf8a;
-    --bg: #0b0a08;
-    --card-bg: #141210;
-    --card-bg-2: #1a1713;
-    --text: #f2ead9;
-    --text-dim: #a89d86;
-    --line: rgba(201,162,75,0.25);
+  :root {
+    --bg: #0a0e14;
+    --panel: #10161f;
+    --panel-border: #1f2b3a;
+    --grid-line: #172230;
+    --text-main: #e6edf3;
+    --text-dim: #6b7d93;
+    --accent: #00e5a0;
+    --accent2: #00b4ff;
+    --accent-warn: #ff9d3d;
+    --accent-red: #ff5c5c;
   }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{
-    background: radial-gradient(ellipse at top, #16130f 0%, var(--bg) 70%);
-    color: var(--text);
-    font-family:'Noto Sans JP', sans-serif;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    padding: 32px 16px 48px;
-    overflow-x:hidden;
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 28px 28px;
+    color: var(--text-main);
+    font-family: 'Noto Sans JP', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 12px 40px;
   }
+  .mono { font-family: 'Space Mono', monospace; }
 
-  .header{
-    text-align:center;
-    margin-bottom: 28px;
-    opacity:0;
-    animation: fadeDown .8s ease forwards;
+  .header {
+    width: 100%;
+    max-width: 480px;
+    margin-bottom: 18px;
+    opacity: 0;
+    animation: fadeIn 0.6s ease forwards;
   }
-  .header .eyebrow{
-    font-family:'Playfair Display', serif;
-    letter-spacing: 0.35em;
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-size: 11px;
-    color: var(--gold);
-    text-transform: uppercase;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
     margin-bottom: 10px;
   }
-  .header h1{
-    font-family:'Noto Serif JP', serif;
-    font-weight:900;
-    font-size: clamp(24px, 5vw, 38px);
-    background: linear-gradient(120deg, var(--gold-light), var(--gold) 60%, #8a6d2c);
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-    letter-spacing: 0.04em;
+  .live-dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin-right: 6px;
+    box-shadow: 0 0 8px var(--accent);
+    animation: pulse 1.6s infinite;
   }
-  .header .sub{
-    margin-top:8px;
-    font-size:12px;
-    color: var(--text-dim);
-    letter-spacing: 0.08em;
-  }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
 
-  /* ticker */
-  .ticker-wrap{
-    width:100%;
-    max-width: 640px;
-    overflow:hidden;
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-    padding:8px 0;
-    margin-bottom: 26px;
-    opacity:0;
-    animation: fadeDown .8s ease .1s forwards;
+  h1 {
+    font-family: 'Space Mono', monospace;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--text-main);
+    line-height: 1.3;
   }
-  .ticker{
-    display:inline-flex;
-    white-space:nowrap;
-    animation: scrollTicker 22s linear infinite;
-    font-family:'Playfair Display', serif;
+  h1 span { color: var(--accent); }
+  .subtitle {
     font-size: 12px;
-    letter-spacing: 0.12em;
-    color: var(--gold-light);
-  }
-  .ticker span{ margin-right: 48px; }
-  @keyframes scrollTicker{
-    0%{ transform: translateX(0); }
-    100%{ transform: translateX(-50%); }
+    color: var(--text-dim);
+    margin-top: 4px;
   }
 
-  .slider-container{
-    width:100%;
-    max-width: 640px;
-    position:relative;
-  }
-
-  .progress-bar{
-    width:100%;
-    height:3px;
-    background: rgba(201,162,75,0.15);
-    border-radius:2px;
+  .ticker-wrap {
+    width: 100%;
+    max-width: 480px;
+    overflow: hidden;
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 6px;
+    padding: 8px 0;
     margin-bottom: 20px;
-    overflow:hidden;
+    opacity: 0;
+    animation: fadeIn 0.6s ease 0.15s forwards;
   }
-  .progress-fill{
-    height:100%;
-    background: linear-gradient(90deg, var(--gold), var(--gold-light));
-    width: 14.28%;
-    transition: width .5s cubic-bezier(.65,0,.35,1);
-  }
-
-  .slider-track-wrap{
-    overflow:hidden;
-    border-radius: 18px;
-  }
-  .slider-track{
-    display:flex;
-    transition: transform .55s cubic-bezier(.65,0,.35,1);
-  }
-
-  .card{
-    min-width:100%;
-    box-sizing:border-box;
-    padding: 4px;
-  }
-  .card-inner{
-    background: linear-gradient(160deg, var(--card-bg-2), var(--card-bg));
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    padding: 28px 26px 24px;
-    min-height: 400px;
-    display:flex;
-    flex-direction:column;
-    position:relative;
-    box-shadow: 0 20px 50px -20px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.03);
-  }
-  .card-inner::before{
-    content:"";
-    position:absolute;
-    top:0; left:0;
-    width:100%; height:2px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    border-radius: 18px 18px 0 0;
-  }
-
-  .card-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    margin-bottom: 18px;
-  }
-  .tag-group{ display:flex; gap:8px; flex-wrap:wrap; }
-  .tag{
+  .ticker {
+    display: flex;
+    white-space: nowrap;
+    animation: ticker 22s linear infinite;
+    font-family: 'Space Mono', monospace;
     font-size: 11px;
-    letter-spacing: 0.05em;
-    padding: 4px 10px;
-    border: 1px solid var(--gold);
-    color: var(--gold-light);
-    border-radius: 999px;
-    font-family:'Noto Sans JP', sans-serif;
-    font-weight:500;
-    background: rgba(201,162,75,0.06);
+    color: var(--accent2);
   }
-  .heat{
+  .ticker span { padding-right: 40px; }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .slider-container {
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    opacity: 0;
+    animation: fadeIn 0.6s ease 0.3s forwards;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 3px;
+    background: var(--panel-border);
+    border-radius: 2px;
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    width: 20%;
+    transition: width 0.4s cubic-bezier(0.65,0,0.35,1);
+  }
+
+  .slides-track {
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  .slides {
+    display: flex;
+    transition: transform 0.55s cubic-bezier(0.65,0,0.35,1);
+  }
+  .slide {
+    min-width: 100%;
+    padding: 2px;
+  }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 10px 10px 0 0;
+  }
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+  .idx {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  .heat {
     font-size: 13px;
     letter-spacing: 1px;
-    white-space:nowrap;
-    padding-top: 3px;
   }
-
-  .card-number{
-    font-family:'Playfair Display', serif;
-    font-size: 13px;
-    color: var(--text-dim);
-    letter-spacing: 0.15em;
-    margin-bottom: 6px;
+  .tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
   }
-
-  .card-title{
-    font-family:'Noto Serif JP', serif;
-    font-weight: 700;
-    font-size: clamp(19px, 4.2vw, 23px);
-    line-height: 1.5;
-    color: var(--text);
-    margin-bottom: 16px;
-  }
-
-  .card-body{
-    font-size: 14.5px;
-    line-height: 1.9;
-    color: #d8cdb8;
-    flex-grow:1;
-  }
-
-  .card-footer{
-    margin-top: 20px;
-    padding-top: 14px;
-    border-top: 1px dashed var(--line);
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    font-size: 12px;
-    color: var(--text-dim);
+  .tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid;
     letter-spacing: 0.03em;
   }
-  .card-footer .source{
-    font-family:'Playfair Display', serif;
-    color: var(--gold);
+  .tag.company { color: var(--accent2); border-color: var(--accent2); background: rgba(0,180,255,0.08); }
+  .tag.theme { color: var(--accent); border-color: var(--accent); background: rgba(0,229,160,0.08); }
+
+  .card h2 {
+    font-size: 17px;
+    line-height: 1.5;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text-main);
+  }
+  .card p {
+    font-size: 13px;
+    line-height: 1.8;
+    color: #a9b7c6;
+    flex-grow: 1;
+  }
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--panel-border);
+    font-family: 'Space Mono', monospace;
+    font-size: 10.5px;
+    color: var(--text-dim);
   }
 
-  .controls{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap: 22px;
-    margin-top: 24px;
+  .nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 18px;
   }
-  .nav-btn{
-    width: 46px; height:46px;
+  .nav-btn {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    color: var(--text-main);
+    width: 40px; height: 40px;
     border-radius: 50%;
-    border: 1px solid var(--gold);
-    background: transparent;
-    color: var(--gold-light);
-    font-size: 18px;
-    cursor:pointer;
-    display:flex; align-items:center; justify-content:center;
-    transition: all .25s ease;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    font-family: 'Space Mono', monospace;
   }
-  .nav-btn:hover{
-    background: var(--gold);
-    color: #1a1713;
-    transform: scale(1.08);
-  }
-  .nav-btn:active{ transform: scale(0.95); }
+  .nav-btn:hover { border-color: var(--accent); color: var(--accent); transform: scale(1.08); }
+  .nav-btn:active { transform: scale(0.95); }
 
-  .dots{
-    display:flex;
-    gap: 9px;
+  .dots {
+    display: flex;
+    gap: 8px;
   }
-  .dot{
-    width:8px; height:8px;
-    border-radius:50%;
-    background: rgba(201,162,75,0.25);
-    cursor:pointer;
-    transition: all .3s ease;
+  .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--panel-border);
+    cursor: pointer;
+    transition: all 0.3s ease;
   }
-  .dot.active{
-    background: var(--gold-light);
-    width: 22px;
+  .dot.active {
+    background: var(--accent);
+    width: 20px;
     border-radius: 4px;
   }
 
-  .hint{
-    text-align:center;
-    margin-top: 18px;
-    font-size: 11px;
+  .hint {
+    text-align: center;
+    font-size: 10.5px;
     color: var(--text-dim);
-    letter-spacing: 0.05em;
+    margin-top: 14px;
+    font-family: 'Space Mono', monospace;
   }
 
-  @keyframes fadeDown{
-    from{ opacity:0; transform: translateY(-10px); }
-    to{ opacity:1; transform: translateY(0); }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-  @keyframes fadeUp{
-    from{ opacity:0; transform: translateY(16px); }
-    to{ opacity:1; transform: translateY(0); }
-  }
-  .slider-container{ opacity:0; animation: fadeUp .9s ease .2s forwards; }
 
-  @media (max-width: 420px){
-    .card-inner{ padding: 22px 18px 20px; min-height: 440px; }
-    .nav-btn{ width:40px; height:40px; }
+  @media (max-width: 380px) {
+    h1 { font-size: 19px; }
+    .card { padding: 16px; min-height: 400px; }
   }
 </style>
 </head>
 <body>
 
-  <div class="header">
-    <div class="eyebrow">Weekly AI Digest</div>
-    <h1>今週のAIニュース TOP7</h1>
-    <div class="sub">2026年8月17日 〜 8月22日 セレクション</div>
+<div class="header">
+  <div class="header-top mono">
+    <span><span class="live-dot"></span>AI NEWS FEED</span>
+    <span>UPDATED 2026-08-26</span>
   </div>
+  <h1>今週の<span>AI</span>ニュース<br>ダッシュボード</h1>
+  <div class="subtitle">2026年8月18日〜8月26日 注目トピック 5選</div>
+</div>
 
-  <div class="ticker-wrap">
-    <div class="ticker">
-      <span>🔥 ANTHROPIC</span><span>🔥 GOOGLE GEMINI</span><span>🔥 NVIDIA</span><span>🔥 OPENAI</span><span>🔥 STRIPE × OPENROUTER</span><span>🔥 CLAUDE MYTHOS 5</span><span>🔥 A2A PROTOCOL</span>
-      <span>🔥 ANTHROPIC</span><span>🔥 GOOGLE GEMINI</span><span>🔥 NVIDIA</span><span>🔥 OPENAI</span><span>🔥 STRIPE × OPENROUTER</span><span>🔥 CLAUDE MYTHOS 5</span><span>🔥 A2A PROTOCOL</span>
-    </div>
+<div class="ticker-wrap">
+  <div class="ticker mono">
+    <span>▲ OpenAI 独自推論チップ「Jalapeño」始動</span>
+    <span>▲ Anthropic「Mythos 5」防御用途に開放</span>
+    <span>▲ ChatGPT for Teens 提供開始</span>
+    <span>▲ Bain × Anthropic グローバル提携</span>
+    <span>▲ DeepSeek API値上げ最大1100%</span>
+    <span>▲ NVIDIAがOpenAI向けに17兆円保証</span>
+    <span>▲ Google「Gemini for Legal」発表</span>
+    <span>▲ OpenAI 独自推論チップ「Jalapeño」始動</span>
+    <span>▲ Anthropic「Mythos 5」防御用途に開放</span>
+    <span>▲ ChatGPT for Teens 提供開始</span>
+    <span>▲ Bain × Anthropic グローバル提携</span>
+    <span>▲ DeepSeek API値上げ最大1100%</span>
+    <span>▲ NVIDIAがOpenAI向けに17兆円保証</span>
+    <span>▲ Google「Gemini for Legal」発表</span>
   </div>
+</div>
 
-  <div class="slider-container">
-    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="slider-container">
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 
-    <div class="slider-track-wrap">
-      <div class="slider-track" id="sliderTrack">
+  <div class="slides-track">
+    <div class="slides" id="slidesWrap">
 
-        <!-- 1 -->
+      <!-- Slide 1 -->
+      <div class="slide">
         <div class="card">
-          <div class="card-inner">
-            <div class="card-top">
-              <div class="tag-group">
-                <span class="tag">Anthropic</span>
-                <span class="tag">教育</span>
-              </div>
-              <div class="heat">🔥🔥🔥</div>
-            </div>
-            <div class="card-number">NEWS 01 / 07</div>
-            <div class="card-title">Anthropic、学習サイト「Claude Academy」を公開</div>
-            <div class="card-body">
-              Anthropicは8月20日、AIを安全かつ効果的に使いこなすための無料学習サイト「Claude Academy」を公開した。初心者からチーム導入を進める担当者まで幅広く対象にしており、Claude製品の使い方からAPI・MCPを使った開発、業種別のユースケースまで22件のコースを掲載している。旧「Anthropic Academy」からの発展版という位置づけで、今後コンテンツが拡充される見込み。
-            </div>
-            <div class="card-footer">
-              <span class="source">gihyo.jp</span>
-              <span>2026.08.20</span>
-            </div>
+          <div class="card-top">
+            <span class="idx mono">NEWS 01 / 07</span>
+            <span class="heat">🔥🔥🔥🔥🔥</span>
+          </div>
+          <div class="tags">
+            <span class="tag company">OpenAI</span>
+            <span class="tag theme">半導体・推論基盤</span>
+          </div>
+          <h2>自社推論チップ「Jalapeño」の実測性能を初公開</h2>
+          <p>OpenAIが8月25日、Broadcomと共同開発した推論特化チップ「Jalapeño」の実測ベンチマークを初めて公開。GPT-OSS 120Bなど公開モデルで検証したところ、NVIDIA GB200/GB300搭載システム比でワット当たり性能が最大1.9倍、応答遅延も大幅短縮という結果に。2026年末までに自社基盤への導入を計画しており、NVIDIA依存からの脱却と「AIフルスタック化」を進める動きとして注目されている。</p>
+          <div class="card-footer">
+            <span>SOURCE: ビジネス+IT / GIGAZINE</span>
+            <span>08.25</span>
           </div>
         </div>
-
-        <!-- 2 -->
-        <div class="card">
-          <div class="card-inner">
-            <div class="card-top">
-              <div class="tag-group">
-                <span class="tag">Anthropic</span>
-                <span class="tag">セキュリティ</span>
-              </div>
-              <div class="heat">🔥🔥🔥</div>
-            </div>
-            <div class="card-number">NEWS 02 / 07</div>
-            <div class="card-title">最上位モデル「Claude Mythos 5」が脆弱性スキャンに開放</div>
-            <div class="card-body">
-              Anthropicは8月21日、最上位AIモデル「Claude Mythos 5」を、セキュリティサービス「Claude Security」の脆弱性スキャン機能で利用できるようにしたと発表した。対象はClaude Enterprise顧客で、追加のアドオン契約は不要。ただし利用者がモデルへ直接プロンプトを送れるわけではなく、受け取れるのは検出結果と修正案に限られる。
-            </div>
-            <div class="card-footer">
-              <span class="source">ITmedia</span>
-              <span>2026.08.21</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 3 -->
-        <div class="card">
-          <div class="card-inner">
-            <div class="card-top">
-              <div class="tag-group">
-                <span class="tag">Anthropic</span>
-                <span class="tag">透明性</span>
-              </div>
-              <div class="heat">🔥🔥🔥🔥</div>
-            </div>
-            <div class="card-number">NEWS 03 / 07</div>
-            <div class="card-title">Claudeの生成テキストに見えない透かしを導入</div>
-            <div class="card-body">
-              Anthropicは、8月2日以降に公開する新モデルから、Claudeが生成する全テキストに人の目には見えない機械検出可能な透かしを組み込むと発表した。次の単語の選び方に検出可能なパターンを埋め込む方式で、文章の質や読みやすさへの影響はなく追加コストも発生しないという。EU AI法の行動規範への対応の一環とされる。
-            </div>
-            <div class="card-footer">
-              <span class="source">GIGAZINE / gihyo.jp</span>
-              <span>2026.08.12</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 4 -->
-        <div class="card">
-          <div class="card-inner">
-            <div class="card-top">
-              <div class="tag-group">
-                <span class="tag">Google</span>
-                <span class="tag">Gemini</span>
-              </div>
-              <div class="heat">🔥🔥🔥🔥</div>
-            </div>
-            <div class="card-number">NEWS 04 / 07</div>
-            <div class="card-title">対話型AI「Gemini」、月間利用者が10億人を突破</div>
-            <div class="card-body">
-              Googleの対話型AI「Gemini」アプリの月間アクティブ利用者数が10億人を突破したと報じられた。同時期にはNVIDIAが金融大手6社と組んで総額5000億ドル規模のAI投資枠組みを構築するなど、資金・普及の両面でAI業界の勢いが加速している週となった。
-            </div>
-            <div class="card-footer">
-              <span class="source">CANTABILE</span>
-              <span>2026.08.10-16</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 5 -->
-        <div class="card">
-          <div class="card-inner">
-            <div class="card-top">
-              <div class="tag-group">
-                <span class="tag">M&A</span>
-                <span class="tag">Stripe</span>
-              </div>
-              <div class="heat">🔥🔥🔥</div>
-            </div>
-            <div class="card-number">NEWS 05 / 07</div>
-            <div class="card-title">決済大手Stripe、AIルーティングのOpenRouterを70億ドル超で買収</div>
-            <div class="card-body">
-              決済大手Stripeが、400以上のAIモデルへの接続を仲介するサービス「OpenRouter」を70億ドル超で買収する取引をまとめたと8月16日にBloombergが報じた。OpenAI、Anthropic、Google、Metaなど複数社のモデルを一括で扱えるインフラ層への投資が、決済企業からも進んでいる形だ。
-            </div>
-            <div class="card-footer">
-              <span class="source">Bloomberg 経由 note</span>
-              <span>2026.08.16-17</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 6 -->
-        <div class="card">
-          <div class="card-inner">
-            <div class="card-top">
-              <div class="tag-group">
-                <span class="tag">NVIDIA</span>
-                <span class="tag">OpenAI</span>
-              </div>
-              <div class="heat">🔥🔥🔥🔥🔥</div>
-            </div>
-            <div class="card-number">NEWS 06 / 07</div>
-            <div class="card-title">NVIDIA、OpenAIの新データセンター向けに約1000億ドルの与信保証を検討</div>
-            <div class="card-body">
-              NVIDIAが、OpenAIが計画する大規模データセンター向けに約1000億ドル規模の与信を保証する方向で最終調整に入っていると報じられた。AI企業間の巨大インフラ投資が加速しており、モデル性能の競争から計算資源・資本力の確保へと業界の争点が移りつつある象徴的な動きとなっている。
-            </div>
-            <div class="card-footer">
-              <span class="source">note（AI業界ダイジェスト）</span>
-              <span>2026.08.18</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 7 -->
-        <div class="card">
-          <div class="card-inner">
-            <div class="card-top">
-              <div class="tag-group">
-                <span class="tag">Google</span>
-                <span class="tag">A2A</span>
-              </div>
-              <div class="heat">🔥🔥🔥</div>
-            </div>
-            <div class="card-number">NEWS 07 / 07</div>
-            <div class="card-title">AIエージェント間通信規格「A2A」が新運営体制へ移行</div>
-            <div class="card-body">
-              Googleが開発したAIエージェント同士が通信するためのオープン規格「Agent2Agent Protocol（A2A）」が、これまでのLinux Foundationから、エージェント技術に特化した新団体「Agentic AI Foundation」の運営へ移ることが明らかになった。異なる企業のAIエージェントが連携する基盤づくりが着実に進んでいる。
-            </div>
-            <div class="card-footer">
-              <span class="source">note（AIがまとめる）</span>
-              <span>2026.08.17</span>
-            </div>
-          </div>
-        </div>
-
       </div>
-    </div>
 
-    <div class="controls">
-      <button class="nav-btn" id="prevBtn" aria-label="前へ">←</button>
-      <div class="dots" id="dots"></div>
-      <button class="nav-btn" id="nextBtn" aria-label="次へ">→</button>
-    </div>
+      <!-- Slide 2 -->
+      <div class="slide">
+        <div class="card">
+          <div class="card-top">
+            <span class="idx mono">NEWS 02 / 07</span>
+            <span class="heat">🔥🔥🔥🔥</span>
+          </div>
+          <div class="tags">
+            <span class="tag company">Anthropic</span>
+            <span class="tag theme">サイバーセキュリティ</span>
+          </div>
+          <h2>最上位モデル「Claude Mythos 5」を脆弱性スキャンに開放</h2>
+          <p>Anthropicは8月21日、これまで限られた組織のみに提供してきた最上位モデル「Claude Mythos 5」を、セキュリティ製品「Claude Security」経由で開放すると発表。モデルへの直接アクセスは許さず、脆弱性の検出結果と修正案のみを返す仕組みでリスクを抑制。あわせてOSS支援に3,500万ドル相当のクレジットを提供する新基金も設立し、防御側の能力強化を後押しする。</p>
+          <div class="card-footer">
+            <span>SOURCE: ZDNET Japan / GIGAZINE</span>
+            <span>08.21</span>
+          </div>
+        </div>
+      </div>
 
-    <div class="hint">スワイプ / ← → キーで切り替え</div>
+      <!-- Slide 3 -->
+      <div class="slide">
+        <div class="card">
+          <div class="card-top">
+            <span class="idx mono">NEWS 03 / 07</span>
+            <span class="heat">🔥🔥🔥🔥</span>
+          </div>
+          <div class="tags">
+            <span class="tag company">OpenAI</span>
+            <span class="tag theme">未成年保護</span>
+          </div>
+          <h2>13〜17歳向け「ChatGPT for Teens」を発表</h2>
+          <p>8月18日、OpenAIが年齢推定や自己申告に基づき自動適用される10代向け利用環境を発表。学習を段階的に支援する「Study Mode」に加え、自傷行為・摂食障害など高リスク領域の保護をデフォルトで強化した。恋愛的・感情依存を促す応答を禁じるModel Specの更新も同時に実施され、若年層とAIチャットボットを巡る懸念の高まりが背景にある。</p>
+          <div class="card-footer">
+            <span>SOURCE: ITmedia NEWS</span>
+            <span>08.18</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="slide">
+        <div class="card">
+          <div class="card-top">
+            <span class="idx mono">NEWS 04 / 07</span>
+            <span class="heat">🔥🔥🔥</span>
+          </div>
+          <div class="tags">
+            <span class="tag company">Anthropic × Bain</span>
+            <span class="tag theme">企業導入・提携</span>
+          </div>
+          <h2>Bain & CompanyがAnthropicの最上位パートナーに</h2>
+          <p>8月25日、大手コンサルティングファームBain & Companyが「Claude Partner Network」の最上位「Global Premier」に認定されたと発表。Bainは全世界1万9千人規模でClaudeを社内導入済みで、7,000人以上が数週間で利用を開始したという。両社はAI戦略立案から業務変革の実装まで、企業向けの一気通貫支援を拡大していく方針。</p>
+          <div class="card-footer">
+            <span>SOURCE: Bain & Company / Unite.AI</span>
+            <span>08.25</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 5 -->
+      <div class="slide">
+        <div class="card">
+          <div class="card-top">
+            <span class="idx mono">NEWS 05 / 07</span>
+            <span class="heat">🔥🔥🔥</span>
+          </div>
+          <div class="tags">
+            <span class="tag company">DeepSeek</span>
+            <span class="tag theme">価格改定</span>
+          </div>
+          <h2>中国DeepSeek、API価格を最大1100%引き上げへ</h2>
+          <p>Reutersの報道によると、中国のAIスタートアップDeepSeekがV4-ProとV4-Flashのモデルについて、8月17日からAPI価格を引き上げると発表。新料金はモデルやトークンの種類、利用時間帯によって異なり、現行価格から50%〜1100%の上昇幅になるケースがあるという。低価格戦略で存在感を高めてきた同社の路線転換として市場の関心を集めている。</p>
+          <div class="card-footer">
+            <span>SOURCE: Reuters（note要約）</span>
+            <span>08.16</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 6 -->
+      <div class="slide">
+        <div class="card">
+          <div class="card-top">
+            <span class="idx mono">NEWS 06 / 07</span>
+            <span class="heat">🔥🔥🔥🔥</span>
+          </div>
+          <div class="tags">
+            <span class="tag company">NVIDIA × OpenAI</span>
+            <span class="tag theme">データセンター投資</span>
+          </div>
+          <h2>NVIDIA、OpenAIのデータセンター賃料を17兆円保証</h2>
+          <p>NVIDIAが8月17日、ソフトバンクグループ傘下SBエナジーが開発するオハイオ州の巨大データセンターについて、OpenAIの賃料支払いを最大1,050億ドル（約17兆円）保証すると発表。あわせてSBエナジーへの出資や土地・電力・建屋の容量確保も進めており、AIインフラ競争の焦点が計算性能だけでなく電力・用地の確保にも広がっていることを示す動きとなった。</p>
+          <div class="card-footer">
+            <span>SOURCE: 日本経済新聞</span>
+            <span>08.17</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 7 -->
+      <div class="slide">
+        <div class="card">
+          <div class="card-top">
+            <span class="idx mono">NEWS 07 / 07</span>
+            <span class="heat">🔥🔥🔥</span>
+          </div>
+          <div class="tags">
+            <span class="tag company">Google</span>
+            <span class="tag theme">法務特化AI</span>
+          </div>
+          <h2>Google、法務特化AI「Gemini Enterprise for Legal」発表</h2>
+          <p>Google Cloudが8月25日、法律実務に特化したAIパッケージ「Gemini Enterprise for Legal」をプレビュー公開。準備書面の起草や契約ライフサイクル管理、判例・規制動向の監視などをこなす専門スキルと、Thomson ReutersやHarveyなど主要法律データベースとの連携機能を備える。OpenAIやAnthropicも法務領域への参入を進めており、専門職向けAIエージェント競争が激化している。</p>
+          <div class="card-footer">
+            <span>SOURCE: AI新聞 / Business Insider Japan</span>
+            <span>08.25</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" id="prevBtn" aria-label="前へ">‹</button>
+    <div class="dots" id="dotsWrap"></div>
+    <button class="nav-btn" id="nextBtn" aria-label="次へ">›</button>
+  </div>
+  <div class="hint">スワイプ / ← → キーで切り替え</div>
+</div>
 
 <script>
-  const track = document.getElementById('sliderTrack');
-  const dotsWrap = document.getElementById('dots');
+(function() {
+  const slidesWrap = document.getElementById('slidesWrap');
+  const dotsWrap = document.getElementById('dotsWrap');
   const progressFill = document.getElementById('progressFill');
-  const cards = document.querySelectorAll('.card');
-  const total = cards.length;
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const totalSlides = document.querySelectorAll('.slide').length;
   let current = 0;
 
-  for(let i=0;i<total;i++){
+  for (let i = 0; i < totalSlides; i++) {
     const dot = document.createElement('div');
-    dot.className = 'dot' + (i===0 ? ' active' : '');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
     dot.addEventListener('click', () => goTo(i));
     dotsWrap.appendChild(dot);
   }
   const dots = document.querySelectorAll('.dot');
 
-  function update(){
-    track.style.transform = `translateX(-${current * 100}%)`;
-    dots.forEach((d,i) => d.classList.toggle('active', i===current));
-    progressFill.style.width = `${((current+1)/total)*100}%`;
+  function update() {
+    slidesWrap.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    progressFill.style.width = `${((current + 1) / totalSlides) * 100}%`;
   }
-  function goTo(i){
-    current = (i + total) % total;
+
+  function goTo(i) {
+    current = (i + totalSlides) % totalSlides;
     update();
   }
-  document.getElementById('prevBtn').addEventListener('click', () => goTo(current-1));
-  document.getElementById('nextBtn').addEventListener('click', () => goTo(current+1));
+
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
 
   document.addEventListener('keydown', (e) => {
-    if(e.key === 'ArrowLeft') goTo(current-1);
-    if(e.key === 'ArrowRight') goTo(current+1);
+    if (e.key === 'ArrowLeft') goTo(current - 1);
+    if (e.key === 'ArrowRight') goTo(current + 1);
   });
 
-  // swipe
-  let startX = 0;
-  let isDragging = false;
-  const wrap = document.querySelector('.slider-track-wrap');
-  wrap.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-    isDragging = true;
-  }, {passive:true});
-  wrap.addEventListener('touchend', (e) => {
-    if(!isDragging) return;
-    const endX = e.changedTouches[0].clientX;
-    const diff = startX - endX;
-    if(Math.abs(diff) > 40){
-      if(diff > 0) goTo(current+1);
-      else goTo(current-1);
+  let touchStartX = 0;
+  slidesWrap.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+  slidesWrap.addEventListener('touchend', (e) => {
+    const diff = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(diff) > 40) {
+      if (diff < 0) goTo(current + 1);
+      else goTo(current - 1);
     }
-    isDragging = false;
-  });
+  }, { passive: true });
 
-  // staggered fade-in for first card content
   update();
+})();
 </script>
 
 </body>
