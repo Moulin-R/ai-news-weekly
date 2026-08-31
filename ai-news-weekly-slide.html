@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI最新ニュース速報</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0b0f14;
+    --panel: #10161d;
+    --grid: #1c2530;
+    --accent: #33ff9c;
+    --accent-dim: #1c8a56;
+    --amber: #ffb545;
+    --text: #d8e3e8;
+    --text-dim: #6b7d88;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    background: var(--bg);
+    background-image:
+      linear-gradient(rgba(51,255,156,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(51,255,156,0.035) 1px, transparent 1px);
+    background-size: 26px 26px;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--text);
+    overflow-x:hidden;
+  }
+  body{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding: 26px 14px 44px;
+  }
+
+  .header{
+    width:100%;
+    max-width: 640px;
+    margin-bottom: 20px;
+    opacity:0;
+    animation: fadeDown .7s ease forwards;
+  }
+  .header .top-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    margin-bottom: 10px;
+  }
+  .header .top-row .dot{
+    display:inline-block;
+    width:7px;height:7px;
+    border-radius:50%;
+    background: var(--accent);
+    margin-right: 6px;
+    box-shadow: 0 0 6px var(--accent);
+    animation: blink 1.6s infinite;
+  }
+  .header h1{
+    font-family:'Space Mono', monospace;
+    font-weight: 700;
+    font-size: clamp(20px, 5.5vw, 28px);
+    color: #fff;
+    letter-spacing: 0.02em;
+    border-left: 3px solid var(--accent);
+    padding-left: 12px;
+  }
+  .header .sub{
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--text-dim);
+    padding-left: 15px;
+    letter-spacing: 0.03em;
+  }
+
+  .ticker-wrap{
+    width:100%;
+    max-width: 640px;
+    height: 40px;
+    overflow:hidden;
+    border-top: 1px solid var(--grid);
+    border-bottom: 1px solid var(--grid);
+    margin-bottom: 22px;
+    background: var(--panel);
+    position: relative;
+    flex-shrink: 0;
+  }
+  .ticker-track{
+    display:flex;
+    align-items:center;
+    height: 40px;
+    width: max-content;
+    white-space:nowrap;
+    animation: scrollTicker 42s linear infinite;
+  }
+  .ticker-track span{
+    flex: 0 0 auto;
+    display:block;
+    padding: 0 24px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--amber);
+    white-space:nowrap;
+  }
+  @keyframes scrollTicker{
+    0%{ transform: translateX(0); }
+    100%{ transform: translateX(-50%); }
+  }
+  @keyframes blink{
+    0%,100%{ opacity:1; }
+    50%{ opacity:.3; }
+  }
+
+  .slider-stage{
+    position:relative;
+    width:100%;
+    max-width: 620px;
+  }
+
+  .progress-track{
+    width:100%;
+    height: 3px;
+    background: var(--grid);
+    margin-bottom: 20px;
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+    width: 20%;
+    transition: width .4s ease;
+  }
+
+  .cards{
+    position:relative;
+    width:100%;
+    height: 440px;
+  }
+
+  .card{
+    position:absolute;
+    inset:0;
+    background: var(--panel);
+    border: 1px solid var(--grid);
+    padding: 26px 24px 22px;
+    display:flex;
+    flex-direction:column;
+    opacity:0;
+    transform: translateX(30px);
+    pointer-events:none;
+    transition: opacity .4s ease, transform .4s ease;
+  }
+  .card.active{
+    opacity:1;
+    transform: translateX(0);
+    pointer-events:auto;
+  }
+  .card.prev{
+    opacity:0;
+    transform: translateX(-30px);
+  }
+
+  .card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom: 16px;
+    font-family:'Space Mono', monospace;
+  }
+  .tag{
+    display:inline-block;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--bg);
+    background: var(--accent);
+    padding: 4px 10px;
+  }
+  .heat{
+    font-size: 12px;
+    color: var(--amber);
+    letter-spacing: 2px;
+  }
+
+  .card h2{
+    font-family:'Noto Sans JP', sans-serif;
+    font-size: clamp(17px, 3.6vw, 21px);
+    line-height:1.5;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: #fff;
+  }
+  .card p.summary{
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--text);
+    flex-grow:1;
+  }
+  .card .meta{
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--grid);
+    display:flex;
+    justify-content:space-between;
+    font-family:'Space Mono', monospace;
+    font-size: 10.5px;
+    color: var(--text-dim);
+  }
+  .card .num{
+    position:absolute;
+    bottom: 16px;
+    right: 20px;
+    font-family:'Space Mono', monospace;
+    font-size: 46px;
+    color: rgba(51,255,156,0.08);
+    font-weight:700;
+    pointer-events:none;
+  }
+
+  .controls{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 18px;
+    margin-top: 22px;
+  }
+  .nav-btn{
+    width: 42px;
+    height:42px;
+    border: 1px solid var(--grid);
+    background: var(--panel);
+    color: var(--accent);
+    font-size: 16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition: all .2s ease;
+    font-family:'Space Mono', monospace;
+  }
+  .nav-btn:hover{
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  .dots{
+    display:flex;
+    gap: 8px;
+  }
+  .dot{
+    width: 7px;
+    height:7px;
+    background: var(--grid);
+    cursor:pointer;
+    transition: all .3s ease;
+  }
+  .dot.active{
+    background: var(--accent);
+    width: 20px;
+  }
+
+  .counter{
+    margin-top: 12px;
+    font-family:'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+  }
+
+  .footer-note{
+    margin-top: 30px;
+    font-family:'Space Mono', monospace;
+    font-size: 10.5px;
+    color: var(--text-dim);
+    text-align:center;
+    max-width: 560px;
+    line-height: 1.8;
+    opacity: .8;
+  }
+
+  @keyframes fadeDown{
+    from{ opacity:0; transform: translateY(-10px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+
+  @media (max-width: 480px){
+    .cards{ height: 480px; }
+    .card{ padding: 20px 18px 18px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="top-row"><span><span class="dot"></span>LIVE FEED</span><span>JST 2026.09.01</span></div>
+    <h1>AI最新ニュース速報</h1>
+    <div class="sub">直近1〜2週間の注目トピック ｜ 全5件</div>
+  </div>
+
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <span>01｜Salesforce×Anthropic「Claudeforce」戦略提携を発表 ｜</span>
+      <span>02｜Apple、M6搭載の新型Mac miniをAIエージェント向けに投入 ｜</span>
+      <span>03｜NVIDIA×OpenAI、AIデータセンター拡張に1050億ドル規模の保証 ｜</span>
+      <span>04｜OpenAI「ChatGPT for Teens」開始 10代向け安全機能を強化 ｜</span>
+      <span>05｜OpenAI GPT-5.6が企業運用と広告収益化へ重心を移動 ｜</span>
+      <span>01｜Salesforce×Anthropic「Claudeforce」戦略提携を発表 ｜</span>
+      <span>02｜Apple、M6搭載の新型Mac miniをAIエージェント向けに投入 ｜</span>
+      <span>03｜NVIDIA×OpenAI、AIデータセンター拡張に1050億ドル規模の保証 ｜</span>
+      <span>04｜OpenAI「ChatGPT for Teens」開始 10代向け安全機能を強化 ｜</span>
+      <span>05｜OpenAI GPT-5.6が企業運用と広告収益化へ重心を移動 ｜</span>
+    </div>
+  </div>
+
+  <div class="slider-stage">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+    <div class="cards" id="cards">
+
+      <div class="card active" data-index="0">
+        <div class="card-top">
+          <span class="tag">Anthropic</span>
+          <span class="heat">🔥🔥🔥🔥🔥</span>
+        </div>
+        <h2>Salesforce×Anthropic、戦略提携「Claudeforce」を発表</h2>
+        <p class="summary">両社は8月26日、営業担当者がClaude上で商談確認やパイプライン更新を行える「Salesforce in Claude」を柱とする戦略提携を発表した。Salesforce側のデータやビジネスルールに沿ってAIエージェントを動かす仕組みで、一部顧客向けにパイロット提供を開始し、2026年9月の一般公開を予定しているという。</p>
+        <div class="meta"><span>出典：CANTABILE</span><span>2026.08.26</span></div>
+        <div class="num">01</div>
+      </div>
+
+      <div class="card" data-index="1">
+        <div class="card-top">
+          <span class="tag">Apple</span>
+          <span class="heat">🔥🔥🔥🔥</span>
+        </div>
+        <h2>Apple、新設計半導体「M6」搭載の新型Mac miniを発表</h2>
+        <p class="summary">日本経済新聞によると、アップルは自律的に働くAIエージェント向け需要の高まりを受け、新チップ「M6」搭載のMac miniを9月22日に発売する。AI処理性能を最大4倍に高速化し、AIを常時稼働させたい用途に応える狙い。日本での最低価格は14万9800円で、既存モデルより1万5000円高い。</p>
+        <div class="meta"><span>出典：日本経済新聞</span><span>2026.08.25</span></div>
+        <div class="num">02</div>
+      </div>
+
+      <div class="card" data-index="2">
+        <div class="card-top">
+          <span class="tag">インフラ</span>
+          <span class="heat">🔥🔥🔥🔥</span>
+        </div>
+        <h2>NVIDIAとOpenAI、大規模AIデータセンター建設で提携</h2>
+        <p class="summary">NVIDIAは8月17日、SB Energyと共同で米オハイオ州にAIデータセンター「PORTS-Pike」を建設すると発表。OpenAIは20年間のリース契約で施設を利用する予定で、NVIDIAは初期段階の電力・土地確保に対し最大1050億ドルの信用保証をSECへの開示文書で明らかにした。稼働は2028年から段階的に始まる見込み。</p>
+        <div class="meta"><span>出典：CANTABILE</span><span>2026.08.17</span></div>
+        <div class="num">03</div>
+      </div>
+
+      <div class="card" data-index="3">
+        <div class="card-top">
+          <span class="tag">OpenAI</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>OpenAI「ChatGPT for Teens」提供開始、10代の安全機能強化</h2>
+        <p class="summary">OpenAIは8月18日、13〜17歳向けに安全機能を強化した「ChatGPT for Teens」の提供を開始したと発表した。年齢を自動推定する仕組みで対象年齢と判断された利用者は専用環境に自動切り替えされ、学習支援の「Study Mode」や宿題丸投げ防止のリマインダー、保護者向けの利用時間設定などが用意されている。</p>
+        <div class="meta"><span>出典：CANTABILE</span><span>2026.08.18</span></div>
+        <div class="num">04</div>
+      </div>
+
+      <div class="card" data-index="4">
+        <div class="card-top">
+          <span class="tag">OpenAI</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>OpenAI、GPT-5.6を軸に企業運用と広告収益化へ重心移動</h2>
+        <p class="summary">業界メディアの分析によると、OpenAIは8月上旬のGPT-5.6再編で消費者向け配布を拡大した後、ChatGPT Businessの座席設計や企業利用分析、広告出稿を広げるAds Managerの拡張など、日常会話向けから本番業務・収益化の運用設計へと重心を移す発表を連続させている。</p>
+        <div class="meta"><span>出典：note（Masao/AI部署）</span><span>2026.08.13時点</span></div>
+        <div class="num">05</div>
+      </div>
+
+    </div>
+
+    <div class="controls">
+      <div class="nav-btn" id="prevBtn">&lt;</div>
+      <div class="dots" id="dots"></div>
+      <div class="nav-btn" id="nextBtn">&gt;</div>
+    </div>
+    <div class="counter" id="counter">01 / 05</div>
+  </div>
+
+  <div class="footer-note">
+    ※本レポートは公開情報をもとにした要約です。詳細は各出典元をご確認ください。<br>
+    次回はまた最新版を生成できます。
+  </div>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+  const dotsWrap = document.getElementById('dots');
+  const total = cards.length;
+  let current = 0;
+
+  for(let i=0;i<total;i++){
+    const d = document.createElement('div');
+    d.className = 'dot' + (i===0 ? ' active' : '');
+    d.addEventListener('click', ()=> goTo(i));
+    dotsWrap.appendChild(d);
+  }
+  const dots = document.querySelectorAll('.dot');
+  const progressFill = document.getElementById('progressFill');
+  const counter = document.getElementById('counter');
+
+  function pad(n){ return String(n).padStart(2,'0'); }
+
+  function render(){
+    cards.forEach((c, i)=>{
+      c.classList.remove('active','prev');
+      if(i === current) c.classList.add('active');
+      else if(i < current) c.classList.add('prev');
+    });
+    dots.forEach((d,i)=> d.classList.toggle('active', i===current));
+    progressFill.style.width = ((current+1)/total*100) + '%';
+    counter.textContent = pad(current+1) + ' / ' + pad(total);
+  }
+
+  function goTo(i){
+    current = (i+total) % total;
+    render();
+  }
+
+  document.getElementById('nextBtn').addEventListener('click', ()=> goTo(current+1));
+  document.getElementById('prevBtn').addEventListener('click', ()=> goTo(current-1));
+
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'ArrowRight') goTo(current+1);
+    if(e.key === 'ArrowLeft') goTo(current-1);
+  });
+
+  let touchStartX = 0;
+  const stage = document.querySelector('.slider-stage');
+  stage.addEventListener('touchstart', (e)=>{ touchStartX = e.changedTouches[0].screenX; }, {passive:true});
+  stage.addEventListener('touchend', (e)=>{
+    const dx = e.changedTouches[0].screenX - touchStartX;
+    if(dx > 50) goTo(current-1);
+    if(dx < -50) goTo(current+1);
+  }, {passive:true});
+
+  render();
+</script>
+
+</body>
+</html>
