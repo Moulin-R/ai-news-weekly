@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIニュース週報 ｜ アーカイブ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;900&family=Space+Mono:wght@400;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold: #d4af6a;
+    --gold-soft: #b8964f;
+    --bg-card: #16161a;
+    --line: rgba(212,175,106,0.25);
+    --ink: #f2ede2;
+    --ink-soft: #a39d90;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    min-height:100vh;
+    background: radial-gradient(circle at 15% 0%, #1c1a14 0%, #0d0d0f 55%, #08080a 100%);
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    overflow-x:hidden;
+  }
+  body{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding: 48px 20px 64px;
+  }
+  .header{
+    text-align:center;
+    max-width:720px;
+    margin-bottom: 40px;
+  }
+  .header .eyebrow{
+    font-family:'Space Mono', monospace;
+    letter-spacing: 0.35em;
+    font-size: 12px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .header h1{
+    font-family:'Noto Serif JP', serif;
+    font-weight: 900;
+    font-size: clamp(26px, 5vw, 40px);
+    letter-spacing: 0.03em;
+    line-height:1.4;
+  }
+  .header .sub{
+    margin-top: 12px;
+    font-family:'Space Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+  }
+
+  .archive-list{
+    width:100%;
+    max-width: 720px;
+    display:flex;
+    flex-direction:column;
+    gap: 16px;
+  }
+
+  .archive-card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 22px 26px;
+    text-decoration:none;
+    color: var(--ink);
+    box-shadow: 0 14px 34px -18px rgba(0,0,0,0.6);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .archive-card:hover{
+    transform: translateY(-3px);
+    border-color: var(--gold);
+    box-shadow: 0 18px 40px -16px rgba(0,0,0,0.75);
+  }
+  .archive-card.latest{
+    border: 1px solid var(--gold);
+    background: linear-gradient(135deg, #1a1812, #16161a);
+  }
+  .archive-card .info{ flex-grow:1; }
+  .archive-card .badge{
+    display:inline-block;
+    font-family:'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: #0d0d0f;
+    background: var(--gold);
+    padding: 4px 12px;
+    border-radius: 2px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .archive-card h2{
+    font-family:'Noto Serif JP', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height:1.5;
+  }
+  .archive-card .period{
+    font-family:'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+  .archive-card .arrow{
+    font-family:'Space Mono', monospace;
+    font-size: 22px;
+    color: var(--gold);
+    flex-shrink:0;
+  }
+
+  .footer-note{
+    margin-top: 48px;
+    font-size: 11px;
+    color: var(--ink-soft);
+    text-align:center;
+    opacity: .7;
+  }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="eyebrow">Weekly AI News Digest</div>
+    <h1>AIニュース週報</h1>
+    <div class="sub">今週のAI業界動向アーカイブ</div>
+  </div>
+
+  <div class="archive-list" id="archiveList">
+
+    <a class="archive-card latest" href="reports/ai-news-weekly-2026-09-15.html">
+      <div class="info">
+        <span class="badge">最新号</span>
+        <h2>Anthropic CEOの減速提言に業界揺れる・AI関連株急落ほか</h2>
+        <div class="period">2026年9月9日 〜 9月15日 ｜ 全5件</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+
+  </div>
+
+  <div class="footer-note">
+    毎週更新予定 ｜ 本サイトは公開報道をもとにした要約レポートです
+  </div>
+
+</body>
+</html>
