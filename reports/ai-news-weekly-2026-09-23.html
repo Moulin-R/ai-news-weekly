@@ -14,11 +14,13 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{background:var(--bg);color:var(--txt);font-family:'Noto Sans JP',sans-serif;overflow-x:hidden}
 body{
-  min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:28px 14px 44px;
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:72px 14px 44px;
   background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
   background-size:28px 28px;
 }
 .mono{font-family:'Space Mono',monospace}
+.back-btn{position:fixed;z-index:100;top:calc(16px + env(safe-area-inset-top,0px));left:calc(16px + env(safe-area-inset-left,0px));padding:8px 14px;border-radius:100px;background:rgba(18,25,34,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--acc);color:var(--acc);font-family:'Space Mono','Noto Sans JP',monospace;font-size:12px;text-decoration:none;transition:all .2s}
+.back-btn:hover{background:var(--acc);color:var(--bg)}
 header{width:100%;max-width:680px;margin-bottom:18px;opacity:0;animation:fadeUp .7s .05s forwards}
 .sys{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:11px;color:var(--mut);letter-spacing:.08em;margin-bottom:10px}
 .sys .live{color:var(--acc)}
@@ -78,6 +80,7 @@ h1 span{color:var(--acc)}
 </style>
 </head>
 <body>
+<a class="back-btn" href="../index.html" aria-label="一覧へ戻る">← 一覧へ</a>
 
 <header>
   <div class="sys"><span class="live">LIVE FEED</span><span>WEEK 38 / 2026</span></div>
