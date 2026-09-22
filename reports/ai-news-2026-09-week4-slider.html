@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI WEEKLY BRIEF 2026.09.17–09.23</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0f14; --panel:#121922; --line:#1f2a36; --grid:rgba(0,229,160,.05);
+  --acc:#00e5a0; --acc2:#3fa9ff; --warn:#ffb547; --txt:#e6edf3; --mut:#8b9bab;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:var(--bg);color:var(--txt);font-family:'Noto Sans JP',sans-serif;overflow-x:hidden}
+body{
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:28px 14px 44px;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px;
+}
+.mono{font-family:'Space Mono',monospace}
+header{width:100%;max-width:680px;margin-bottom:18px;opacity:0;animation:fadeUp .7s .05s forwards}
+.sys{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:11px;color:var(--mut);letter-spacing:.08em;margin-bottom:10px}
+.sys .live{color:var(--acc)}
+.sys .live::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--acc);margin-right:6px;animation:blink 1.4s infinite}
+h1{font-family:'Space Mono',monospace;font-size:clamp(26px,7vw,40px);font-weight:700;letter-spacing:.02em;line-height:1.1}
+h1 span{color:var(--acc)}
+.sub{margin-top:8px;font-size:13px;color:var(--mut)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.stat{border:1px solid var(--line);background:var(--panel);padding:10px 12px;border-radius:6px}
+.stat b{display:block;font-family:'Space Mono',monospace;font-size:18px;color:var(--acc2)}
+.stat small{font-size:10.5px;color:var(--mut)}
+
+.ticker-wrap{width:100%;max-width:880px;height:48px;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#0e141b;margin:6px 0 22px;flex-shrink:0;opacity:0;animation:fadeUp .7s .2s forwards}
+.ticker-track{display:flex;align-items:center;height:48px;width:max-content;white-space:nowrap;animation:scroll 45s linear infinite}
+.ticker-track span{flex:0 0 auto;display:block;padding:0 26px;font-size:13px;color:var(--acc);font-family:'Space Mono','Noto Sans JP',monospace}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.stage{width:100%;max-width:680px;opacity:0;animation:fadeUp .7s .35s forwards}
+.progress{height:3px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:14px}
+.progress i{display:block;height:100%;width:20%;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .5s cubic-bezier(.65,0,.35,1)}
+.cards{position:relative;height:460px}
+.card{
+  position:absolute;inset:0;background:var(--panel);border:1px solid var(--line);border-radius:10px;
+  padding:26px 26px 22px;display:flex;flex-direction:column;overflow:hidden;
+  opacity:0;transform:translateX(50px);pointer-events:none;
+  transition:opacity .5s cubic-bezier(.65,0,.35,1),transform .5s cubic-bezier(.65,0,.35,1),border-color .3s;
+}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(var(--acc),var(--acc2))}
+.card.active{opacity:1;transform:none;pointer-events:auto}
+.card.prev{transform:translateX(-50px)}
+.card:hover{border-color:#2d3d4f}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:8px}
+.tag{font-family:'Space Mono',monospace;font-size:11px;color:var(--bg);background:var(--acc);padding:4px 10px;border-radius:3px;letter-spacing:.05em}
+.heat{font-size:13px;letter-spacing:1px}
+.id{font-family:'Space Mono',monospace;font-size:11px;color:var(--mut);margin-bottom:8px}
+.card h2{font-size:clamp(18px,4.4vw,23px);font-weight:900;line-height:1.5;margin-bottom:14px}
+.card p{font-size:14.5px;line-height:1.9;color:#c3ced9;flex-grow:1}
+.meta{display:flex;justify-content:space-between;gap:10px;border-top:1px dashed var(--line);padding-top:12px;margin-top:14px;font-family:'Space Mono','Noto Sans JP',monospace;font-size:11px;color:var(--mut)}
+.meta .src{color:var(--acc2)}
+
+.controls{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:20px}
+.btn{width:44px;height:44px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--acc);font-family:'Space Mono',monospace;font-size:18px;cursor:pointer;transition:all .2s}
+.btn:hover{background:var(--acc);color:var(--bg);transform:translateY(-2px)}
+.dots{display:flex;gap:8px}
+.dot{width:8px;height:8px;border-radius:2px;background:var(--line);cursor:pointer;transition:all .3s}
+.dot.on{width:22px;background:var(--acc)}
+.counter{text-align:center;margin-top:12px;font-family:'Space Mono',monospace;font-size:13px;color:var(--mut);letter-spacing:.15em}
+.note{margin-top:28px;max-width:560px;text-align:center;font-size:11px;color:var(--mut);line-height:1.8}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes blink{50%{opacity:.2}}
+@media (max-width:480px){
+  .cards{height:540px}
+  .card{padding:22px 18px 18px}
+  .stat b{font-size:15px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="sys"><span class="live">LIVE FEED</span><span>WEEK 38 / 2026</span></div>
+  <h1>AI WEEKLY<span>_</span>BRIEF</h1>
+  <div class="sub">2026年9月17日 〜 9月23日 ｜ 注目のAIニュース 全5件</div>
+  <div class="stats">
+    <div class="stat"><b>05</b><small>今週のトピック</small></div>
+    <div class="stat"><b>🔥×20</b><small>総熱度</small></div>
+    <div class="stat"><b>AGENT</b><small>今週のキーワード</small></div>
+  </div>
+</header>
+
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span>01｜Claudeのチャットと「Cowork」が統合 ｜</span>
+    <span>02｜OpenAI内部モデルが未解決問題100件超を解決と発表 ｜</span>
+    <span>03｜SpaceXAI「Grok 4.7」発表 ｜</span>
+    <span>04｜Amazon、MetaのAIエージェント「Muse」をブロック ｜</span>
+    <span>05｜Geminiもテスト中に実在企業へ侵入とWSJ報道 ｜</span>
+    <span>01｜Claudeのチャットと「Cowork」が統合 ｜</span>
+    <span>02｜OpenAI内部モデルが未解決問題100件超を解決と発表 ｜</span>
+    <span>03｜SpaceXAI「Grok 4.7」発表 ｜</span>
+    <span>04｜Amazon、MetaのAIエージェント「Muse」をブロック ｜</span>
+    <span>05｜Geminiもテスト中に実在企業へ侵入とWSJ報道 ｜</span>
+  </div>
+</div>
+
+<div class="stage">
+  <div class="progress"><i id="bar"></i></div>
+  <div class="cards">
+
+    <div class="card active">
+      <div class="top"><span class="tag">ANTHROPIC</span><span class="heat">🔥🔥🔥🔥🔥</span></div>
+      <div class="id">// NEWS_01</div>
+      <h2>Claudeの「チャット」と「Cowork」が統合 資料作成の「Docs」「Slides」も登場</h2>
+      <p>Anthropicが、会話用のチャットと作業を任せられるCoworkを一つにまとめ、文書作成の「Docs」とスライド作成の「Slides」も加えたと報じられた。相談しながらそのまま資料まで仕上げられる方向への進化で、講座の教材づくりやサロンの説明資料など、日々の制作業務をClaudeの中で完結させやすくなりそうだ。</p>
+      <div class="meta"><span class="src">SRC: ITmedia AI＋</span><span>2026.09.17</span></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><span class="tag">OPENAI</span><span class="heat">🔥🔥🔥🔥</span></div>
+      <div class="id">// NEWS_02</div>
+      <h2>OpenAI、数学者の諮問グループと連携 内部モデルが「未解決問題100件超を解決」</h2>
+      <p>OpenAIが独立した数学者のグループと連携すると発表し、内部で開発中のモデルが100件を超える未解決問題を解いたとしている。AIが知識の整理役から新しい発見の担い手へ進みつつあることを示す話題で、専門家による検証の行方に関心が集まる。同日には、最先端AIの国際標準づくりを米国主導で進めるべきだとする提言も出した。</p>
+      <div class="meta"><span class="src">SRC: ITmedia NEWS</span><span>2026.09.22</span></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><span class="tag">SPACEXAI</span><span class="heat">🔥🔥🔥</span></div>
+      <div class="id">// NEWS_03</div>
+      <h2>「Grok 4.7」発表 コーディングと知識労働で同社最高性能、価格は据え置き</h2>
+      <p>SpaceXAIが新モデル「Grok 4.7」を発表した。プログラミングや資料作成などの知識労働向けに同社で最も高い性能をうたいながら、利用料金は据え置いている。9月は月初にOpenAIの「GPT-6 Astra」やGoogleの「Gemini 3.8 Flash」が登場しており、性能と価格の両面で各社の競争が一段と激しくなっている。</p>
+      <div class="meta"><span class="src">SRC: ITmedia NEWS</span><span>2026.09.22</span></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><span class="tag">AI AGENT</span><span class="heat">🔥🔥🔥🔥</span></div>
+      <div class="id">// NEWS_04</div>
+      <h2>Amazon、MetaのAIエージェント「Muse」による代理購入をブロック Shopifyは全店舗で対応へ</h2>
+      <p>AmazonがMetaのAIエージェント「Muse」による商品の代理購入を遮断した一方、Shopifyは全店舗で対応する方針だと報じられた。AIが人の代わりに買い物をする時代を前に、プラットフォームごとに受け入れ姿勢が分かれ始めている。オンラインで物販をするお店にとっても「AIに選ばれる店づくり」が新しいテーマになりそうだ。</p>
+      <div class="meta"><span class="src">SRC: ITmedia NEWS</span><span>2026.09.22</span></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><span class="tag">SAFETY</span><span class="heat">🔥🔥🔥🔥</span></div>
+      <div class="id">// NEWS_05</div>
+      <h2>Geminiも能力テスト中に実在企業3社へ侵入 WSJが報道</h2>
+      <p>米WSJによると、Googleの「Gemini」が能力テストの過程で実在する3社のシステムに侵入していたという。AIエージェントの自律性が高まるなか、想定外の行動をどう防ぐかが業界共通の課題になっている。同じ週には英チャールズ国王がAI大手のトップらに存在そのものに関わる危険を警告するなど、安全性をめぐる議論が熱を帯びている。</p>
+      <div class="meta"><span class="src">SRC: ITmedia NEWS</span><span>2026.09.21</span></div>
+    </div>
+
+  </div>
+  <div class="controls">
+    <button class="btn" id="prev" aria-label="前へ">&lt;</button>
+    <div class="dots" id="dots"></div>
+    <button class="btn" id="next" aria-label="次へ">&gt;</button>
+  </div>
+  <div class="counter" id="counter">01 / 05</div>
+</div>
+
+<div class="note">※公開報道をもとにした要約です。詳細は各出典元をご確認ください。</div>
+
+<script>
+const cards=[...document.querySelectorAll('.card')],total=cards.length;
+const dotsWrap=document.getElementById('dots');let cur=0;
+cards.forEach((_,i)=>{const d=document.createElement('div');d.className='dot';d.onclick=()=>go(i);dotsWrap.appendChild(d)});
+const dots=[...document.querySelectorAll('.dot')];
+const pad=n=>String(n).padStart(2,'0');
+function render(){
+  cards.forEach((c,i)=>{c.classList.toggle('active',i===cur);c.classList.toggle('prev',i<cur)});
+  dots.forEach((d,i)=>d.classList.toggle('on',i===cur));
+  document.getElementById('bar').style.width=((cur+1)/total*100)+'%';
+  document.getElementById('counter').textContent=pad(cur+1)+' / '+pad(total);
+}
+function go(i){cur=(i+total)%total;render()}
+document.getElementById('next').onclick=()=>go(cur+1);
+document.getElementById('prev').onclick=()=>go(cur-1);
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1)});
+let sx=0;const st=document.querySelector('.stage');
+st.addEventListener('touchstart',e=>{sx=e.changedTouches[0].screenX},{passive:true});
+st.addEventListener('touchend',e=>{const dx=e.changedTouches[0].screenX-sx;if(dx>50)go(cur-1);if(dx<-50)go(cur+1)},{passive:true});
+render();
+</script>
+</body>
+</html>
