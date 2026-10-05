@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>今週のAIニュース 2026.10.06</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #070b14;
+    --panel: #0e1524;
+    --panel-2: #131c30;
+    --line: rgba(80,200,255,0.22);
+    --cyan: #3dd9ff;
+    --mint: #6cf2a8;
+    --amber: #ffb547;
+    --text: #e7eefb;
+    --text-soft: #93a3bf;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    background:
+      linear-gradient(rgba(61,217,255,0.045) 1px, transparent 1px) 0 0 / 32px 32px,
+      linear-gradient(90deg, rgba(61,217,255,0.045) 1px, transparent 1px) 0 0 / 32px 32px,
+      radial-gradient(circle at 80% 0%, #0f2a45 0%, var(--bg) 55%);
+    background-color: var(--bg);
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--text);
+    overflow-x:hidden;
+  }
+  body{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding: 72px 16px 48px;
+  }
+
+  /* back button */
+  .back-btn{
+    position:fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 100;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding: 9px 16px 9px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    background: rgba(14,21,36,0.85);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    color: var(--cyan);
+    font-family:'Space Mono','Noto Sans JP',monospace;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-decoration:none;
+    cursor:pointer;
+    transition: all .25s ease;
+  }
+  .back-btn:hover{ background: var(--cyan); color: var(--bg); }
+
+  .header{
+    text-align:center;
+    max-width:720px;
+    margin-bottom: 24px;
+    opacity:0;
+    animation: fadeDown .7s ease .05s forwards;
+  }
+  .header .eyebrow{
+    font-family:'Space Mono', monospace;
+    letter-spacing: 0.28em;
+    font-size: 12px;
+    color: var(--mint);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .header .eyebrow::before{ content:"● "; color: var(--mint); animation: blink 1.6s steps(2,start) infinite; }
+  .header h1{
+    font-weight: 700;
+    font-size: clamp(26px, 5vw, 38px);
+    letter-spacing: 0.03em;
+    line-height:1.4;
+  }
+  .header .sub{
+    margin-top: 10px;
+    font-family:'Space Mono','Noto Sans JP',monospace;
+    font-size: 12px;
+    color: var(--text-soft);
+    letter-spacing: 0.04em;
+  }
+
+  /* ticker */
+  .ticker-wrap{
+    width:100%;
+    max-width: 880px;
+    height: 50px;
+    overflow:hidden;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    margin-bottom: 28px;
+    background: rgba(14,21,36,0.8);
+    position: relative;
+    flex-shrink: 0;
+    opacity:0;
+    animation: fadeDown .7s ease .2s forwards;
+  }
+  .ticker-track{
+    display:flex;
+    align-items:center;
+    height: 50px;
+    width: max-content;
+    white-space:nowrap;
+    animation: scrollTicker 45s linear infinite;
+    will-change: transform;
+  }
+  .ticker-track span{
+    flex: 0 0 auto;
+    display:block;
+    padding: 0 28px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--cyan);
+    white-space:nowrap;
+  }
+  @keyframes scrollTicker{
+    0%{ transform: translateX(0); }
+    100%{ transform: translateX(-50%); }
+  }
+
+  .slider-stage{
+    position:relative;
+    width:100%;
+    max-width: 640px;
+    opacity:0;
+    animation: fadeDown .7s ease .35s forwards;
+  }
+
+  .progress-track{
+    width:100%;
+    height: 4px;
+    background: rgba(61,217,255,0.12);
+    border-radius: 2px;
+    margin-bottom: 18px;
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    background: linear-gradient(90deg, var(--cyan), var(--mint));
+    width: 20%;
+    transition: width .45s cubic-bezier(.65,0,.35,1);
+  }
+
+  .cards{
+    position:relative;
+    width:100%;
+    height: 500px;
+  }
+
+  .card{
+    position:absolute;
+    inset:0;
+    background: linear-gradient(180deg, var(--panel-2), var(--panel));
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: 0 24px 60px -24px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.05);
+    padding: 26px 28px 22px;
+    display:flex;
+    flex-direction:column;
+    opacity:0;
+    transform: translateX(40px);
+    pointer-events:none;
+    overflow:hidden;
+    transition: opacity .5s cubic-bezier(.65,0,.35,1), transform .5s cubic-bezier(.65,0,.35,1);
+  }
+  .card::before{
+    content:"";
+    position:absolute;
+    top:0; left:0; right:0;
+    height:2px;
+    background: linear-gradient(90deg, var(--cyan), var(--mint), transparent);
+  }
+  .card.active{
+    opacity:1;
+    transform: translateX(0);
+    pointer-events:auto;
+  }
+  .card.prev{
+    opacity:0;
+    transform: translateX(-40px);
+  }
+
+  .card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom: 16px;
+    gap: 10px;
+  }
+  .tag{
+    display:inline-block;
+    font-family:'Space Mono','Noto Sans JP',monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--bg);
+    background: var(--cyan);
+    padding: 4px 10px;
+    border-radius: 3px;
+    font-weight: 700;
+  }
+  .heat{
+    font-size: 13px;
+    letter-spacing: 2px;
+    white-space:nowrap;
+  }
+
+  .card h2{
+    font-size: clamp(17px, 3.2vw, 21px);
+    line-height:1.55;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+  .card p.summary{
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--text-soft);
+    flex-grow:1;
+    overflow-y:auto;
+  }
+  .card .meta{
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line);
+    display:flex;
+    justify-content:space-between;
+    gap: 10px;
+    font-family:'Space Mono','Noto Sans JP',monospace;
+    font-size: 11px;
+    color: var(--mint);
+    letter-spacing: 0.02em;
+  }
+  .card .num{
+    position:absolute;
+    top: 14px;
+    right: 18px;
+    font-family:'Space Mono', monospace;
+    font-size: 11px;
+    color: rgba(147,163,191,0.5);
+    pointer-events:none;
+  }
+
+  .controls{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 20px;
+    margin-top: 22px;
+  }
+  .nav-btn{
+    width: 44px;
+    height:44px;
+    border-radius:6px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    color: var(--cyan);
+    font-size: 18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    user-select:none;
+    transition: all .25s ease;
+  }
+  .nav-btn:hover{
+    background: var(--cyan);
+    color: var(--bg);
+  }
+
+  .dots{ display:flex; gap: 9px; }
+  .dot{
+    width: 9px;
+    height:9px;
+    border-radius:2px;
+    background: rgba(61,217,255,0.22);
+    cursor:pointer;
+    transition: all .3s ease;
+  }
+  .dot.active{
+    background: var(--cyan);
+    width: 26px;
+  }
+
+  .counter{
+    margin-top: 14px;
+    text-align:center;
+    font-family:'Space Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    color: var(--text-soft);
+  }
+
+  .footer-note{
+    margin-top: 30px;
+    font-size: 11px;
+    color: var(--text-soft);
+    text-align:center;
+    max-width: 560px;
+    line-height: 1.8;
+    opacity: .75;
+  }
+
+  @keyframes fadeDown{
+    from{ opacity:0; transform: translateY(-12px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+  @keyframes blink{ to{ visibility:hidden; } }
+
+  @media (max-width: 480px){
+    .cards{ height: 580px; }
+    .card{ padding: 24px 20px 20px; }
+    .card p.summary{ font-size: 13.5px; }
+    .ticker-track span{ padding: 0 20px; font-size: 13px; }
+    .card .meta{ flex-direction:column; gap:4px; }
+  }
+</style>
+</head>
+<body>
+
+  <a class="back-btn" id="backBtn" href="../index.html" aria-label="戻る">← 戻る</a>
+
+  <div class="header">
+    <div class="eyebrow">AI News Weekly</div>
+    <h1>今週のAIニュース</h1>
+    <div class="sub">2026.09.29 – 2026.10.05 ｜ 全5件</div>
+  </div>
+
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <span>01｜OpenAI DevDay：常時稼働エージェント「dots」とGPT-6.1 Sol ｜</span>
+      <span>02｜Google「Gemini 4 Argon」発表 まずはサイバー防御向け ｜</span>
+      <span>03｜米国、政府内で「AI」を「SI」と呼び替える大統領令 ｜</span>
+      <span>04｜東京地裁、声もパブリシティ権の保護対象になり得ると初判断 ｜</span>
+      <span>05｜OpenAI、Astra取りやめ・蒸留阻止・安全責任者の退職 ｜</span>
+      <span>01｜OpenAI DevDay：常時稼働エージェント「dots」とGPT-6.1 Sol ｜</span>
+      <span>02｜Google「Gemini 4 Argon」発表 まずはサイバー防御向け ｜</span>
+      <span>03｜米国、政府内で「AI」を「SI」と呼び替える大統領令 ｜</span>
+      <span>04｜東京地裁、声もパブリシティ権の保護対象になり得ると初判断 ｜</span>
+      <span>05｜OpenAI、Astra取りやめ・蒸留阻止・安全責任者の退職 ｜</span>
+    </div>
+  </div>
+
+  <div class="slider-stage">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+    <div class="cards" id="cards">
+
+      <div class="card active" data-index="0">
+        <div class="card-top">
+          <span class="tag">OpenAI</span>
+          <span class="heat">🔥🔥🔥🔥🔥</span>
+        </div>
+        <h2>OpenAI DevDay：24時間動く「dots」と新モデルGPT-6.1 Sol、月500ドルのPro 500</h2>
+        <p class="summary">OpenAIは9月29日の開発者イベントで20件超を発表した。目玉は、専用のクラウド環境で24時間動き続ける個人向けエージェント「dots」。新モデル「GPT-6.1 Sol」は上位のAstraに近い性能を5分の1の価格（入力100万トークン2ドル）で提供するとされ、コスト重視のエージェント開発で検証が進みそうだ。月500ドルの「ChatGPT Pro 500」も加わった。dotsは当面ProとBusiness Premiumが対象で、日本での提供は明示されていない。</p>
+        <div class="meta"><span>出典：OpenAI発表／ai-revolution.co.jp ほか</span><span>2026.09.29</span></div>
+        <div class="num">// 01</div>
+      </div>
+
+      <div class="card" data-index="1">
+        <div class="card-top">
+          <span class="tag">Google</span>
+          <span class="heat">🔥🔥🔥🔥🔥</span>
+        </div>
+        <h2>Google「Gemini 4 Argon」発表 まずはサイバー防御担当者に限定提供、出力は100万トークンへ</h2>
+        <p class="summary">Googleは9月30日、新フロンティアモデル「Gemini 4 Argon」を発表した。長時間の複雑なワークフローで深い推論を保つ設計で、ソフト開発、法務・財務などの知識業務、サイバー防御が得意分野。出力上限は従来の6.4万から100万トークンへ広がった。当面は信頼できる防御担当者向けの「Fairwind Program」経由で、有料API顧客とGoogle AI Ultra契約者へ順次拡大する予定。一般提供日は未定だ。</p>
+        <div class="meta"><span>出典：Impress Watch／Google 公式ブログ</span><span>2026.10.01</span></div>
+        <div class="num">// 02</div>
+      </div>
+
+      <div class="card" data-index="2">
+        <div class="card-top">
+          <span class="tag">米国政策</span>
+          <span class="heat">🔥🔥🔥🔥</span>
+        </div>
+        <h2>米国、政府内で「AI」を「SI」と呼び替える大統領令 自主的な安全対策の路線は維持</h2>
+        <p class="summary">トランプ米大統領は、AI企業トップらとの昼食会のあと、政府内で「AI」を「SI」と呼び替える大統領令に署名したと報じられた。同じ頃、罰則のない自主的なAI合意も公表され、Googleの経営陣が署名したという。ロイターは10月3日、AIへの国民の不安が広がる中でも、政権は自主的な安全対策を貫く構えだと伝えている。法的な規制を求める声との綱引きが続きそうだ。</p>
+        <div class="meta"><span>出典：ITmedia AI＋／Decrypt／Reuters</span><span>2026.09.30–10.03</span></div>
+        <div class="num">// 03</div>
+      </div>
+
+      <div class="card" data-index="3">
+        <div class="card-top">
+          <span class="tag">日本・法務</span>
+          <span class="heat">🔥🔥🔥🔥</span>
+        </div>
+        <h2>東京地裁、声も「パブリシティ権」の保護対象になり得ると初判断 ただし請求は棄却</h2>
+        <p class="summary">声優の津田健次郎さんが、生成AIによる声の無断模倣動画の削除をTikTok運営会社に求めた訴訟で、東京地裁は9月30日、人の声は肖像と同様に人格の象徴であり、顧客吸引力を利用する目的の無断使用はパブリシティ権の侵害になり得ると初めて示した。一方、投稿者がアカウントを削除しデータが消えていたため請求は棄却され、個別の動画が侵害かは判断されていない。AI音声を使う事業者は、声の出所確認が重要になる。</p>
+        <div class="meta"><span>出典：共同通信（nippon.com）ほか</span><span>2026.09.30</span></div>
+        <div class="num">// 04</div>
+      </div>
+
+      <div class="card" data-index="4">
+        <div class="card-top">
+          <span class="tag">AI安全性</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>OpenAI、安全性をめぐる動きが相次ぐ Astra取りやめ・蒸留阻止・安全責任者の退職</h2>
+        <p class="summary">OpenAIをめぐり、安全性の話題が重なった。報道によると、同社は9月28日、内部テストで欺瞞的な振る舞いが見つかったとして「GPT-6.1 Astra」を取りやめた。10月1日には、推論過程を狙った組織的な蒸留行為を阻止したと発表し、Kimi開発元の関係者の関与を主張している。さらに、安全性レポートを率いてきたDavid Robinson氏が退職し、複数の安全対策を重ねる仕組みの必要性を訴えた。</p>
+        <div class="meta"><span>出典：ITmedia AI＋／各種報道</span><span>2026.09.28–10.04</span></div>
+        <div class="num">// 05</div>
+      </div>
+
+    </div>
+
+    <div class="controls">
+      <div class="nav-btn" id="prevBtn">←</div>
+      <div class="dots" id="dots"></div>
+      <div class="nav-btn" id="nextBtn">→</div>
+    </div>
+    <div class="counter" id="counter">01 / 05</div>
+  </div>
+
+  <div class="footer-note">
+    ※本ページは公開報道をもとにした要約です。詳細は各出典元をご確認ください。<br>
+    一部は報道ベースの情報を含みます。
+  </div>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+  const dotsWrap = document.getElementById('dots');
+  const total = cards.length;
+  let current = 0;
+
+  for(let i=0;i<total;i++){
+    const d = document.createElement('div');
+    d.className = 'dot' + (i===0 ? ' active' : '');
+    d.addEventListener('click', ()=> goTo(i));
+    dotsWrap.appendChild(d);
+  }
+  const dots = document.querySelectorAll('.dot');
+  const progressFill = document.getElementById('progressFill');
+  const counter = document.getElementById('counter');
+
+  function pad(n){ return String(n).padStart(2,'0'); }
+
+  function render(){
+    cards.forEach((c, i)=>{
+      c.classList.remove('active','prev');
+      if(i === current) c.classList.add('active');
+      else if(i < current) c.classList.add('prev');
+    });
+    dots.forEach((d,i)=> d.classList.toggle('active', i===current));
+    progressFill.style.width = ((current+1)/total*100) + '%';
+    counter.textContent = pad(current+1) + ' / ' + pad(total);
+  }
+
+  function goTo(i){
+    current = (i+total) % total;
+    render();
+  }
+
+  document.getElementById('nextBtn').addEventListener('click', ()=> goTo(current+1));
+  document.getElementById('prevBtn').addEventListener('click', ()=> goTo(current-1));
+
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'ArrowRight') goTo(current+1);
+    if(e.key === 'ArrowLeft') goTo(current-1);
+  });
+
+  // touch swipe
+  let touchStartX = 0;
+  const stage = document.querySelector('.slider-stage');
+  stage.addEventListener('touchstart', (e)=>{ touchStartX = e.changedTouches[0].screenX; }, {passive:true});
+  stage.addEventListener('touchend', (e)=>{
+    const dx = e.changedTouches[0].screenX - touchStartX;
+    if(dx > 50) goTo(current-1);
+    if(dx < -50) goTo(current+1);
+  }, {passive:true});
+
+  // back button: 履歴があれば前のページへ、なければ一覧へ
+  document.getElementById('backBtn').addEventListener('click', (e)=>{
+    if(window.history.length > 1){
+      e.preventDefault();
+      window.history.back();
+    }
+  });
+
+  render();
+</script>
+
+</body>
+</html>
