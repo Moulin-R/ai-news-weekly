@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今週のAIニュース ｜ 2026.10.13</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#070b10;
+    --panel:#0d151d;
+    --line:rgba(61,245,196,.24);
+    --mint:#3df5c4;
+    --amber:#ffb454;
+    --ink:#e8f0f6;
+    --soft:#8da2b4;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    background-color:var(--bg);
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(61,245,196,.10), transparent 45%),
+      radial-gradient(circle at 90% 100%, rgba(255,180,84,.07), transparent 40%),
+      linear-gradient(rgba(61,245,196,.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,245,196,.045) 1px, transparent 1px);
+    background-size:auto, auto, 32px 32px, 32px 32px;
+    color:var(--ink);
+    font-family:'Noto Sans JP', sans-serif;
+    overflow-x:hidden;
+  }
+  body{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:36px 16px 48px;
+  }
+  .reveal{opacity:0;animation:rise .7s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:var(--d,0s);}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+  .header{text-align:center;max-width:720px;margin-bottom:24px;}
+  .eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:12px;letter-spacing:.28em;color:var(--mint);
+    margin-bottom:12px;text-transform:uppercase;
+  }
+  .eyebrow::after{content:"_";margin-left:2px;animation:blink 1s steps(1) infinite;}
+  @keyframes blink{50%{opacity:0;}}
+  .header h1{
+    font-weight:900;font-size:clamp(28px,6vw,44px);
+    letter-spacing:.02em;line-height:1.3;
+  }
+  .header h1 span{color:var(--mint);}
+  .header .sub{
+    margin-top:12px;font-family:'Space Mono',monospace;
+    font-size:12px;color:var(--soft);letter-spacing:.08em;
+  }
+
+  .ticker-wrap{
+    width:100%;max-width:880px;height:44px;overflow:hidden;flex-shrink:0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    background:rgba(61,245,196,.05);margin-bottom:28px;position:relative;
+  }
+  .ticker-track{
+    display:flex;align-items:center;height:44px;width:max-content;
+    white-space:nowrap;animation:scroll 55s linear infinite;will-change:transform;
+  }
+  .ticker-track span{
+    flex:0 0 auto;display:block;padding:0 28px;
+    font-family:'Space Mono','Noto Sans JP',monospace;
+    font-size:13px;color:var(--mint);white-space:nowrap;
+  }
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  .stage{width:100%;max-width:640px;}
+  .progress{
+    height:3px;background:rgba(61,245,196,.15);margin-bottom:18px;overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;width:20.00%;
+    background:linear-gradient(90deg,var(--mint),var(--amber));
+    transition:width .5s cubic-bezier(.65,0,.35,1);
+  }
+
+  .cards{display:grid;}
+  .card{
+    grid-area:1/1;position:relative;
+    background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,0)) , var(--panel);
+    border:1px solid var(--line);border-radius:6px;
+    padding:30px 28px 26px;
+    display:flex;flex-direction:column;
+    opacity:0;transform:translateX(36px);pointer-events:none;visibility:hidden;
+    transition:opacity .5s cubic-bezier(.65,0,.35,1), transform .5s cubic-bezier(.65,0,.35,1), visibility 0s linear .5s;
+    box-shadow:0 24px 60px -30px rgba(61,245,196,.35);
+  }
+  .card::before,.card::after{
+    content:"";position:absolute;width:14px;height:14px;border:2px solid var(--mint);
+  }
+  .card::before{top:-1px;left:-1px;border-right:none;border-bottom:none;}
+  .card::after{bottom:-1px;right:-1px;border-left:none;border-top:none;}
+  .card.active{
+    opacity:1;transform:translateX(0);pointer-events:auto;visibility:visible;
+    transition:opacity .5s cubic-bezier(.65,0,.35,1), transform .5s cubic-bezier(.65,0,.35,1), visibility 0s;
+  }
+  .card.prev{transform:translateX(-36px);}
+
+  .card-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px;}
+  .tag{
+    font-family:'Space Mono','Noto Sans JP',monospace;font-size:11px;letter-spacing:.1em;
+    color:#04110d;background:var(--mint);padding:4px 12px;border-radius:2px;font-weight:700;
+  }
+  .heat{font-size:13px;letter-spacing:2px;white-space:nowrap;}
+  .heat em{
+    font-style:normal;font-family:'Space Mono',monospace;font-size:10px;
+    letter-spacing:.15em;color:var(--soft);margin-right:6px;
+  }
+  .card h2{
+    font-weight:700;font-size:clamp(18px,3.6vw,23px);line-height:1.55;margin-bottom:16px;
+  }
+  .summary{font-size:14.5px;line-height:1.95;color:#b8c8d6;flex-grow:1;}
+  .meta{
+    margin-top:22px;padding-top:14px;border-top:1px dashed var(--line);
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    font-family:'Space Mono','Noto Sans JP',monospace;font-size:11px;color:var(--amber);letter-spacing:.03em;
+  }
+  .num{
+    position:absolute;right:22px;top:58px;
+    font-family:'Space Mono',monospace;font-size:56px;font-weight:700;
+    color:transparent;-webkit-text-stroke:1px rgba(61,245,196,.09);pointer-events:none;z-index:0;
+  }
+
+  .controls{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:24px;}
+  .nav-btn{
+    width:46px;height:46px;border:1px solid var(--line);background:rgba(61,245,196,.06);
+    color:var(--mint);font-family:'Space Mono',monospace;font-size:18px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;border-radius:4px;
+    transition:all .25s ease;user-select:none;
+  }
+  .nav-btn:hover{background:var(--mint);color:#04110d;transform:translateY(-2px);box-shadow:0 8px 20px -8px rgba(61,245,196,.6);}
+  .dots{display:flex;gap:8px;}
+  .dot{
+    width:18px;height:6px;background:rgba(61,245,196,.2);cursor:pointer;
+    transition:all .3s ease;border-radius:1px;
+  }
+  .dot.active{width:34px;background:var(--mint);}
+  .counter{
+    margin-top:14px;text-align:center;font-family:'Space Mono',monospace;
+    font-size:13px;letter-spacing:.2em;color:var(--soft);
+  }
+  .footer-note{
+    margin-top:34px;max-width:560px;text-align:center;
+    font-size:11px;line-height:1.9;color:var(--soft);opacity:.8;
+  }
+  .back-btn{
+    position:fixed;top:12px;left:12px;z-index:100;
+    display:flex;align-items:center;gap:6px;
+    padding:9px 16px 9px 12px;border-radius:4px;
+    border:1px solid var(--line);background:rgba(13,21,29,.78);
+    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    color:var(--mint);font-family:'Space Mono','Noto Sans JP',monospace;
+    font-size:12px;letter-spacing:.08em;text-decoration:none;cursor:pointer;
+    transition:all .25s ease;
+  }
+  .back-btn:hover{background:var(--mint);color:#04110d;transform:translateY(-2px);}
+  @media (max-width:480px){
+    body{padding:28px 12px 40px;}
+    .card{padding:24px 18px 20px;}
+    .num{font-size:42px;top:54px;right:16px;}
+    .ticker-track span{font-size:12px;padding:0 20px;}
+    .heat{font-size:12px;letter-spacing:1px;}
+  }
+</style>
+</head>
+<body>
+
+  <a class="back-btn" href="javascript:void(0)" id="backBtn" aria-label="戻る">&lt; 戻る</a>
+
+  <header class="header">
+    <div class="eyebrow reveal" style="--d:.05s">AI NEWS // WEEKLY</div>
+    <h1 class="reveal" style="--d:.15s">今週の<span>AIニュース</span></h1>
+    <div class="sub reveal" style="--d:.25s">2026.10.06 – 10.13 ｜ 全5件</div>
+  </header>
+
+  <div class="ticker-wrap reveal" style="--d:.35s">
+    <div class="ticker-track">
+      <span>01 // ChatGPTにGPT-6が全プラン展開 無料はLuna、有料はSol</span>
+      <span>02 // Claude Haiku 5.5が登場 約1年ぶり更新の最安・最速の小型モデル</span>
+      <span>03 // Gemini無料版は10月9日からFlash-Liteのみに FlashとProは有料へ</span>
+      <span>04 // 米政府、AIの公式呼称を「スーパーインテリジェンス（SI）」に変更</span>
+      <span>05 // 日販IPS、Anthropicへの書籍販売を認める AI学習との関係は未確認</span>
+      <span>01 // ChatGPTにGPT-6が全プラン展開 無料はLuna、有料はSol</span>
+      <span>02 // Claude Haiku 5.5が登場 約1年ぶり更新の最安・最速の小型モデル</span>
+      <span>03 // Gemini無料版は10月9日からFlash-Liteのみに FlashとProは有料へ</span>
+      <span>04 // 米政府、AIの公式呼称を「スーパーインテリジェンス（SI）」に変更</span>
+      <span>05 // 日販IPS、Anthropicへの書籍販売を認める AI学習との関係は未確認</span>
+    </div>
+  </div>
+
+  <main class="stage reveal" style="--d:.5s">
+    <div class="progress"><div class="progress-fill" id="progressFill"></div></div>
+
+    <div class="cards" id="cards">
+      <article class="card active" data-index="0">
+        <div class="card-top">
+          <span class="tag">OpenAI</span>
+          <span class="heat" aria-label="熱度 5/5"><em>HEAT</em> 🔥🔥🔥🔥🔥</span>
+        </div>
+        <h2>ChatGPTにGPT-6が全プラン展開 無料はLuna、有料はSol</h2>
+        <p class="summary">OpenAIは10月7日、ChatGPTのチャットでGPT-6の配信を始めた。Plus・Pro・Business・Enterpriseの有料プランにはGPT-6 Sol、翌8日からはFreeとGoにも順次、軽量版のGPT-6 Lunaが届く。最上位のAstraは有料プランのみ。配信はアカウントごとに段階的で、表示が遅れる場合もある。あわせて、回答にグラフやフォームを交える「インテリジェントUI」も提供される。</p>
+        <div class="meta"><span>SRC: OpenAI発表／各種報道</span><span>2026.10.07–08</span></div>
+        <div class="num">01</div>
+      </article>
+      <article class="card" data-index="1">
+        <div class="card-top">
+          <span class="tag">Anthropic</span>
+          <span class="heat" aria-label="熱度 4/5"><em>HEAT</em> 🔥🔥🔥🔥</span>
+        </div>
+        <h2>Claude Haiku 5.5が登場 約1年ぶり更新の最安・最速の小型モデル</h2>
+        <p class="summary">Anthropicは10月7日、小型モデルのClaude Haiku 5.5を発表した。10万トークン以下の入力ならHaiku 4.5より料金が90%安く、実行コストは平均で約75%下がるという。同社の公表値では、PC操作の指標OSWorld 2.1（オフライン版）で72.4%となり、GPT-6 Lunaの48.9%を上回った。要約や分類など大量処理向けで、Claude.aiのモデル選択からも使える。</p>
+        <div class="meta"><span>SRC: Anthropic／Impress Watch／ゴリミー</span><span>2026.10.07</span></div>
+        <div class="num">02</div>
+      </article>
+      <article class="card" data-index="2">
+        <div class="card-top">
+          <span class="tag">Google</span>
+          <span class="heat" aria-label="熱度 4/5"><em>HEAT</em> 🔥🔥🔥🔥</span>
+        </div>
+        <h2>Gemini無料版は10月9日からFlash-Liteのみに FlashとProは有料へ</h2>
+        <p class="summary">Googleは個人向けGeminiアプリで、10月9日から無料ユーザーが使えるモデルをFlash-Liteのみとした。Flashは有料のAI Plus以上、ProはAI Pro以上が対象になる。AI PlusではProが使えなくなるが、適用時期は個別のメールで知らされる。AI ProとUltraに変更はない。長い資料の読み込みなど複雑な用途では、有料プランの検討余地がありそうだ。</p>
+        <div class="meta"><span>SRC: Google公式ヘルプ／SmartScope／ITmedia</span><span>2026.10.09</span></div>
+        <div class="num">03</div>
+      </article>
+      <article class="card" data-index="3">
+        <div class="card-top">
+          <span class="tag">米国政策</span>
+          <span class="heat" aria-label="熱度 3/5"><em>HEAT</em> 🔥🔥🔥</span>
+        </div>
+        <h2>米政府、AIの公式呼称を「スーパーインテリジェンス（SI）」に変更</h2>
+        <p class="summary">トランプ米大統領は9月29日、連邦機関の公式文書やウェブサイトで「AI」に代えて「スーパーインテリジェンス（SI）」を使うよう命じる大統領令に署名した。10月4日には政府の取り組みを調整する「Super Intelligence Force」の新設を発表し、責任者にはクレイトン国家情報長官ら4人が挙がった。大統領令は新たな連邦法上の定義案を60日以内にまとめるよう求めている。</p>
+        <div class="meta"><span>SRC: 共同通信／Impress Watch／Forbes JAPAN</span><span>2026.09.29–10.08</span></div>
+        <div class="num">04</div>
+      </article>
+      <article class="card" data-index="4">
+        <div class="card-top">
+          <span class="tag">著作権・日本</span>
+          <span class="heat" aria-label="熱度 4/5"><em>HEAT</em> 🔥🔥🔥🔥</span>
+        </div>
+        <h2>日販IPS、Anthropicへの書籍販売を認める AI学習との関係は未確認</h2>
+        <p class="summary">出版取次大手・日販グループの日販IPSは、米Anthropicに2024年12月から2025年12月まで日本の書籍を販売していたと、日本書籍出版協会への10月5日付の回答で認めたと報じられた。協会加盟社の書籍も含まれる一方、契約書にAI学習の目的記載はなく、冊数や書名などは回答していない。実際に学習に使われたかは確認されておらず、出版業界は説明を求めている。</p>
+        <div class="meta"><span>SRC: Advertimes／時事通信</span><span>2026.10.07</span></div>
+        <div class="num">05</div>
+      </article>
+    </div>
+
+    <div class="controls">
+      <div class="nav-btn" id="prevBtn" role="button" aria-label="前へ">&lt;</div>
+      <div class="dots" id="dots"></div>
+      <div class="nav-btn" id="nextBtn" role="button" aria-label="次へ">&gt;</div>
+    </div>
+    <div class="counter" id="counter">01 / 05</div>
+  </main>
+
+  <div class="footer-note reveal" style="--d:.7s">
+    ※本レポートは公開情報をもとにした要約です。詳細は各出典元をご確認ください。<br>
+    速報性の高い話題のため、内容は今後更新される場合があります。
+  </div>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+  const dotsWrap = document.getElementById('dots');
+  const total = cards.length;
+  let current = 0;
+
+  for(let i=0;i<total;i++){
+    const d = document.createElement('div');
+    d.className = 'dot' + (i===0 ? ' active' : '');
+    d.addEventListener('click', ()=> goTo(i));
+    dotsWrap.appendChild(d);
+  }
+  const dots = document.querySelectorAll('.dot');
+  const progressFill = document.getElementById('progressFill');
+  const counter = document.getElementById('counter');
+  const pad = n => String(n).padStart(2,'0');
+
+  function render(){
+    cards.forEach((c,i)=>{
+      c.classList.remove('active','prev');
+      if(i===current) c.classList.add('active');
+      else if(i<current) c.classList.add('prev');
+    });
+    dots.forEach((d,i)=> d.classList.toggle('active', i===current));
+    progressFill.style.width = ((current+1)/total*100)+'%';
+    counter.textContent = pad(current+1)+' / '+pad(total);
+  }
+  function goTo(i){ current = (i+total)%total; render(); }
+
+  document.getElementById('nextBtn').addEventListener('click', ()=> goTo(current+1));
+  document.getElementById('prevBtn').addEventListener('click', ()=> goTo(current-1));
+  document.addEventListener('keydown', e=>{
+    if(e.key==='ArrowRight') goTo(current+1);
+    if(e.key==='ArrowLeft') goTo(current-1);
+  });
+
+  let startX = 0;
+  const stage = document.querySelector('.stage');
+  stage.addEventListener('touchstart', e=>{ startX = e.changedTouches[0].screenX; }, {passive:true});
+  stage.addEventListener('touchend', e=>{
+    const dx = e.changedTouches[0].screenX - startX;
+    if(dx > 50) goTo(current-1);
+    if(dx < -50) goTo(current+1);
+  }, {passive:true});
+
+  // back button: go back in history, fall back to index.html
+  document.getElementById('backBtn').addEventListener('click', ()=>{
+    if(window.history.length > 1){
+      window.history.back();
+    } else {
+      window.location.href = '../index.html';
+    }
+  });
+
+  render();
+</script>
+</body>
+</html>
