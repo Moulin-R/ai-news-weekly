@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>最新AIニュース ｜ 2026年10月20日号</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Noto+Serif+JP:wght@500;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0908;
+    --panel: #14110d;
+    --panel-2: #1b1710;
+    --gold: #c9a45c;
+    --gold-soft: #e3c98f;
+    --gold-dim: rgba(201,164,92,0.28);
+    --ink: #f1ebe0;
+    --ink-soft: #a89f90;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    background:
+      radial-gradient(ellipse at 15% 0%, rgba(201,164,92,0.14) 0%, rgba(10,9,8,0) 55%),
+      radial-gradient(ellipse at 100% 100%, rgba(201,164,92,0.08) 0%, rgba(10,9,8,0) 50%),
+      var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans JP', sans-serif;
+    overflow-x: hidden;
+  }
+  body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 76px 16px 52px;
+  }
+
+  /* header */
+  .header{
+    text-align:center;
+    max-width: 720px;
+    margin-bottom: 26px;
+  }
+  .header .eyebrow{
+    font-family:'Playfair Display', serif;
+    font-style: italic;
+    letter-spacing: 0.28em;
+    font-size: 13px;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .header h1{
+    font-family:'Noto Serif JP', serif;
+    font-weight: 900;
+    font-size: clamp(28px, 6vw, 44px);
+    letter-spacing: 0.06em;
+    line-height: 1.35;
+    color: var(--ink);
+  }
+  .header h1 span{ color: var(--gold); }
+  .header .rule{
+    width: 64px;
+    height: 1px;
+    background: var(--gold);
+    margin: 16px auto 12px;
+  }
+  .header .sub{
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    letter-spacing: 0.08em;
+  }
+
+  /* ticker */
+  .ticker-wrap{
+    width:100%;
+    max-width: 880px;
+    height: 52px;
+    overflow:hidden;
+    border-top: 1px solid var(--gold-dim);
+    border-bottom: 1px solid var(--gold-dim);
+    margin-bottom: 28px;
+    background: rgba(201,164,92,0.05);
+    position: relative;
+    flex-shrink: 0;
+  }
+  .ticker-track{
+    display:flex;
+    align-items:center;
+    height: 52px;
+    width: max-content;
+    white-space: nowrap;
+    animation: scrollTicker 60s linear infinite;
+    will-change: transform;
+  }
+  .ticker-track span{
+    flex: 0 0 auto;
+    display:block;
+    padding: 0 28px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--gold-soft);
+    white-space: nowrap;
+  }
+  @keyframes scrollTicker{
+    0%{ transform: translateX(0); }
+    100%{ transform: translateX(-50%); }
+  }
+
+  /* slider */
+  .slider-stage{
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+  }
+  .progress-track{
+    width:100%;
+    height: 2px;
+    background: rgba(201,164,92,0.18);
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .progress-fill{
+    height:100%;
+    width: 16.66%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-soft));
+    transition: width .5s cubic-bezier(.65,0,.35,1);
+  }
+
+  /* all cards share one grid cell, so the stage always fits the tallest card */
+  .cards{
+    display: grid;
+  }
+  .card{
+    grid-area: 1 / 1;
+    position: relative;
+    background: linear-gradient(160deg, var(--panel-2) 0%, var(--panel) 100%);
+    border: 1px solid var(--gold-dim);
+    border-radius: 6px;
+    box-shadow: 0 24px 60px -24px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.04);
+    padding: 34px 32px 26px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(36px);
+    pointer-events: none;
+    transition: opacity .5s cubic-bezier(.65,0,.35,1), transform .5s cubic-bezier(.65,0,.35,1), visibility 0s linear .5s;
+  }
+  .card::before{
+    content:"";
+    position:absolute;
+    top:0; left:32px;
+    width: 48px; height: 2px;
+    background: var(--gold);
+  }
+  .card.active{
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
+  .card.prev{
+    transform: translateX(-36px);
+  }
+  .card-top{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .tag{
+    display:inline-block;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--gold-soft);
+    border: 1px solid var(--gold);
+    padding: 4px 14px;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+  .heat{
+    font-size: 13px;
+    letter-spacing: 2px;
+    white-space: nowrap;
+  }
+  .card h2{
+    font-family:'Noto Serif JP', serif;
+    font-size: clamp(19px, 3.6vw, 25px);
+    line-height: 1.55;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+  .card p.summary{
+    font-size: 14.5px;
+    line-height: 1.95;
+    color: var(--ink-soft);
+    flex-grow: 1;
+  }
+  .card .meta{
+    margin-top: 22px;
+    padding-top: 14px;
+    border-top: 1px solid var(--gold-dim);
+    display:flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 11.5px;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+  }
+  .card .num{
+    position:absolute;
+    top: 14px;
+    right: 24px;
+    font-family:'Playfair Display', serif;
+    font-size: 54px;
+    font-weight: 700;
+    color: rgba(201,164,92,0.09);
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  /* controls */
+  .controls{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 22px;
+    margin-top: 26px;
+  }
+  .nav-btn{
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    border: 1px solid var(--gold-dim);
+    background: transparent;
+    color: var(--gold);
+    font-size: 18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor: pointer;
+    transition: all .25s ease;
+    font-family: inherit;
+  }
+  .nav-btn:hover, .nav-btn:focus-visible{
+    background: var(--gold);
+    color: #0a0908;
+    transform: scale(1.06);
+    outline: none;
+  }
+  .dots{ display:flex; gap: 9px; }
+  .dot{
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(201,164,92,0.25);
+    cursor: pointer;
+    transition: all .3s ease;
+  }
+  .dot.active{
+    background: var(--gold);
+    width: 24px;
+    border-radius: 5px;
+  }
+  .counter{
+    margin-top: 14px;
+    text-align: center;
+    font-family:'Playfair Display', serif;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    color: var(--ink-soft);
+  }
+  .footer-note{
+    margin-top: 34px;
+    font-size: 11px;
+    color: var(--ink-soft);
+    text-align:center;
+    max-width: 560px;
+    line-height: 1.9;
+    opacity: .8;
+  }
+
+  /* staggered fade-in on load */
+  .fade{
+    opacity: 0;
+    transform: translateY(14px);
+    animation: fadeUp .8s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+  .d1{ animation-delay: .05s; } .d2{ animation-delay: .2s; }
+  .d3{ animation-delay: .35s; } .d4{ animation-delay: .5s; }
+  .d5{ animation-delay: .65s; }
+  @keyframes fadeUp{ to{ opacity:1; transform: translateY(0); } }
+
+  @media (max-width: 480px){
+    body{ padding: 68px 12px 44px; }
+    .card{ padding: 30px 20px 20px; }
+    .card::before{ left: 20px; }
+    .card .num{ font-size: 44px; right: 16px; }
+    .ticker-wrap{ height: 48px; }
+    .ticker-track{ height: 48px; }
+    .ticker-track span{ padding: 0 20px; font-size: 13px; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .ticker-track{ animation-duration: 180s; }
+    .fade{ animation-duration: .01s; animation-delay: 0s; }
+    .card{ transition-duration: .01s; }
+  }
+
+  .back-btn{
+    position:absolute;
+    top:calc(14px + env(safe-area-inset-top, 0px));
+    left:14px;
+    z-index:20;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:8px 16px;
+    min-height:40px;
+    border-radius:100px;
+    font-family:'Noto Sans JP', sans-serif;
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.06em;
+    text-decoration:none;
+    transition:transform .25s ease, background .25s ease, color .25s ease;
+  }
+  .back-btn:hover{ transform:translateX(-3px); }
+  .back-btn{
+    color:var(--gold-soft);
+    background:rgba(255,255,255,0.04);
+    border:1px solid var(--gold-dim);
+  }
+  .back-btn:hover{ background:var(--gold); color:#14110c; }
+</style>
+</head>
+<body>
+
+  <a class="back-btn" id="backBtn" href="../index.html" aria-label="一覧に戻る">← 戻る</a>
+
+  <div class="header fade d1">
+    <div class="eyebrow">The AI Dispatch</div>
+    <h1>最新<span>AI</span>ニュース</h1>
+    <div class="rule"></div>
+    <div class="sub">2026年10月20日号 ｜ 9月下旬〜10月20日 ｜ 全6件</div>
+  </div>
+
+  <div class="ticker-wrap fade d2">
+    <div class="ticker-track">
+      <span>01｜Google「Gemini 4 Argon」発表、限定提供から段階展開 ◆</span>
+      <span>02｜OpenAI「GPT-6.1 Sol」と常時稼働エージェント「Dots」 ◆</span>
+      <span>03｜Anthropic「Sonnet 5.5」公開、約30%高速・約30%低コスト ◆</span>
+      <span>04｜Anthropic、株式の5%を「公益基金」へ ◆</span>
+      <span>05｜Claudeがほぼ自律で量子回路を再設計 ◆</span>
+      <span>06｜OpenCodeでAPIキー流出、利用者の1.4%に影響 ◆</span>
+      <span>01｜Google「Gemini 4 Argon」発表、限定提供から段階展開 ◆</span>
+      <span>02｜OpenAI「GPT-6.1 Sol」と常時稼働エージェント「Dots」 ◆</span>
+      <span>03｜Anthropic「Sonnet 5.5」公開、約30%高速・約30%低コスト ◆</span>
+      <span>04｜Anthropic、株式の5%を「公益基金」へ ◆</span>
+      <span>05｜Claudeがほぼ自律で量子回路を再設計 ◆</span>
+      <span>06｜OpenCodeでAPIキー流出、利用者の1.4%に影響 ◆</span>
+    </div>
+  </div>
+
+  <div class="slider-stage fade d3">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+    <div class="cards" id="cards">
+
+      <div class="card active" data-index="0">
+        <div class="card-top">
+          <span class="tag">Google</span>
+          <span class="heat">🔥🔥🔥🔥🔥</span>
+        </div>
+        <h2>Google「Gemini 4 Argon」発表、限定提供から段階展開</h2>
+        <p class="summary">Googleは、Gemini 4シリーズ初のフラッグシップ「Gemini 4 Argon」を9月30日に発表した。ベンチマークでは最上位級の結果が伝えられ、まずサイバーセキュリティ分野のパートナーなどから慎重に展開する方針。別の集計サイトでは、10月13日にAI Pro/Ultra契約者や有料APIユーザー向けの一般提供が始まったとされるが、詳細は公式での確認を。</p>
+        <div class="meta"><span>出典：CNBC／New Models Today</span><span>2026.09.30〜10.13</span></div>
+        <div class="num">01</div>
+      </div>
+
+      <div class="card" data-index="1">
+        <div class="card-top">
+          <span class="tag">OpenAI</span>
+          <span class="heat">🔥🔥🔥🔥🔥</span>
+        </div>
+        <h2>OpenAI「GPT-6.1 Sol」と常時稼働エージェント「Dots」を発表</h2>
+        <p class="summary">GPT-6.1 Solは、最上位のGPT-6 Astraに迫る性能を、より低いコストで使えるモデルとされる。バックグラウンドで動き続けるAIエージェント「Dots」や、ヘビーユーザー向けの月額500ドルのプランも同時に発表された。一方で、安全基準を満たさないとして次期モデルのリリースを見送ったとも報じられている。</p>
+        <div class="meta"><span>出典：Micro Center／CNBC</span><span>2026.10.02</span></div>
+        <div class="num">02</div>
+      </div>
+
+      <div class="card" data-index="2">
+        <div class="card-top">
+          <span class="tag">Anthropic</span>
+          <span class="heat">🔥🔥🔥🔥</span>
+        </div>
+        <h2>Anthropic「Sonnet 5.5」公開、約30%高速・約30%低コスト</h2>
+        <p class="summary">Anthropicは9月下旬のOpus 5.5に続き、より速く安価な位置づけのSonnet 5.5を公開した。処理速度は約30%向上し、コストは約30%下がるとされる。上位モデルと軽量モデルを用途で使い分け、コストを抑えながら活用する流れが、さらに進みそうだ。</p>
+        <div class="meta"><span>出典：Micro Center／Anthropicリリースノート</span><span>2026.09〜10</span></div>
+        <div class="num">03</div>
+      </div>
+
+      <div class="card" data-index="3">
+        <div class="card-top">
+          <span class="tag">Anthropic</span>
+          <span class="heat">🔥🔥🔥🔥</span>
+        </div>
+        <h2>Anthropic、株式の5%を「公益基金」に拠出へ</h2>
+        <p class="summary">Anthropicは10月18日、株式の5%を新設の「Anthropic Public Benefit Fund」に拠出すると発表した（株主承認が前提）。一定の基準を超えて企業価値が50%上がるごとに、取締役会の判断で2%を追加する枠組み。AIによる雇用への影響への懸念が強まる中の発表で、年内の米国上場に向けた準備の一環と見る専門家もいる。</p>
+        <div class="meta"><span>出典：CNBC／Al Jazeera</span><span>2026.10.18〜19</span></div>
+        <div class="num">04</div>
+      </div>
+
+      <div class="card" data-index="4">
+        <div class="card-top">
+          <span class="tag">研究</span>
+          <span class="heat">🔥🔥🔥</span>
+        </div>
+        <h2>Claudeがほぼ自律で量子回路を再設計、既存アルゴリズムを上回る</h2>
+        <p class="summary">Anthropicは、Claudeが人手をほとんど介さず、8種類の計算タスク向けに量子回路を設計し直し、従来公表のアルゴリズムを上回った実験結果を公開した。あるモジュラー逆元の方式では、量子ビット数は12%増える一方でゲート数は17分の1に。Reed-Solomon復号器の再設計では、ゲート数が約12分の1になったと報じられている。</p>
+        <div class="meta"><span>出典：AI Weekly（まとめサイト）</span><span>2026.10.19</span></div>
+        <div class="num">05</div>
+      </div>
+
+      <div class="card" data-index="5">
+        <div class="card-top">
+          <span class="tag">セキュリティ</span>
+          <span class="heat">🔥🔥🔥🔥</span>
+        </div>
+        <h2>OpenCodeでAPIキー流出、利用者の1.4%に影響</h2>
+        <p class="summary">OpenCodeは10月17日、大規模な「蒸留攻撃」で盗まれたAPIキーにより、コンソール利用者の1.4%が影響を受け、不正利用による課金も発生しているとメールで通知した。Google、OpenAI、Anthropicと対応を進めており、キーの失効とパスワード変更を呼びかけている。単一のまとめサイトの情報のため、公式発表での確認を。</p>
+        <div class="meta"><span>出典：AI Weekly（まとめサイト）</span><span>2026.10.17</span></div>
+        <div class="num">06</div>
+      </div>
+
+    </div>
+
+    <div class="controls">
+      <button class="nav-btn" id="prevBtn" aria-label="前へ">←</button>
+      <div class="dots" id="dots"></div>
+      <button class="nav-btn" id="nextBtn" aria-label="次へ">→</button>
+    </div>
+    <div class="counter" id="counter">01 / 06</div>
+  </div>
+
+  <div class="footer-note fade d5">
+    ※本レポートは公開情報をもとにした要約です。モデルの公開日や提供範囲は媒体により食い違いがあるため、詳細は各社の公式発表をご確認ください。
+  </div>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+  const dotsWrap = document.getElementById('dots');
+  const total = cards.length;
+  let current = 0;
+
+  for (let i = 0; i < total; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  }
+  const dots = document.querySelectorAll('.dot');
+  const progressFill = document.getElementById('progressFill');
+  const counter = document.getElementById('counter');
+
+  function pad(n){ return String(n).padStart(2, '0'); }
+
+  function render(){
+    cards.forEach((c, i) => {
+      c.classList.remove('active', 'prev');
+      if (i === current) c.classList.add('active');
+      else if (i < current) c.classList.add('prev');
+    });
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    progressFill.style.width = ((current + 1) / total * 100) + '%';
+    counter.textContent = pad(current + 1) + ' / ' + pad(total);
+  }
+
+  function goTo(i){
+    current = (i + total) % total;
+    render();
+  }
+
+  document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
+  document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') goTo(current + 1);
+    if (e.key === 'ArrowLeft') goTo(current - 1);
+  });
+
+  // touch swipe
+  let touchStartX = 0;
+  const stage = document.querySelector('.slider-stage');
+  stage.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+  stage.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].screenX - touchStartX;
+    if (dx > 50) goTo(current - 1);
+    if (dx < -50) goTo(current + 1);
+  }, { passive: true });
+
+  render();
+</script>
+
+
+<script>
+  // 戻るボタン：一覧から来た場合は直前のページへ、直接開いた場合は一覧(index.html)へ
+  (function(){
+    var b = document.getElementById('backBtn');
+    if(!b) return;
+    b.addEventListener('click', function(e){
+      try{
+        if(document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1){
+          e.preventDefault();
+          history.back();
+        }
+      }catch(err){}
+    });
+  })();
+</script>
+</body>
+</html>
