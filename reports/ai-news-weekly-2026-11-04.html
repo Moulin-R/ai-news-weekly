@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>最新AIニュース 2026.11.04</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0f1e; --panel:#111a30; --panel2:#0e1627;
+    --line:rgba(120,200,255,.18); --cyan:#4ff0d0; --blue:#6aa8ff; --amber:#ffb454;
+    --ink:#e8f0ff; --ink-soft:#9fb0cf;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    background:
+      linear-gradient(var(--line) 1px, transparent 1px) 0 0/40px 40px,
+      linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0/40px 40px,
+      radial-gradient(circle at 80% 0%, #15305a 0%, var(--bg) 55%);
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family:'Noto Sans JP',sans-serif;
+    overflow-x:hidden;
+  }
+  body{
+    min-height:100vh;
+    display:flex; flex-direction:column; align-items:center;
+    padding: calc(env(safe-area-inset-top,0px) + 68px) 16px 48px;
+  }
+
+  /* 戻るボタン（左上固定） */
+  .back-btn{
+    position:fixed;
+    top: calc(env(safe-area-inset-top,0px) + 12px);
+    left: 12px;
+    z-index:100;
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 9px 16px 9px 12px;
+    border-radius: 100px;
+    border:1px solid rgba(79,240,208,.45);
+    background: rgba(10,15,30,.85);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    color: var(--cyan);
+    font-family:'Space Mono','Noto Sans JP',monospace;
+    font-size:13px; font-weight:700; letter-spacing:.04em;
+    text-decoration:none; cursor:pointer;
+    transition: transform .2s ease, background .2s ease, color .2s ease;
+  }
+  .back-btn:hover{ background: var(--cyan); color:#06241f; transform: translateX(-2px); }
+  .back-btn:focus-visible{ outline:2px solid var(--amber); outline-offset:2px; }
+  .back-btn .arrow{ font-size:16px; line-height:1; }
+
+  .header{ text-align:center; max-width:720px; margin-bottom:24px; }
+  .fade{ opacity:0; transform:translateY(14px); animation: rise .7s cubic-bezier(.22,1,.36,1) forwards; }
+  .d1{animation-delay:.05s} .d2{animation-delay:.2s} .d3{animation-delay:.35s} .d4{animation-delay:.5s}
+  @keyframes rise{ to{ opacity:1; transform:translateY(0); } }
+
+  .eyebrow{
+    font-family:'Space Mono',monospace; font-size:12px; letter-spacing:.3em;
+    color:var(--cyan); text-transform:uppercase; margin-bottom:10px;
+  }
+  .eyebrow::before{ content:"● "; color:var(--amber); animation: blink 1.4s steps(2) infinite; }
+  @keyframes blink{ 50%{ opacity:.2; } }
+  .header h1{
+    font-weight:900; font-size:clamp(26px,5.4vw,42px); line-height:1.35; letter-spacing:.02em;
+  }
+  .header h1 em{ font-style:normal; color:var(--cyan); }
+  .header .sub{ margin-top:10px; font-family:'Space Mono','Noto Sans JP',monospace; font-size:12px; color:var(--ink-soft); letter-spacing:.05em; }
+
+  /* ticker */
+  .ticker-wrap{
+    width:100%; max-width:880px; height:48px; overflow:hidden; flex-shrink:0;
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    background: rgba(17,26,48,.7); margin-bottom:28px; position:relative;
+  }
+  .ticker-track{
+    display:flex; align-items:center; height:48px; width:max-content; white-space:nowrap;
+    animation: scrollTicker 55s linear infinite; will-change: transform;
+  }
+  .ticker-track span{
+    flex:0 0 auto; display:block; padding:0 28px; font-size:14px; font-weight:500;
+    color:var(--blue); white-space:nowrap;
+  }
+  @keyframes scrollTicker{ 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+
+  .slider-stage{ position:relative; width:100%; max-width:640px; }
+  .progress-track{ width:100%; height:3px; background:rgba(120,200,255,.15); margin-bottom:20px; overflow:hidden; }
+  .progress-fill{ height:100%; width:12.50%; background:linear-gradient(90deg,var(--cyan),var(--blue)); transition:width .45s cubic-bezier(.65,0,.35,1); }
+
+  .cards{ display:grid; width:100%; }
+  .card{
+    grid-area:1/1;
+    background: linear-gradient(160deg, var(--panel) 0%, var(--panel2) 100%);
+    border:1px solid var(--line);
+    border-top:2px solid var(--cyan);
+    border-radius:6px;
+    box-shadow: 0 24px 50px -24px rgba(0,0,0,.7), 0 0 0 1px rgba(79,240,208,.04) inset;
+    padding:28px 28px 22px;
+    display:flex; flex-direction:column;
+    opacity:0; transform:translateX(40px); pointer-events:none; visibility:hidden;
+    transition: opacity .5s cubic-bezier(.65,0,.35,1), transform .5s cubic-bezier(.65,0,.35,1), visibility 0s linear .5s;
+  }
+  .card.active{ opacity:1; transform:translateX(0); pointer-events:auto; visibility:visible; transition-delay:0s; }
+  .card.prev{ opacity:0; transform:translateX(-40px); }
+  .card-top{ display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+  .tag{
+    font-family:'Space Mono','Noto Sans JP',monospace; font-size:12px; font-weight:700; letter-spacing:.06em;
+    color:#06241f; background:var(--cyan); padding:4px 12px; border-radius:3px;
+  }
+  .heat{ font-size:13px; letter-spacing:2px; }
+  .label{ font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.18em; color:var(--amber); margin-bottom:10px; }
+  .card h2{ font-weight:900; font-size:clamp(19px,3.6vw,24px); line-height:1.55; margin-bottom:16px; }
+  .card p.summary{ font-size:14.5px; line-height:1.95; color:var(--ink-soft); flex-grow:1; }
+  .card .meta{
+    margin-top:20px; padding-top:14px; border-top:1px dashed var(--line);
+    display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    font-family:'Space Mono','Noto Sans JP',monospace; font-size:11.5px; color:var(--blue);
+  }
+  .card:hover{ border-color: rgba(79,240,208,.45); }
+
+  .controls{ display:flex; align-items:center; justify-content:center; gap:22px; margin-top:24px; }
+  .nav-btn{
+    width:46px; height:46px; border-radius:50%; border:1px solid rgba(79,240,208,.4);
+    background:rgba(17,26,48,.8); color:var(--cyan); font-size:18px;
+    display:flex; align-items:center; justify-content:center; cursor:pointer; user-select:none;
+    transition:all .25s ease;
+  }
+  .nav-btn:hover{ background:var(--cyan); color:#06241f; transform:scale(1.07); }
+  .dots{ display:flex; gap:9px; }
+  .dot{ width:8px; height:8px; border-radius:50%; background:rgba(120,200,255,.28); cursor:pointer; transition:all .3s ease; }
+  .dot.active{ background:var(--cyan); width:24px; border-radius:5px; }
+  .counter{ text-align:center; margin-top:14px; font-family:'Space Mono',monospace; font-size:13px; letter-spacing:.15em; color:var(--ink-soft); }
+  .footer-note{ margin-top:32px; font-size:11px; color:var(--ink-soft); text-align:center; max-width:560px; line-height:1.8; opacity:.8; }
+
+  @media (max-width:480px){
+    body{ padding-left:12px; padding-right:12px; }
+    .card{ padding:22px 18px 18px; }
+    .ticker-wrap, .ticker-track{ height:44px; }
+    .ticker-track span{ padding:0 20px; font-size:13px; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .ticker-track{ animation:none; }
+    .fade{ animation:none; opacity:1; transform:none; }
+  }
+</style>
+</head>
+<body>
+
+  <a class="back-btn" id="backBtn" href="../index.html" aria-label="前のページに戻る">
+    <span class="arrow">←</span><span>戻る</span>
+  </a>
+
+  <div class="header">
+    <div class="eyebrow fade d1">Latest AI News</div>
+    <h1 class="fade d2">最新<em>AI</em>ニュース</h1>
+    <div class="sub fade d3">2026.10.23 – 11.04 ｜ 全8件</div>
+  </div>
+
+  <div class="ticker-wrap fade d4">
+    <div class="ticker-track">
+      <span>01｜Anthropic、IPOに向けS-1提出 Nasdaq「ANT」で上場へ ｜</span>
+      <span>02｜Google「Gemini 4 Carbon」発表 まずサイバー防御者向けに限定提供 ｜</span>
+      <span>03｜OpenAI、資金調達目標を最大200億ドルに縮小と報道 ｜</span>
+      <span>04｜OpenAI「GPT-6.1 Terra」発表 API料金はSolの半額 ｜</span>
+      <span>05｜Apple「Siri AI」が日本語対応 iOS 27.2でベータ開始 ｜</span>
+      <span>06｜Meta「Muse」日本で提供開始 北米外で初 ｜</span>
+      <span>07｜パナソニック系、33万人分の個人情報を禁止の生成AIへ ｜</span>
+      <span>08｜ChatGPTの仕事利用が多様化 日本は「計画と意思決定」が最大 ｜</span>
+      <span>01｜Anthropic、IPOに向けS-1提出 Nasdaq「ANT」で上場へ ｜</span>
+      <span>02｜Google「Gemini 4 Carbon」発表 まずサイバー防御者向けに限定提供 ｜</span>
+      <span>03｜OpenAI、資金調達目標を最大200億ドルに縮小と報道 ｜</span>
+      <span>04｜OpenAI「GPT-6.1 Terra」発表 API料金はSolの半額 ｜</span>
+      <span>05｜Apple「Siri AI」が日本語対応 iOS 27.2でベータ開始 ｜</span>
+      <span>06｜Meta「Muse」日本で提供開始 北米外で初 ｜</span>
+      <span>07｜パナソニック系、33万人分の個人情報を禁止の生成AIへ ｜</span>
+      <span>08｜ChatGPTの仕事利用が多様化 日本は「計画と意思決定」が最大 ｜</span>
+    </div>
+  </div>
+
+  <div class="slider-stage">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+    <div class="cards" id="cards">
+      <article class="card active" data-index="0">
+        <div class="card-top">
+          <span class="tag">Anthropic</span>
+          <span class="heat" aria-label="熱度5">🔥🔥🔥🔥🔥</span>
+        </div>
+        <div class="label">NEWS_01 / 08</div>
+        <h2>Anthropic、IPOに向けS-1届出書を提出 Nasdaqに「ANT」で上場へ</h2>
+        <p class="summary">10月26日、AnthropicがNasdaq上場に向けた登録届出書（S-1）を米SECに提出した。ティッカーは「ANT」で、公募価格や株数は未定。開示資料では2026年上期の売上高が約163億ドル（前年同期は約12億ドル）に達した一方、純損失は約807億ドルと報じられている。上場は11月中旬が見込まれるとの見方もある。</p>
+        <div class="meta"><span>出典：Anthropic公式発表・CNBC・SEC開示資料</span><span>2026.10.26</span></div>
+      </article>
+      <article class="card" data-index="1">
+        <div class="card-top">
+          <span class="tag">Google</span>
+          <span class="heat" aria-label="熱度5">🔥🔥🔥🔥🔥</span>
+        </div>
+        <div class="label">NEWS_02 / 08</div>
+        <h2>Google、“自社最強”の「Gemini 4 Carbon」を発表 まずサイバー防御者向けに限定提供</h2>
+        <p class="summary">10月28日（米国時間）、Googleが新たなフロンティアモデル「Gemini 4 Carbon」を発表した。Gemini 4 Argonの一般提供開始から約2週間での登場で、サイバー防御や長時間の開発タスクに強みがあるとされる。当面は一部のサイバー防御者向けプログラム「Fairwind」で段階的に提供し、一般公開の時期は未定。世界モデル「Genie 4」も研究プレビューとして公開されている。</p>
+        <div class="meta"><span>出典：Ledge.ai・gori.me</span><span>2026.10.28</span></div>
+      </article>
+      <article class="card" data-index="2">
+        <div class="card-top">
+          <span class="tag">OpenAI</span>
+          <span class="heat" aria-label="熱度4">🔥🔥🔥🔥</span>
+        </div>
+        <div class="label">NEWS_03 / 08</div>
+        <h2>OpenAI、資金調達の目標を最大200億ドルに縮小と報道 評価額は1.25兆ドル</h2>
+        <p class="summary">英FTの報道によると、OpenAIは進行中の資金調達ラウンドの目標を、当初の最大300億ドルから最大200億ドルへ引き下げた。評価額も当初提示の1.4兆ドルから1.25兆ドルに下げており、AI関連株の下落を受けて一部の投資家が出資額を減らしたとされる。Anthropicの上場前に資金を確保したい思惑があるとも伝えられているが、独自検証はされていない。</p>
+        <div class="meta"><span>出典：The Next Web（FT報道）</span><span>2026.10.31</span></div>
+      </article>
+      <article class="card" data-index="3">
+        <div class="card-top">
+          <span class="tag">OpenAI</span>
+          <span class="heat" aria-label="熱度4">🔥🔥🔥🔥</span>
+        </div>
+        <div class="label">NEWS_04 / 08</div>
+        <h2>OpenAI、画面操作に強い「GPT-6.1 Terra」を発表 API料金はGPT-6.1 Solの半額</h2>
+        <p class="summary">10月26日（現地時間）、OpenAIが新モデル「GPT-6.1 Terra」を発表した。画面の内容を理解してアプリを操作する力や文章作成を強化した中位モデルで、ChatGPT WorkとCodex、APIで利用できる。標準API料金は100万トークンあたり入力1ドル・出力5ドルで、GPT-6.1 Solの半額。最も複雑なコード作業には上位モデルが向くとOpenAIは説明している。</p>
+        <div class="meta"><span>出典：窓の杜・マイナビニュース</span><span>2026.10.26</span></div>
+      </article>
+      <article class="card" data-index="4">
+        <div class="card-top">
+          <span class="tag">Apple</span>
+          <span class="heat" aria-label="熱度4">🔥🔥🔥🔥</span>
+        </div>
+        <div class="label">NEWS_05 / 08</div>
+        <h2>Apple「Siri AI」が日本語に対応 iOS 27.2でベータ提供を開始</h2>
+        <p class="summary">Appleは10月26日（日本時間27日未明）、iOS 27.2などのアップデートで新しい「Siri AI」の日本語提供をベータ版として始めた。メッセージ・メール・写真の内容を踏まえて答え、画面の表示を理解してアプリをまたぐ操作も代行する。日本語のほか英語、フランス語、韓国語、ポルトガル語、スペイン語に対応し、Apple Intelligence対応端末が必要。一部機能には回数制限もある。</p>
+        <div class="meta"><span>出典：ケータイ Watch・gori.me</span><span>2026.10.27</span></div>
+      </article>
+      <article class="card" data-index="5">
+        <div class="card-top">
+          <span class="tag">Meta</span>
+          <span class="heat" aria-label="熱度3">🔥🔥🔥</span>
+        </div>
+        <div class="label">NEWS_06 / 08</div>
+        <h2>Meta、パーソナルAIエージェント「Muse」を日本で提供開始 北米外で初</h2>
+        <p class="summary">10月23日、MetaがパーソナルAIエージェント「Muse」の日本での提供を始めた。9月の北米開始以来、北米以外では日本が初の提供地域となる。メール送信や予約、スケジュール調整などを自律的に進め、送信や購入といった重要な操作の前には本人の承認を求める。メルカリ、マネーフォワード ME、チケットぴあとの連携も進める方針だが、開始時点ですべて使えるわけではない。</p>
+        <div class="meta"><span>出典：Meta日本語ニュースルーム・Impress Watch</span><span>2026.10.23</span></div>
+      </article>
+      <article class="card" data-index="6">
+        <div class="card-top">
+          <span class="tag">セキュリティ</span>
+          <span class="heat" aria-label="熱度4">🔥🔥🔥🔥</span>
+        </div>
+        <div class="label">NEWS_07 / 08</div>
+        <h2>パナソニック系、約33万人分の個人情報を利用禁止の外部生成AIにアップロード</h2>
+        <p class="summary">パナソニック オペレーショナルエクセレンスは10月23日、人事システム導入プロジェクトのメンバーが、約33万4000人分の個人情報を含むデータを、社内で禁止している外部の生成AIサービスにアップロードしたと公表した。原因は不正アクセスではなく社内ルール違反で、AI学習への利用は無効だったとしている。削除後も事業者側で30日間保持される点など、シャドーAI対策を考える材料になる。</p>
+        <div class="meta"><span>出典：マイナビニュース・ASCII.jp</span><span>2026.10.23</span></div>
+      </article>
+      <article class="card" data-index="7">
+        <div class="card-top">
+          <span class="tag">OpenAI／調査</span>
+          <span class="heat" aria-label="熱度3">🔥🔥🔥</span>
+        </div>
+        <div class="label">NEWS_08 / 08</div>
+        <h2>ChatGPTの仕事利用が多様化 日本では「計画と意思決定」が最大</h2>
+        <p class="summary">OpenAIが、約100カ国・165種類の業務タスクを対象に、ChatGPTの仕事での使われ方に関するデータを公開した。Ledge.aiによると、日本では「計画と意思決定」に関する利用が最も大きい。仕事での用途が広がっていることをうかがわせる結果で、研修や社内活用を設計する際に、自分たちの使い方と見比べる材料になりそうだ。</p>
+        <div class="meta"><span>出典：Ledge.ai</span><span>2026.11.03</span></div>
+      </article>
+    </div>
+
+    <div class="controls">
+      <div class="nav-btn" id="prevBtn" role="button" aria-label="前へ">←</div>
+      <div class="dots" id="dots"></div>
+      <div class="nav-btn" id="nextBtn" role="button" aria-label="次へ">→</div>
+    </div>
+    <div class="counter" id="counter">01 / 08</div>
+  </div>
+
+  <div class="footer-note">
+    ※本レポートは公開情報をもとにした要約です。詳細は各出典元をご確認ください。<br>
+    報道ベースの内容を含みます。数値や時期は今後変わる可能性があります。
+  </div>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+  const dotsWrap = document.getElementById('dots');
+  const total = cards.length;
+  let current = 0;
+
+  for(let i=0;i<total;i++){
+    const d = document.createElement('div');
+    d.className = 'dot' + (i===0 ? ' active' : '');
+    d.addEventListener('click', ()=> goTo(i));
+    dotsWrap.appendChild(d);
+  }
+  const dots = document.querySelectorAll('.dot');
+  const progressFill = document.getElementById('progressFill');
+  const counter = document.getElementById('counter');
+  const pad = n => String(n).padStart(2,'0');
+
+  function render(){
+    cards.forEach((c,i)=>{
+      c.classList.remove('active','prev');
+      if(i===current) c.classList.add('active');
+      else if(i<current) c.classList.add('prev');
+    });
+    dots.forEach((d,i)=> d.classList.toggle('active', i===current));
+    progressFill.style.width = ((current+1)/total*100) + '%';
+    counter.textContent = pad(current+1) + ' / ' + pad(total);
+  }
+  function goTo(i){ current = (i+total) % total; render(); }
+
+  document.getElementById('nextBtn').addEventListener('click', ()=> goTo(current+1));
+  document.getElementById('prevBtn').addEventListener('click', ()=> goTo(current-1));
+  document.addEventListener('keydown', e=>{
+    if(e.key==='ArrowRight') goTo(current+1);
+    if(e.key==='ArrowLeft') goTo(current-1);
+  });
+
+  let touchStartX = 0;
+  const stage = document.querySelector('.slider-stage');
+  stage.addEventListener('touchstart', e=>{ touchStartX = e.changedTouches[0].screenX; }, {passive:true});
+  stage.addEventListener('touchend', e=>{
+    const dx = e.changedTouches[0].screenX - touchStartX;
+    if(dx > 50) goTo(current-1);
+    if(dx < -50) goTo(current+1);
+  }, {passive:true});
+
+  // 戻るボタン：履歴があれば前のページへ、なければ index.html へ
+  document.getElementById('backBtn').addEventListener('click', e=>{
+    if(window.history.length > 1){ e.preventDefault(); window.history.back(); }
+  });
+
+  render();
+</script>
+</body>
+</html>
